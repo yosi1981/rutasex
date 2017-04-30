@@ -24,9 +24,6 @@ Route::get('/mostrar/{id}','PrincipalController@mostrarAnuncios');
 
 
 
-	Route::post('/paypalIPN','PaypalController@paypalIpn');
-Route::get('pruebaIPN','PaypalController@pruebaIPN');
-
 
 Route::group(['middleware' => 'auth'], function()
 {
