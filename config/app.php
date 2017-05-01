@@ -179,7 +179,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        'Fahim\PaypalIPN\PaypalIPNServiceProvider',
+        Fahim\PaypalIPN\PaypalIPNServiceProvider::class,
     ],
 
     /*

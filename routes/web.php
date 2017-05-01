@@ -22,7 +22,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 // Rutas privadas solo para usuarios autenticados
 Route::get('/mostrar/{id}','PrincipalController@mostrarAnuncios');
 
-
+Route::post('paypalIPN','PaypalController@paypalIpn');
 
 
 Route::group(['middleware' => 'auth'], function()
