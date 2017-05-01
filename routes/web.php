@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::group(['middleware' => 'Anunciante'], function()
 	{
 		Route::get('/anunciante/dashboard','AnuncianteController@Dashboard');
+		Route::get('ContratarDias','PaypalController@ContratarDias');
 		Route::get('payment', array(
 			'as' => 'payment',
 			'uses' => 'PaypalController@postPayment',

@@ -1,6 +1,7 @@
 <?php 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Routing\Controller as BaseController;
@@ -35,6 +36,11 @@ class PaypalController extends BaseController
 		$this->_api_context->setConfig($paypal_conf['settings']);
 	}
 
+	public function ContratarDias()
+	{
+		return view('anunciante.ingresoDias');
+	}
+
 	public function pruebaIPN()
 	{
 		return view('paypal.prueba');
@@ -63,8 +69,10 @@ class PaypalController extends BaseController
     }
 }
 
-	public function postPayment()
+	public function postPayment(Request $request)
 	{
+		$dias=$request->get('Dias');
+		$precio_dia=5;
 		$payer = new Payer();
 		$payer->setPaymentMethod('paypal');
 		$items = array();
@@ -76,10 +84,10 @@ class PaypalController extends BaseController
 			$item->setName('DIAS ANUNCIO')
 			->setCurrency($currency)
 			->setDescription('DIAS DE ANUNCIO')
-			->setQuantity(25)
-			->setPrice(5);
+			->setQuantity($dias)
+			->setPrice($precio_dia);
 			$items[] = $item;
-		$subtotal =(125);
+		$subtotal =($dias*$precio_dia);
 		//}
 		$item_list = new ItemList();
 		$item_list->setItems($items);
@@ -121,6 +129,7 @@ class PaypalController extends BaseController
 		}
 		// add payment ID to session
 		\Session::put('paypal_payment_id', $payment->getId());
+		\Session::put('dias_a_contratar', $dias);
 		if(isset($redirect_url)) {
 			// redirect to paypal
 			return \Redirect::away($redirect_url);
@@ -132,8 +141,10 @@ class PaypalController extends BaseController
 		$newpago=new Pago();
 		// Get the payment ID before session clear
 		$payment_id = \Session::get('paypal_payment_id');
+		$dias=\Session::get('dias_a_contratar');
 		// clear the session payment ID
 		\Session::forget('paypal_payment_id');
+		\Session::forget('dias_a_contratar');
 		$payerId = Input::get('PayerID');
 		$token = Input::get('token');
 		//if (empty(\Input::get('PayerID')) || empty(\Input::get('token'))) {
@@ -157,14 +168,14 @@ class PaypalController extends BaseController
 			$newpago->payerID=$payerId;
 			$newpago->iduser=\Auth::user()->id;
 			$newpago->fecha_pago=date("Ymd");
-			$newpago->dias=25;
+			$newpago->dias=$dias;
 			$newpago->precio=5;
-			$newpago->total=125;
+			$newpago->total=$dias*5;
 			$newpago->save();
-			return \Redirect::to('/')
+			return \Redirect::to('/ContratarDias')
 				->with('message', 'Compra realizada de forma correcta');
 		}
-		return \Redirect::to('/')
+		return \Redirect::to('/ContratarDias')
 			->with('message', 'La compra fue cancelada');
 	}
 
