@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -25,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $usuario=Auth::user();
+        $usuario = Auth::user();
 
         switch ($usuario->tipo_usuario) {
             case 1:

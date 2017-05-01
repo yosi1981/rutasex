@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioFormRequest;
 use App\User;
-use DB;
-use Mail;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Mail;
 
 class UsuarioController extends Controller
 {
@@ -21,28 +21,28 @@ class UsuarioController extends Controller
     public function NuevoUsuario(UsuarioFormRequest $request)
     {
         $usuario               = new User;
-        $usuario->name       = $request->get('nombre');
+        $usuario->name         = $request->get('nombre');
         $usuario->email        = $request->get('email');
         $usuario->password     = bcrypt($request->get('password'));
         $usuario->tipo_usuario = 1;
-        $usuario->activo      = 1;
-       Mail::send('emails.nuevoUsuario',['nombre'=>$usuario->name,'email'=>$usuario->email,'tipo_usuario'=>$usuario->tipo_usuario], function($msj){
+        $usuario->activo       = 1;
+        Mail::send('emails.nuevoUsuario', ['nombre' => $usuario->name, 'email' => $usuario->email, 'tipo_usuario' => $usuario->tipo_usuario], function ($msj) {
             $msj->subject('NUEVO USUARIO ');
             $msj->to('info@latiendadeyosi.com');
             $msj->attach('imagenes/1.jpg');
         });
 
         $usuario->save();
- 
-       return Redirect::to('Usuario');
+
+        return Redirect::to('Usuario');
     }
 
     public function IniciarSesion($id)
     {
-       $usuario=User::findOrFail($id);
-       Auth::login($usuario);
-       return Redirect::to('Usuario');
-        
+        $usuario = User::findOrFail($id);
+        Auth::login($usuario);
+        return Redirect::to('Usuario');
+
     }
 
     public function edit($id)
@@ -57,7 +57,7 @@ class UsuarioController extends Controller
     {
         $usuario               = new User;
         $usuario               = User::findOrFail($id);
-        $usuario->name       = $request->get('nombre');
+        $usuario->name         = $request->get('nombre');
         $usuario->email        = $request->get('email');
         $usuario->tipo_usuario = 1;
         $usuario->activo       = 1;
