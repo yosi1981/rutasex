@@ -70,7 +70,7 @@
 <script>
 		function getLocalidades()
 		{
-			var url="{{URL::to('getPoblaciones')}}";
+			var url="{{URL::to('/admin/getPoblaciones')}}";
 			$.ajax({
 				type : 'get',
 				url  : url+'?id='+{{$provincia->idprovincia}},
@@ -86,7 +86,7 @@
     		e.preventDefault();
     		var form=$('#frmPoblacion');
     		var formData=form.serialize();
-    		var url="{{URL::to('nuevaPoblacion')}}";
+    		var url="{{URL::to('/admin/nuevaPoblacion')}}";
     		$.ajax({
     			type:'post',
     			url: url,
@@ -107,7 +107,7 @@
     	})	    
 
     	$(document).on('click', '.editlocalidad', function(){
-	    	var url="{{URL::to('editarlocalidad')}}";
+	    	var url="{{URL::to('/admin/editarlocalidad')}}";
 	    	var id=$(this).data('id')
     		$.ajax({
     			type:'post',
@@ -131,7 +131,7 @@
 	    })
 		$('#mdlEditarPoblacion').on('submit',function(e){
 			e.preventDefault();
-			var url="{{URL::to('actualizarlocalidad')}}";
+			var url="{{URL::to('/admin/actualizarlocalidad')}}";
    			var form=$('#frmEditPoblacion');
     		var formData=form.serialize();
 		  $.ajax({
@@ -156,7 +156,7 @@
     	})
 		$('.modal-footer').on('click', '.delete', function(e) {
 			e.preventDefault();
-			var url="{{URL::to('eliminarlocalidad')}}";
+			var url="{{URL::to('/admin/eliminarlocalidad')}}";
 		  $.ajax({
 		    type: 'post',
 		    data: {

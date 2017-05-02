@@ -27,13 +27,28 @@ class ProvinciaController extends Controller
 /*    		$provincias=DB::table('provincias')->where('nombre','LIKE','%'.$query.'%')
     		->orderBy('nombre','asc')
     		->paginate(5);
-*/
+*/ 
+            $usuarioActual=\Auth::user();
+            if($usuarioActual->tipo_usuario==4)
+            {
             $provincias=DB::table('provincias')
             ->join('users','provincias.idresponsable','=','users.id')
             ->select('provincias.idprovincia','provincias.nombre','provincias.idresponsable','users.name as NombreUsuario','provincias.habilitado')
             ->where('provincias.nombre','LIKE','%'.$query.'%')
             ->orderBy('provincias.nombre','asc')
             ->paginate(5);
+            }
+            else
+            {
+            $provincias=DB::table('provincias')
+            ->join('users','provincias.idresponsable','=','users.id')
+            ->select('provincias.idprovincia','provincias.nombre','provincias.idresponsable','users.name as NombreUsuario','provincias.habilitado')
+            ->where('provincias.nombre','LIKE','%'.$query.'%')
+            ->where('provincias.idresponsalbe','=',$usuarioActual)
+            ->orderBy('provincias.nombre','asc')
+            ->paginate(5);
+
+            }
             $usuarios=User::where('tipo_usuario','=','1')->pluck('name','id');
 
     		return view('provincia.index',["provincias"=>$provincias,"searchText"=>$query,"usuarios"=>$usuarios]);

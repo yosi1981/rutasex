@@ -31,6 +31,17 @@ Route::group(['middleware' => 'auth'], function()
 	Route::group(['middleware' => 'Admin'], function()
 	{
 		Route::get('/admin/dashboard','AdminController@Dashboard');
+		Route::resource('/admin/Provincia', 'ProvinciaController');
+		Route::post('/admin/nuevaProvincia', 'ProvinciaController@nuevaProvincia');
+		Route::post('/admin/eliminarProvincia','ProvinciaController@eliminar');
+		Route::get('/admin/searchProvincia', 'ProvinciaController@search');
+		Route::resource('/admin/Poblacion', 'PoblacionController');
+		Route::post('/admin/nuevaPoblacion', 'PoblacionController@nuevaPoblacion');
+		Route::post('/admin/eliminarlocalidad', 'PoblacionController@eliminar');
+		Route::post('/admin/editarlocalidad', 'PoblacionController@editar');
+		Route::post('/admin/actualizarlocalidad', 'PoblacionController@actualizar');
+		Route::get('/admin/getPoblaciones', 'PoblacionController@getPoblacionesProvincia');
+		Route::get('/admin/llenarLocalidades', 'PoblacionController@selectLocalidades');	
 	});
 
 	
@@ -59,18 +70,9 @@ Route::group(['middleware' => 'auth'], function()
 		));
 	});
 
-	Route::resource('/admin/Provincia', 'ProvinciaController');
-	Route::post('/admin/nuevaProvincia', 'ProvinciaController@nuevaProvincia');
-	Route::post('/admin/eliminarProvincia','ProvinciaController@eliminar');
-	Route::get('/admin/searchProvincia', 'ProvinciaController@search');
 
-	Route::resource('/admin/Poblacion', 'PoblacionController');
-	Route::post('/admin/nuevaPoblacion', 'PoblacionController@nuevaPoblacion');
-	Route::post('/admin/eliminarlocalidad', 'PoblacionController@eliminar');
-	Route::post('/admin/editarlocalidad', 'PoblacionController@editar');
-	Route::post('/admin/actualizarlocalidad', 'PoblacionController@actualizar');
-	Route::get('/admin/getPoblaciones', 'PoblacionController@getPoblacionesProvincia');
-	Route::get('/admin/llenarLocalidades', 'PoblacionController@selectLocalidades');	
+
+
 
 	Route::resource('Usuario', 'UsuarioController');
 	Route::get('crearUsuario', 'UsuarioController@CrearUsuario');
