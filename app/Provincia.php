@@ -28,6 +28,6 @@ class Provincia extends Model
 
     public function usuario()
     {
-        return $this->belongsTo('App\Usuario','idresponsable','idusuario');
+        return $this->belongsTo('App\User','idresponsable','id');
     }
 }

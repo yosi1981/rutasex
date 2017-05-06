@@ -16,7 +16,7 @@
 						<td>{{$usu->name}}</td>
 						<td>{{$usu->email}}</td>
 						<td>{{$usu->activo}}</td>
-						<td>{{$usu->tipo_usuario}}</td>						
+						<td>{{$usu->stringRol->nombre}}</td>						
 						<td>
                             <a href="{{URL::action('UsuarioController@edit',$usu->id)}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Editar Usuario">

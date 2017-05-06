@@ -69,10 +69,13 @@ class UsuarioController extends Controller
     public function search(Request $request)
     {
         if ($request->ajax()) {
-            $usuarios = DB::table('users')->where('name', 'LIKE', '%' . $request->get('searchText') . '%')
+            /*$usuarios = DB::table('users')->where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
-
+            */
+                $usuarios=User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
+                ->orderBy('name', 'asc')
+                ->paginate(5);
             if ($usuarios) {
                 $salida = view('usuario.tablaUsuarios', compact('usuarios', 'searchText'))->render();
                 return response()->json($salida);
@@ -84,9 +87,13 @@ class UsuarioController extends Controller
     {
         if ($request) {
             $query    = trim($request->get('searchText'));
-            $usuarios = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')
+            /*$usuarios = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
+            */
+                $usuarios=User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
+                ->orderBy('name', 'asc')
+                ->paginate(5);                
             return view('usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
         }
 

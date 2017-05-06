@@ -34,6 +34,11 @@ class User extends Authenticatable
     
     public function provincias()
     {
-        return $this->hasMany('contactosWeb\Provincia','idresponsable','idusuario');
+        return $this->hasMany('App\Provincia','idresponsable','id');
+    }
+
+    public function stringRol()
+    {
+        return $this->hasOne('App\TipoUsuario','id','tipo_usuario');
     }
 }

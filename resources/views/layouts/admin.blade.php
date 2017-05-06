@@ -91,7 +91,7 @@
           <!-- Sidebar user panel -->
                     
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
+          <!-- <ul class="sidebar-menu">
             <li class="header"></li>
             
             <li class="treeview active">
@@ -152,8 +152,8 @@
                 <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
                 <small class="label pull-right bg-yellow">IT</small>
               </a>
-            </li>
-                        
+            </li> -->
+          @include('layouts.includes.'.Auth::user()->stringRol->nombre . '.barraIzda')
           </ul>
         </section>
         <!-- /.sidebar -->
