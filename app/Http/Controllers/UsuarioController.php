@@ -34,14 +34,14 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return Redirect::to('Usuario');
+        return Redirect::to('/admin/Usuario');
     }
 
     public function IniciarSesion($id)
     {
         $usuario = User::findOrFail($id);
         Auth::login($usuario);
-        return Redirect::to('Usuario');
+        return Redirect::to('/admin/Usuario');
 
     }
 
@@ -63,7 +63,7 @@ class UsuarioController extends Controller
         $usuario->activo       = 1;
         $usuario->update();
 
-        return Redirect::to('Usuario');
+        return Redirect::to('/admin/Usuario');
     }
 
     public function search(Request $request)

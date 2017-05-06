@@ -167,10 +167,10 @@ class PaypalController extends BaseController
             $newpago->precio     = 5;
             $newpago->total      = $dias * 5;
             $newpago->save();
-            return \Redirect::to('/ContratarDias')
+            return \Redirect::to('/anunciante/ContratarDias')
                 ->with('message', 'Compra realizada de forma correcta');
         }
-        return \Redirect::to('/ContratarDias')
+        return \Redirect::to('/anunciante/ContratarDias')
             ->with('message', 'La compra fue cancelada');
     }
 

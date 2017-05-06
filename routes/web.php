@@ -42,6 +42,14 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/actualizarlocalidad', 'PoblacionController@actualizar');
 		Route::get('/admin/getPoblaciones', 'PoblacionController@getPoblacionesProvincia');
 		Route::get('/admin/llenarLocalidades', 'PoblacionController@selectLocalidades');	
+
+		Route::resource('/admin/Usuario', 'UsuarioController');
+		Route::get('/admin/crearUsuario', 'UsuarioController@CrearUsuario');
+		Route::post('/admin/EditarUsuario', 'UsuarioController@EditarUsuario');
+		Route::post('/admin/ActualizarUsuario', 'UsuarioController@Actualizar');
+		Route::post('/admin/NuevoUsuario', 'UsuarioController@NuevoUsuario');
+		Route::post('/admin/eliminarUsuario', 'UsuarioController@eliminar');
+		Route::get('/admin/searchUsuario', 'UsuarioController@search');
 	});
 
 	
@@ -58,7 +66,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::group(['middleware' => 'Anunciante'], function()
 	{
 		Route::get('/anunciante/dashboard','AnuncianteController@Dashboard');
-		Route::get('ContratarDias','PaypalController@ContratarDias');
+		Route::get('/anunciante/ContratarDias','PaypalController@ContratarDias');
 		Route::get('payment', array(
 			'as' => 'payment',
 			'uses' => 'PaypalController@postPayment',
@@ -74,13 +82,7 @@ Route::group(['middleware' => 'auth'], function()
 
 
 
-	Route::resource('Usuario', 'UsuarioController');
-	Route::get('crearUsuario', 'UsuarioController@CrearUsuario');
-	Route::post('/EditarUsuario', 'UsuarioController@EditarUsuario');
-	Route::post('/ActualizarUsuario', 'UsuarioController@Actualizar');
-	Route::post('/NuevoUsuario', 'UsuarioController@NuevoUsuario');
-	Route::post('/eliminarUsuario', 'UsuarioController@eliminar');
-	Route::get('/searchUsuario', 'UsuarioController@search');
+
 
 	Route::resource('Anuncio', 'AnuncioController');
 	Route::get('crearAnuncio', 'AnuncioController@CrearAnuncio');
