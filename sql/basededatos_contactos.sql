@@ -267,6 +267,98 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES (2,NULL,NULL,'joseba','japostua@gmail.com','$2y$10$F6hXWtdv4R6KZorp90YJmOgtDgEttFITrWgPLJsB2DIhCkkUWwAFa','4',1,'VQ0vO3TzEhM602QIBQwyNuIYfpxrYdNfbV9S1vH7DXxB0loinmq6YZQ2ItXi','2017-04-06 16:36:37','2017-04-06 16:36:37'),(3,NULL,NULL,'pedro','pedro@gmail.com','$2y$10$/o/hQlyNnGMuRv/JS8QuzuTbOqJc7T0H8lH8/nnUrhTPOGGqckji6','1',1,'LBFjdXSs8lmsM3vSvwlCLVfUtoVZvfrowpcV10wTD9o5nw3NweCbpgC3PMed',NULL,NULL),(11,NULL,NULL,'pasdjfalksdf','joseba_21@hotmail.com','noeliatqm','3',1,'XoOt2Gmq624aZ1Iyr7HikRLvTvaXjjChZdRcWiTHmQ7b0hRfkuFRh0QLlroq',NULL,NULL),(13,NULL,NULL,'bbbbbbbbbbbbbbbbbb','bbbb@gmail.com','neoliatqm','1',1,'fPffJobD7b0JhgS8frjhlU4TTj7iEs5W0T4foQvC3UAUBN0iKpiyq1gtG61R',NULL,NULL),(14,NULL,NULL,'asdfadsfasdf','ccccc@gmail.com','noeliatqm','1',1,'PAjkLxBEzt4NrJhWAmriXeZUor6HGitfB2uKGIdX4rBpW8coXcmbeJ2WQrp0',NULL,NULL),(15,NULL,NULL,'supercalifragilisticoespialidoso','eeee@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(16,NULL,NULL,'zzzzz','zzzzz@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(17,NULL,NULL,'ANNE','PEADSFKLAJSD@ASDLKJGASDF.COM','NOELIATQM','1',1,'bJqlZx7DWp6UpaAnT16pL9hO1TftoQTGU5Kc2yoovNF4mvE7QJNAvg8RuZjM',NULL,NULL),(18,NULL,NULL,'vilman','vilma@gmail.com','eyJpdiI6InpzaWpLSTk1RmtYck9tR3VWaVBhbUE9PSIsInZhbHVlIjoiNGZTTkF4OTVGdEdCaHJLRnZaeVJTeFpuVmNiaFUwUmlXVkhzelwvOEc3dEE9IiwibWFjIjoiNTI1NmUxODkyMmQyOTg4ZDM1YTJmY2UyOWYxN2U2NTNmNThiMWYyNTMzODJjMTAzZWU3ZGJlMWE3NDU5NmJmNSJ9','1',1,NULL,NULL,NULL),(20,NULL,NULL,'vilmanbus','vilmaypedro@gmail.com','$2y$10$vGC6NvP59SI6UgN2F1b6teQRlmYpjeu1u8ZpP/to.lVklZ/c1cJQa','1',1,'NJKrZ3gKXaSaSDU9ajTuQvKI0MmDnpCP3IGWTP5TJWfqUMXpNLZtfY4Fb9UX',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usersAdmin`
+--
+
+DROP TABLE IF EXISTS `usersAdmin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usersAdmin` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersAdmin`
+--
+
+LOCK TABLES `usersAdmin` WRITE;
+/*!40000 ALTER TABLE `usersAdmin` DISABLE KEYS */;
+INSERT INTO `usersAdmin` VALUES (2,'users1');
+/*!40000 ALTER TABLE `usersAdmin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usersAdminProvincia`
+--
+
+DROP TABLE IF EXISTS `usersAdminProvincia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usersAdminProvincia` (
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersAdminProvincia`
+--
+
+LOCK TABLES `usersAdminProvincia` WRITE;
+/*!40000 ALTER TABLE `usersAdminProvincia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usersAdminProvincia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usersAnunciante`
+--
+
+DROP TABLE IF EXISTS `usersAnunciante`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usersAnunciante` (
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersAnunciante`
+--
+
+LOCK TABLES `usersAnunciante` WRITE;
+/*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usersAnunciante` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usersDelegado`
+--
+
+DROP TABLE IF EXISTS `usersDelegado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usersDelegado` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersDelegado`
+--
+
+LOCK TABLES `usersDelegado` WRITE;
+/*!40000 ALTER TABLE `usersDelegado` DISABLE KEYS */;
+INSERT INTO `usersDelegado` VALUES (11,'users2');
+/*!40000 ALTER TABLE `usersDelegado` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -277,4 +369,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-06 22:50:16
+-- Dump completed on 2017-05-07 13:13:45
