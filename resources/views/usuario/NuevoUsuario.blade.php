@@ -26,6 +26,12 @@
       {{ Form::password('password_confirmation', array('class' => 'form-control')) }}
     </div>
   </div>
+  <div class="row">    
+    <div class="form-group col-md-4">
+      {{ Form::label('idTipousuario', 'TipoUsuario') }}
+      {!! Form::select('idTipousuario',$TiposUsuario,null, $attributes = array('class'=>'form-control')) !!}
+    </div>
+  </div>
   {{ Form::button('Crear usuario', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
   
 {{ Form::close() }}

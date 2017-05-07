@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioFormRequest;
 use App\User;
+use App\TipoUsuario;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -14,8 +15,9 @@ class UsuarioController extends Controller
 {
     public function CrearUsuario()
     {
-
-        return view("usuario.NuevoUsuario");
+        $tipos_usuario = TipoUsuario::where('id','>',0)->OrderBy('descripcion')
+            ->pluck('descripcion', 'id');
+        return view("usuario.NuevoUsuario",["TiposUsuario"=>$tipos_usuario]);
 
     }
     public function NuevoUsuario(UsuarioFormRequest $request)
@@ -24,14 +26,15 @@ class UsuarioController extends Controller
         $usuario->name         = $request->get('nombre');
         $usuario->email        = $request->get('email');
         $usuario->password     = bcrypt($request->get('password'));
-        $usuario->tipo_usuario = 1;
+        $usuario->tipo_usuario = $request->get('idTipousuario');
         $usuario->activo       = 1;
+        /*
         Mail::send('emails.nuevoUsuario', ['nombre' => $usuario->name, 'email' => $usuario->email, 'tipo_usuario' => $usuario->tipo_usuario], function ($msj) {
             $msj->subject('NUEVO USUARIO ');
             $msj->to('info@latiendadeyosi.com');
             $msj->attach('imagenes/1.jpg');
         });
-
+        */
         $usuario->save();
 
         return Redirect::to('/admin/Usuario');
