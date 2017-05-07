@@ -48,7 +48,7 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = User::findOrFail($id);
-        return view("usuario.edit", ["usuario" => $usuario]);
+        return view("admin.usuario.editUsuario.edit", ["usuario" => $usuario]);
 
         //Provincia::findOrFail($id)]);
     }
