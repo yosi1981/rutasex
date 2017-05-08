@@ -30,5 +30,8 @@ class Useranunciante extends Model
         
     ];
     
- 
+    public function Partner()
+    {
+        return $this->hasOne('App\User','id','idpartner');
+    }
 }

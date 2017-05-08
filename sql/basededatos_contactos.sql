@@ -191,6 +191,7 @@ CREATE TABLE `provincias` (
   `habilitado` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `iddelegado` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`idprovincia`),
   KEY `provincias_idresponsable_foreign` (`idresponsable`),
   CONSTRAINT `provincias_idresponsable_foreign` FOREIGN KEY (`idresponsable`) REFERENCES `users` (`id`)
@@ -203,7 +204,7 @@ CREATE TABLE `provincias` (
 
 LOCK TABLES `provincias` WRITE;
 /*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
-INSERT INTO `provincias` VALUES (1,'NAVARRA',2,1,NULL,NULL),(2,'MADRID',3,1,NULL,NULL),(3,'khkjh',3,0,NULL,NULL),(4,'klasdjñf sadf',3,1,NULL,NULL),(5,'kjhkj kjh kjh jkh lhlhlj',3,1,NULL,NULL);
+INSERT INTO `provincias` VALUES (1,'NAVARRA',2,1,NULL,NULL,'11'),(2,'MADRID',3,1,NULL,NULL,'11'),(3,'khkjh',3,0,NULL,NULL,'11'),(4,'klasdjñf sadf',3,1,NULL,NULL,'11'),(5,'kjhkj kjh kjh jkh lhlhlj',3,1,NULL,NULL,'11');
 /*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,6 +325,7 @@ DROP TABLE IF EXISTS `usersAnunciante`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usersAnunciante` (
   `id` int(11) NOT NULL,
+  `idpartner` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -334,6 +336,7 @@ CREATE TABLE `usersAnunciante` (
 
 LOCK TABLES `usersAnunciante` WRITE;
 /*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
+INSERT INTO `usersAnunciante` VALUES (3,2);
 /*!40000 ALTER TABLE `usersAnunciante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,4 +373,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-07 17:06:48
+-- Dump completed on 2017-05-08 17:10:01

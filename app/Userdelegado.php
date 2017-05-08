@@ -30,5 +30,8 @@ class Userdelegado extends Model
         
     ];
     
- 
+    public function ProvinciasGestionaDelegado()
+    {
+            return $this->hasMany('App\Provincia','iddelegado','id');
+    }
 }

@@ -30,5 +30,9 @@ class UseradminProvincia extends Model
         
     ];
     
- 
+   public function ProvinciasGestionaAdminProv()
+    {
+            return $this->hasMany('App\Provincia','idresponsable','id');
+
+    }
 }
