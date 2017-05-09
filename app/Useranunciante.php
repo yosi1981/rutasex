@@ -34,4 +34,14 @@ class Useranunciante extends Model
     {
         return $this->hasOne('App\User','id','idpartner');
     }
+
+    public function Anuncios(Boolean $activo)
+    {
+        return $this->hasMany('App\Anuncio','idusuario','id')
+    }
+
+    public function HistorialAnuncios()
+    {
+        return $this->hasMany('App\AnuncioDia','idanunciante','id')
+    }
 }

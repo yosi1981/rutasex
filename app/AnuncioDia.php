@@ -17,12 +17,40 @@ class AnuncioDia extends Model
     	'fecha',
     	'idanuncio',
     	'idlocalidad',
-    	'idrespprov',
-    	'idrespprovorigen',
+    	'idadminProv',
+    	'iddelegado',
+        'idpartner',
+        'idlocalidad',
+        'idanunciante',
     	'numvisitas',
     ];
 
     protected $guarded=[
     ];
+
+    public function AnuncioProvincia()
+    {
+        return $this->hasOne('App\Poblacion','idlocalidad','idlocalidad');
+    }
+
+    public function AnuncioAdminProvincia()
+    {
+        return $this->hasOne('App\UseradminProvincia','id','idadminProv');
+    }
+
+    public function AnuncioDelegadoProvincia()
+    {
+        return $this->hasOne('App\Userdelegado','id','iddelegado');
+    }
+
+    public function AnuncioPartner()
+    {
+        return $this->hasOne('App\User','id','idpartner');
+    }
+
+    public function AnuncioAnunciante()
+    {
+        return $this->hasOne('App\Useranunciante','id','idanunciante');
+    }
 }
 

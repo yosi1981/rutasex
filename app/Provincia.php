@@ -30,4 +30,9 @@ class Provincia extends Model
     {
         return $this->belongsTo('App\User','idresponsable','id');
     }
+
+    public function delegado()
+    {
+        return $this->hasOne('App\Userdelegado','id','idresponsable');
+    }
 }

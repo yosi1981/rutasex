@@ -79,13 +79,17 @@ class PrincipalController extends Controller
             } else {
                 $newandia                   = new AnuncioDia();
                 $newandia->idanuncio        = $an->idanuncio;
+                $usuario=$an->UserAnunciante;
+                $newandia->idanunciante     = $usuario->id;
                 $newandia->fecha            = $fechaactual;
                 $newandia->idlocalidad      = $an->idlocalidad;
                 $poblacion                  = Poblacion::findorfail($an->idlocalidad);
                 $provincia                  = Provincia::findorfail($poblacion->idprovincia);
-                $responsable                = User::findorfail($provincia->idresponsable);
-                $newandia->idrespprov       = $provincia->idresponsable;
-                $newandia->idrespprovorigen = $provincia->idresponsable;
+                $newandia->idprovincia      = $provincia->id;
+                //$responsable                = User::findorfail($provincia->idresponsable);
+                $newandia->idadminPro       = $provincia->usuario->id;
+                $newandia->iddelegado       = $provincia->delegado->id;
+                $newandia->idpartner        = $usuario->partner->id;
                 $newandia->numvisitas       = 1;
                 $newandia->save();
             }

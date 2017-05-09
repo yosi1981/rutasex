@@ -21,4 +21,9 @@ class Anuncio extends Model
 
     protected $guarded=[
     ];
+
+    public function UserAnunciante()
+    {
+        return $this->hasOne('App\Useranunciante','id','idusuario');
+    }
 }
