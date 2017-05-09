@@ -63,18 +63,21 @@ CREATE TABLE `anunciosDia` (
   `fecha` date NOT NULL,
   `idanuncio` int(10) unsigned NOT NULL,
   `idlocalidad` int(10) unsigned NOT NULL,
-  `idrespprov` int(10) unsigned NOT NULL,
-  `idrespprovorigen` int(10) unsigned NOT NULL,
+  `idadminPro` int(10) unsigned NOT NULL,
+  `iddelegado` int(10) unsigned NOT NULL,
   `numvisitas` double NOT NULL,
+  `idpartner` int(11) NOT NULL,
+  `idprovincia` int(11) NOT NULL,
+  `idanunciante` int(10) NOT NULL,
   PRIMARY KEY (`idanuncioDia`),
   KEY `anunciosdia_idanuncio_foreign` (`idanuncio`),
   KEY `anunciosdia_idlocalidad_foreign` (`idlocalidad`),
-  KEY `anunciosdia_idrespprov_foreign` (`idrespprov`),
-  KEY `anunciosdia_idrespprovorigen_foreign` (`idrespprovorigen`),
+  KEY `anunciosdia_idrespprov_foreign` (`idadminPro`),
+  KEY `anunciosdia_idrespprovorigen_foreign` (`iddelegado`),
   CONSTRAINT `anunciosdia_idanuncio_foreign` FOREIGN KEY (`idanuncio`) REFERENCES `anuncios` (`idanuncio`),
   CONSTRAINT `anunciosdia_idlocalidad_foreign` FOREIGN KEY (`idlocalidad`) REFERENCES `localidades` (`idlocalidad`),
-  CONSTRAINT `anunciosdia_idrespprov_foreign` FOREIGN KEY (`idrespprov`) REFERENCES `users` (`id`),
-  CONSTRAINT `anunciosdia_idrespprovorigen_foreign` FOREIGN KEY (`idrespprovorigen`) REFERENCES `users` (`id`)
+  CONSTRAINT `anunciosdia_idrespprov_foreign` FOREIGN KEY (`idadminPro`) REFERENCES `users` (`id`),
+  CONSTRAINT `anunciosdia_idrespprovorigen_foreign` FOREIGN KEY (`iddelegado`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,7 +87,7 @@ CREATE TABLE `anunciosDia` (
 
 LOCK TABLES `anunciosDia` WRITE;
 /*!40000 ALTER TABLE `anunciosDia` DISABLE KEYS */;
-INSERT INTO `anunciosDia` VALUES (1,'2017-04-10',1,1,2,2,37),(2,'2017-04-10',2,2,2,2,17),(3,'2017-05-01',2,2,3,3,8);
+INSERT INTO `anunciosDia` VALUES (1,'2017-04-10',1,1,2,2,37,0,0,0),(2,'2017-04-10',2,2,2,2,17,0,0,0),(3,'2017-05-01',2,2,3,3,8,0,0,0);
 /*!40000 ALTER TABLE `anunciosDia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,4 +376,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-08 17:10:01
+-- Dump completed on 2017-05-09 19:54:29
