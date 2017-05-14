@@ -17,6 +17,7 @@ class AnuncioDia extends Model
     	'fecha',
     	'idanuncio',
     	'idlocalidad',
+        'idprovincia',
     	'idadminProv',
     	'iddelegado',
         'idpartner',
@@ -30,27 +31,27 @@ class AnuncioDia extends Model
 
     public function AnuncioProvincia()
     {
-        return $this->hasOne('App\Poblacion','idlocalidad','idlocalidad');
+        return $this->belongsTo('App\Provincia','idprovincia','idprovincia');
     }
 
     public function AnuncioAdminProvincia()
     {
-        return $this->hasOne('App\UseradminProvincia','id','idadminProv');
+        return $this->belongsTo('App\UseradminProvincia','id','idadminProv');
     }
 
     public function AnuncioDelegadoProvincia()
     {
-        return $this->hasOne('App\Userdelegado','id','iddelegado');
+        return $this->belongsTo('App\Userdelegado','id','iddelegado');
     }
 
     public function AnuncioPartner()
     {
-        return $this->hasOne('App\User','id','idpartner');
+        return $this->belongsTo('App\User','id','idpartner');
     }
 
     public function AnuncioAnunciante()
     {
-        return $this->hasOne('App\Useranunciante','id','idanunciante');
+        return $this->belongsTo('App\Useranunciante','id','idanunciante');
     }
 }
 

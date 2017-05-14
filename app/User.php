@@ -43,7 +43,6 @@ class User extends Authenticatable
     }
 
 
-
     public function Referidos()
     {
         return $this->hasMany('App\Useranunciante','idpartner','id');

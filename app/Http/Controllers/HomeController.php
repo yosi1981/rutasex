@@ -26,16 +26,7 @@ class HomeController extends Controller
     {
         $usuario = Auth::user();
 
-        switch ($usuario->tipo_usuario) {
-            case 1:
-                return Redirect::to('/anunciante/dashboard');
-            case 2:
-                return Redirect::to('/adminProvincia/dashboard');
-            case 3:
-                return Redirect::to('/delegado/dashboard');
-            case 4:
-                return Redirect::to('/admin/dashboard');
-        }
+        return Redirect::to('/'.$usuario->stringRol->nombre .'/dashboard');
 
     }
 }

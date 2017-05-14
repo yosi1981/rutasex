@@ -13,6 +13,8 @@
                 <li><a href="{{asset('/admin/Imagen')}}"><i class="fa fa-user "></i> Imagen</a></li>
                 <li><a href="{{asset('/admin/Anuncio')}}"><i class="fa fa-user"></i> Anuncio</a></li>
                 <li><a href="{{asset('/admin/Usuario')}}"><i class="fa fa-user"></i> Usuario</a></li>
+                <li><a href="{{asset('/infocuenta')}}"><i class="fa fa-user"></i> Mi cuenta</a></li>
+
               </ul>
             </li>
             

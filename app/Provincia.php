@@ -26,13 +26,18 @@ class Provincia extends Model
         return $this->hasMany('App\Poblacion','idprovincia','idprovincia');
     }
 
-    public function usuario()
+    public function adminPro()
     {
         return $this->belongsTo('App\User','idresponsable','id');
     }
 
     public function delegado()
     {
-        return $this->hasOne('App\Userdelegado','id','idresponsable');
+        return $this->belongsTo('App\Userdelegado','iddelegado','id');
+    }
+
+    public function anunciosHistorial()
+    {
+        return $this->hasMany('App\AnuncioDia','idprovincia','idprovincia');
     }
 }

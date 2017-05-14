@@ -24,6 +24,6 @@ class Anuncio extends Model
 
     public function UserAnunciante()
     {
-        return $this->hasOne('App\Useranunciante','id','idusuario');
+        return $this->belongsTo('App\Useranunciante','idusuario','id');
     }
 }

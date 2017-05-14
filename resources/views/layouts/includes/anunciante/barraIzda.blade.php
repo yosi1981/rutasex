@@ -12,6 +12,8 @@
                 <li><a href="{{asset('/anunciante/Imagen')}}"><i class="fa fa-user "></i> Imagen</a></li>
                 <li><a href="{{asset('/anunciante/Anuncio')}}"><i class="fa fa-user"></i> Anuncio</a></li>
                 <li><a href="{{asset('/anunciante/Usuario')}}"><i class="fa fa-user"></i> Usuario</a></li>
+                </li>
+                <li><a href="{{asset('/infocuenta')}}"><i class="fa fa-user"></i> Mi cuenta</a></li>
               </ul>
             </li>
 

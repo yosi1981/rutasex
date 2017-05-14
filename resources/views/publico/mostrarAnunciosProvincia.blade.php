@@ -3,7 +3,7 @@
 @section ('barraizquierda')
 @if (count($provincias)>0)
         @foreach ($provincias as $pro)
-            @if ($provincia==$pro->idprovincia)
+            @if ($provincia->idprovincia==$pro->idprovincia)
             <li class="selected"><a href="{{URL::action('PrincipalController@mostrarAnuncios',$pro->idprovincia)}}">{{$pro->nombre}}</a>
             <i class="fa fa-angle-left pull-right"></i></li>
             @else
@@ -18,7 +18,6 @@
 
 @if (count($anuncios)>0)
     @foreach ($anuncios as $anu)
-        
         <div class="product_box">
         <img src="{{asset('img/p1.gif')}}" alt="" title="" class="prod_image" />
         <div class="product_details">

@@ -28,6 +28,7 @@ Route::post('paypalIPN','PaypalController@paypalIpn');
 Route::group(['middleware' => 'auth'], function()
 {
 	Route::get('/home', 'HomeController@index');
+	Route::get('/infocuenta','infocuentaController@InfoReferidos');
 	Route::group(['middleware' => 'Admin'], function()
 	{
 		Route::get('/admin/dashboard','AdminController@Dashboard');
