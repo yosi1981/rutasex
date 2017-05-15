@@ -38,7 +38,7 @@ CREATE TABLE `anuncios` (
   KEY `anuncios_idusuario_foreign` (`idusuario`),
   CONSTRAINT `anuncios_idlocalidad_foreign` FOREIGN KEY (`idlocalidad`) REFERENCES `localidades` (`idlocalidad`),
   CONSTRAINT `anuncios_idusuario_foreign` FOREIGN KEY (`idusuario`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `anuncios` (
 
 LOCK TABLES `anuncios` WRITE;
 /*!40000 ALTER TABLE `anuncios` DISABLE KEYS */;
-INSERT INTO `anuncios` VALUES (1,'abac','lkadsjf','2015-02-22','2017-04-30',1,1,3,NULL,NULL),(2,'ANNE ESPAÑOLA','LKADJSFLKJ','2015-02-22','2020-02-22',1,2,17,NULL,NULL);
+INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,5,2,NULL,NULL);
 /*!40000 ALTER TABLE `anuncios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,6 @@ CREATE TABLE `anunciosDia` (
 
 LOCK TABLES `anunciosDia` WRITE;
 /*!40000 ALTER TABLE `anunciosDia` DISABLE KEYS */;
-INSERT INTO `anunciosDia` VALUES (1,'2017-04-10',1,1,22,11,37,2,1,3),(2,'2017-04-10',2,2,22,11,17,11,2,13),(3,'2017-05-01',2,2,3,11,8,11,2,13),(48,'2017-05-14',1,1,2,11,12,2,1,3),(49,'2017-05-14',2,2,3,11,16,2,2,17);
 /*!40000 ALTER TABLE `anunciosDia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +136,7 @@ CREATE TABLE `localidades` (
   PRIMARY KEY (`idlocalidad`),
   KEY `localidades_idprovincia_foreign` (`idprovincia`),
   CONSTRAINT `localidades_idprovincia_foreign` FOREIGN KEY (`idprovincia`) REFERENCES `provincias` (`idprovincia`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +145,7 @@ CREATE TABLE `localidades` (
 
 LOCK TABLES `localidades` WRITE;
 /*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
-INSERT INTO `localidades` VALUES (1,'pamplona',1,NULL,NULL),(2,'MADRID',2,NULL,NULL),(3,'jkhl',3,NULL,NULL),(4,'pamplona',3,NULL,NULL);
+INSERT INTO `localidades` VALUES (5,'pamplona',6,NULL,NULL);
 /*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -176,7 +175,6 @@ CREATE TABLE `pagos` (
 
 LOCK TABLES `pagos` WRITE;
 /*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
-INSERT INTO `pagos` VALUES (1,'PAY-8NS14755K6799143FLD2KR7Y','PAY-8NS14755K6799143FLD2KR7Y',2,'2017-04-17',25,5,125),(2,'2ZU2PGVBQSZR8','PAY-47880422BW4120444LD2KT7Y',14,'2017-04-17',25,5,125),(3,'2ZU2PGVBQSZR8','PAY-70N01704W2738700TLD2KWQA',14,'2017-04-17',25,5,125),(4,'2ZU2PGVBQSZR8','PAY-0US93516TV3739454LD2LMRQ',13,'2017-04-17',25,5,125),(5,'2ZU2PGVBQSZR8','PAY-6JM571362F0973116LD2MZOQ',14,'2017-04-17',25,5,125),(6,'2ZU2PGVBQSZR8','PAY-30C426292X667613TLEC4UEY',13,'2017-04-30',25,5,125),(7,'2ZU2PGVBQSZR8','PAY-4TX918695U251301LLEDOFSY',14,'2017-05-01',25,5,125),(8,'2ZU2PGVBQSZR8','PAY-6U5986233E222221ALEDOI2Y',14,'2017-05-01',25,5,125),(9,'2ZU2PGVBQSZR8','PAY-53K85928KX894773RLEDOLIA',14,'2017-05-01',30,5,150),(10,'2ZU2PGVBQSZR8','PAY-56D26221MW6681643LEDOZFA',14,'2017-05-01',2,5,10),(11,'2ZU2PGVBQSZR8','PAY-1C698585RD549771KLEHCYLI',14,'2017-05-06',25,5,125),(12,'2ZU2PGVBQSZR8','PAY-9TX073598C5307106LEHCZVA',14,'2017-05-06',65,5,325),(13,'2ZU2PGVBQSZR8','PAY-42L462966U201874NLEHTNUY',17,'2017-05-07',25,5,125);
 /*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +196,7 @@ CREATE TABLE `provincias` (
   PRIMARY KEY (`idprovincia`),
   KEY `provincias_idresponsable_foreign` (`idresponsable`),
   CONSTRAINT `provincias_idresponsable_foreign` FOREIGN KEY (`idresponsable`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +205,7 @@ CREATE TABLE `provincias` (
 
 LOCK TABLES `provincias` WRITE;
 /*!40000 ALTER TABLE `provincias` DISABLE KEYS */;
-INSERT INTO `provincias` VALUES (1,'NAVARRA',22,1,NULL,NULL,'11'),(2,'MADRID',22,1,NULL,NULL,'11'),(3,'khkjh',3,0,NULL,NULL,'11'),(4,'klasdjñf sadf',3,1,NULL,NULL,'11'),(5,'kjhkj kjh kjh jkh lhlhlj',3,1,NULL,NULL,'11');
+INSERT INTO `provincias` VALUES (6,'NAVARRA',25,1,NULL,NULL,'35');
 /*!40000 ALTER TABLE `provincias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +258,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`name`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +267,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,NULL,NULL,'joseba','japostua@gmail.com','$2y$10$F6hXWtdv4R6KZorp90YJmOgtDgEttFITrWgPLJsB2DIhCkkUWwAFa','4',1,'exm4JjNWBjypFG9ksPmfKleNstBkne2lMNbb5UHyHcqBGSsvf56rZ8Drbdi5','2017-04-06 16:36:37','2017-04-06 16:36:37'),(3,NULL,NULL,'pedro','pedro@gmail.com','$2y$10$/o/hQlyNnGMuRv/JS8QuzuTbOqJc7T0H8lH8/nnUrhTPOGGqckji6','1',1,'8xBxGTR9nyCQJ80dk3Px2ndcZpJWnNKAuyQmrSnbgjktb3eaLZwTjeEdSZOv',NULL,NULL),(11,NULL,NULL,'pasdjfalksdf','joseba_21@hotmail.com','noeliatqm','3',1,'3oZFGwMX8uSjYkBD4pyvkkt1yg3LPABaPbJnacmlJlCeTXbEBUtuA2IFjkb8',NULL,NULL),(13,NULL,NULL,'bbbbbbbbbbbbbbbbbb','bbbb@gmail.com','neoliatqm','1',1,'fPffJobD7b0JhgS8frjhlU4TTj7iEs5W0T4foQvC3UAUBN0iKpiyq1gtG61R',NULL,NULL),(14,NULL,NULL,'asdfadsfasdf','ccccc@gmail.com','noeliatqm','1',1,'bRHoDHc8RakUFwviBIGyXwgDEVm4i6uLdRxKsqsdafcrDqhmAfpAi6Esq8eP',NULL,NULL),(15,NULL,NULL,'supercalifragilisticoespialidoso','eeee@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(16,NULL,NULL,'zzzzz','zzzzz@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(17,NULL,NULL,'ANNE','PEADSFKLAJSD@ASDLKJGASDF.COM','NOELIATQM','1',1,'dDv42xbXTBImPSem4X6LSuA8ujL8jjlp6NHfCpjZS1T9CIFSd5HZUpqCTNOZ',NULL,NULL),(18,NULL,NULL,'vilman','vilma@gmail.com','eyJpdiI6InpzaWpLSTk1RmtYck9tR3VWaVBhbUE9PSIsInZhbHVlIjoiNGZTTkF4OTVGdEdCaHJLRnZaeVJTeFpuVmNiaFUwUmlXVkhzelwvOEc3dEE9IiwibWFjIjoiNTI1NmUxODkyMmQyOTg4ZDM1YTJmY2UyOWYxN2U2NTNmNThiMWYyNTMzODJjMTAzZWU3ZGJlMWE3NDU5NmJmNSJ9','1',1,NULL,NULL,NULL),(20,NULL,NULL,'vilmanbus','vilmaypedro@gmail.com','$2y$10$vGC6NvP59SI6UgN2F1b6teQRlmYpjeu1u8ZpP/to.lVklZ/c1cJQa','1',1,'NJKrZ3gKXaSaSDU9ajTuQvKI0MmDnpCP3IGWTP5TJWfqUMXpNLZtfY4Fb9UX',NULL,NULL),(22,NULL,NULL,'josebakadsf','laksfd@asdf.es','$2y$10$LOSXLFmBRxFjOh8trGCSqea4qV0SypxzVypAMWOHGjDKkxmsH5Zpy','2',1,'1PxZYsDnWzh81DJUFtqHL4WQ1W1jZ2GvBJ6wmXXSUoxwyCrnj3COy9am2REJ',NULL,NULL),(23,NULL,NULL,'pe','bilmanbus@gmail.com','$2y$10$NtWWrwSj2GInu.FLOSYPp.nJQhgoNjhnKTo/uB9hBkznTpF/SpvfC','5',1,'G11lrQmynVaQvuL4VFwb66u2RO9bgTZ0vO9w9orkJx7k4WBxW76NsHMVLjFL',NULL,NULL);
+INSERT INTO `users` VALUES (2,NULL,NULL,'joseba','japostua@gmail.com','$2y$10$F6hXWtdv4R6KZorp90YJmOgtDgEttFITrWgPLJsB2DIhCkkUWwAFa','4',1,'exm4JjNWBjypFG9ksPmfKleNstBkne2lMNbb5UHyHcqBGSsvf56rZ8Drbdi5','2017-04-06 16:36:37','2017-04-06 16:36:37'),(24,NULL,NULL,'pedro','pedro@gmail.com','$2y$10$7N51QA/vCmeywVh4tLeMnO8wHbkuJsza1PNxIbD2dM4B2OBJxoz6u','5',1,NULL,NULL,NULL),(25,NULL,NULL,'aldkfj','d@alsdfj.es','$2y$10$bBavqngq87Yzrj43I8auie6nQywnxMNXh4nUnzFtREp5wxZRCFRPa','2',1,NULL,NULL,NULL),(27,NULL,NULL,'j','d@lkajdf.es','$2y$10$u.q0x1SqaVYTddSy3UmcjudifwoCFXL/jLM7xqxQS9nvmvCaKncSa','4',1,NULL,NULL,NULL),(28,NULL,NULL,'aalkfjaldksf alsd jflakjsd f','j@lm.es','$2y$10$dsXUCpqwSB1wm5.T.j4n6.MDq2gf0MD2U4zpExMAERMf37Qy9S3KW','4',1,NULL,NULL,NULL),(29,NULL,NULL,'lkjj n','k@kasdf.es','$2y$10$VyUAIUfdl5cpVxwAsp5Sbul3Aqfc2IcOyw5n2iWTeRd5OmUJdhsDC','4',1,NULL,NULL,NULL),(31,NULL,NULL,'klj','cn@asdf.es','$2y$10$RubMJqhbaDgniqz1GWEzAeq0RVQytx2Mp5ZEyaiMCGE8zEJ9UYRAa','4',1,NULL,NULL,NULL),(32,NULL,NULL,'a','b@e.se','$2y$10$1rUrEgSJc0Qnvb1W0XK7FuOyjFu4PMkjPGdRVV2DJmCf9RrGnE3lq','4',1,NULL,NULL,NULL),(33,NULL,NULL,'jk','df@asdf.es','$2y$10$eN3Duu0ev80iJlHj/zC3.OSkAXF8ScTIlgAcfZohvCpGNGTrGRyV6','4',1,NULL,NULL,NULL),(34,NULL,NULL,'PEPE','10@diez.es','$2y$10$.ogpgepofeqUIEo4olCzY.Q/t5eHByOtL0a5ol.ZFocci5GnYyhDy','1',1,NULL,NULL,NULL),(35,NULL,NULL,'luis','luis@gmail.com','$2y$10$rbXALbmNpajbKQXfxSh6wuInj7dlsLzkDrXYnPe.hmFhE4dLVfpUC','3',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,7 +291,6 @@ CREATE TABLE `usersAdmin` (
 
 LOCK TABLES `usersAdmin` WRITE;
 /*!40000 ALTER TABLE `usersAdmin` DISABLE KEYS */;
-INSERT INTO `usersAdmin` VALUES (2,'users1');
 /*!40000 ALTER TABLE `usersAdmin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,7 +313,6 @@ CREATE TABLE `usersAdminProvincia` (
 
 LOCK TABLES `usersAdminProvincia` WRITE;
 /*!40000 ALTER TABLE `usersAdminProvincia` DISABLE KEYS */;
-INSERT INTO `usersAdminProvincia` VALUES (22);
 /*!40000 ALTER TABLE `usersAdminProvincia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +337,6 @@ CREATE TABLE `usersAnunciante` (
 
 LOCK TABLES `usersAnunciante` WRITE;
 /*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
-INSERT INTO `usersAnunciante` VALUES (3,11,'jam'),(13,11,'jma'),(14,3,'ajm'),(17,2,'pep');
 /*!40000 ALTER TABLE `usersAnunciante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,7 +360,6 @@ CREATE TABLE `usersColaborador` (
 
 LOCK TABLES `usersColaborador` WRITE;
 /*!40000 ALTER TABLE `usersColaborador` DISABLE KEYS */;
-INSERT INTO `usersColaborador` VALUES (5);
 /*!40000 ALTER TABLE `usersColaborador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,7 +383,6 @@ CREATE TABLE `usersDelegado` (
 
 LOCK TABLES `usersDelegado` WRITE;
 /*!40000 ALTER TABLE `usersDelegado` DISABLE KEYS */;
-INSERT INTO `usersDelegado` VALUES (11,'users2');
 /*!40000 ALTER TABLE `usersDelegado` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -402,4 +395,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-15 11:08:41
+-- Dump completed on 2017-05-15 15:05:33

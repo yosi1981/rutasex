@@ -180,6 +180,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Fahim\PaypalIPN\PaypalIPNServiceProvider::class,
+        Styde\Html\HtmlServiceProvider::class,
     ],
 
     /*

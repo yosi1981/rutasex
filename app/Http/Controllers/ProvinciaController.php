@@ -30,9 +30,10 @@ class ProvinciaController extends Controller
                 ->where('provincias.nombre', 'LIKE', '%' . $query . '%')
                 ->orderBy('provincias.nombre', 'asc')
                 ->paginate(5);
-            $usuarios = User::where('tipo_usuario', '=', '1')->pluck('name', 'id');
-
-            return view('provincia.index', ["provincias" => $provincias, "searchText" => $query, "usuarios" => $usuarios]);
+            $delegados = User::where('tipo_usuario', '=', '3')->pluck('name', 'id');
+            $admPro = User::where('tipo_usuario', '=', '2')->pluck('name', 'id');
+            \Alert::message('this is a test message', 'info');
+            return view('provincia.index', ["provincias" => $provincias, "searchText" => $query, "delegados" => $delegados,"admPro" => $admPro]);
         }
 
     }
@@ -76,7 +77,8 @@ class ProvinciaController extends Controller
         if ($request->ajax()) {
             $provincia                = new Provincia;
             $provincia->nombre        = $request->get('nombre');
-            $provincia->idresponsable = $request->get('idresponsable');
+            $provincia->idresponsable = $request->get('idadmPro');
+            $provincia->iddelegado    = $request->get('iddelegado');
             if ($request->get('habilitado')) {
                 $provincia->habilitado = '1';
             } else {

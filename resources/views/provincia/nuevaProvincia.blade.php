@@ -29,7 +29,14 @@
 						<div class="row">
 							<div class="col-lg-4 col-sm-4">Id Responsable
 								<div class="form-group">
-									{!! Form::select('idresponsable',$usuarios,null, $attributes = array('class'=>'form-control')) !!}
+									{!! Form::select('iddelegado',$delegados,null, $attributes = array('class'=>'form-control')) !!}
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4 col-sm-4">Id Responsable
+								<div class="form-group">
+									{!! Form::select('idadmPro',$admPro,null, $attributes = array('class'=>'form-control')) !!}
 								</div>
 							</div>
 						</div>

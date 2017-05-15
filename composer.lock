@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "380854e4e252cabf020340bcc0bbf7da",
-    "content-hash": "24ff0cb32e0c0f67e465993fc40cbcbc",
+    "hash": "827f3999cd8d908c5eb6ab695daab694",
+    "content-hash": "e3ce82ba420ace1712b7f1f8554e2eca",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1376,6 +1376,47 @@
                 "uuid"
             ],
             "time": "2017-03-26 20:37:53"
+        },
+        {
+            "name": "styde/html",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/html.git",
+                "reference": "4a99d9e989819ee2179b1717c58aa5c48754abe4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/html/zipball/4a99d9e989819ee2179b1717c58aa5c48754abe4",
+                "reference": "4a99d9e989819ee2179b1717c58aa5c48754abe4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.4.*",
+                "laravelcollective/html": "5.4.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Styde\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "admin@styde.net"
+                }
+            ],
+            "description": "Build form fields, menus, alert messages and other view components quickly",
+            "time": "2017-01-30 14:33:36"
         },
         {
             "name": "swiftmailer/swiftmailer",

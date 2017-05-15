@@ -184,6 +184,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                   	<div class="row">
+                      <h1>  {!! Alert::render() !!}</h1>
 	                  	<div class="col-md-12">
 		                          <!--Contenido-->
                               @yield('contenido')

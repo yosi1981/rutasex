@@ -37,6 +37,8 @@ class UsuarioController extends Controller
         */
         $usuario->save();
 
+        \Alert::message('this is a test message', 'info');
+        
         return Redirect::to('/admin/Usuario');
     }
 
@@ -51,6 +53,7 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = User::findOrFail($id);
+        \Alert::message('this is a test message', 'info');
         return view("admin.usuario.editUsuario.edit", ["usuario" => $usuario]);
 
         //Provincia::findOrFail($id)]);
