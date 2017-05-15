@@ -78,7 +78,7 @@ CREATE TABLE `anunciosDia` (
   CONSTRAINT `anunciosdia_idlocalidad_foreign` FOREIGN KEY (`idlocalidad`) REFERENCES `localidades` (`idlocalidad`),
   CONSTRAINT `anunciosdia_idrespprov_foreign` FOREIGN KEY (`idadminPro`) REFERENCES `users` (`id`),
   CONSTRAINT `anunciosdia_idrespprovorigen_foreign` FOREIGN KEY (`iddelegado`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `tipos_usuario` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `descripcion` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +234,7 @@ CREATE TABLE `tipos_usuario` (
 
 LOCK TABLES `tipos_usuario` WRITE;
 /*!40000 ALTER TABLE `tipos_usuario` DISABLE KEYS */;
-INSERT INTO `tipos_usuario` VALUES (1,'anunciante',NULL,NULL,'ANUNCIANTE'),(2,'adminProvincia',NULL,NULL,'ADMIN PROVINCIA'),(3,'delegado',NULL,NULL,'DELEGADO'),(4,'admin',NULL,NULL,'ADMIN');
+INSERT INTO `tipos_usuario` VALUES (1,'anunciante',NULL,NULL,'ANUNCIANTE'),(2,'adminProvincia',NULL,NULL,'ADMIN PROVINCIA'),(3,'delegado',NULL,NULL,'DELEGADO'),(4,'admin',NULL,NULL,'ADMIN'),(5,'colaborador',NULL,NULL,'COLABORADOR');
 /*!40000 ALTER TABLE `tipos_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`name`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,NULL,NULL,'joseba','japostua@gmail.com','$2y$10$F6hXWtdv4R6KZorp90YJmOgtDgEttFITrWgPLJsB2DIhCkkUWwAFa','4',1,'exm4JjNWBjypFG9ksPmfKleNstBkne2lMNbb5UHyHcqBGSsvf56rZ8Drbdi5','2017-04-06 16:36:37','2017-04-06 16:36:37'),(3,NULL,NULL,'pedro','pedro@gmail.com','$2y$10$/o/hQlyNnGMuRv/JS8QuzuTbOqJc7T0H8lH8/nnUrhTPOGGqckji6','1',1,'8xBxGTR9nyCQJ80dk3Px2ndcZpJWnNKAuyQmrSnbgjktb3eaLZwTjeEdSZOv',NULL,NULL),(11,NULL,NULL,'pasdjfalksdf','joseba_21@hotmail.com','noeliatqm','3',1,'3oZFGwMX8uSjYkBD4pyvkkt1yg3LPABaPbJnacmlJlCeTXbEBUtuA2IFjkb8',NULL,NULL),(13,NULL,NULL,'bbbbbbbbbbbbbbbbbb','bbbb@gmail.com','neoliatqm','1',1,'fPffJobD7b0JhgS8frjhlU4TTj7iEs5W0T4foQvC3UAUBN0iKpiyq1gtG61R',NULL,NULL),(14,NULL,NULL,'asdfadsfasdf','ccccc@gmail.com','noeliatqm','1',1,'bRHoDHc8RakUFwviBIGyXwgDEVm4i6uLdRxKsqsdafcrDqhmAfpAi6Esq8eP',NULL,NULL),(15,NULL,NULL,'supercalifragilisticoespialidoso','eeee@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(16,NULL,NULL,'zzzzz','zzzzz@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(17,NULL,NULL,'ANNE','PEADSFKLAJSD@ASDLKJGASDF.COM','NOELIATQM','1',1,'dDv42xbXTBImPSem4X6LSuA8ujL8jjlp6NHfCpjZS1T9CIFSd5HZUpqCTNOZ',NULL,NULL),(18,NULL,NULL,'vilman','vilma@gmail.com','eyJpdiI6InpzaWpLSTk1RmtYck9tR3VWaVBhbUE9PSIsInZhbHVlIjoiNGZTTkF4OTVGdEdCaHJLRnZaeVJTeFpuVmNiaFUwUmlXVkhzelwvOEc3dEE9IiwibWFjIjoiNTI1NmUxODkyMmQyOTg4ZDM1YTJmY2UyOWYxN2U2NTNmNThiMWYyNTMzODJjMTAzZWU3ZGJlMWE3NDU5NmJmNSJ9','1',1,NULL,NULL,NULL),(20,NULL,NULL,'vilmanbus','vilmaypedro@gmail.com','$2y$10$vGC6NvP59SI6UgN2F1b6teQRlmYpjeu1u8ZpP/to.lVklZ/c1cJQa','1',1,'NJKrZ3gKXaSaSDU9ajTuQvKI0MmDnpCP3IGWTP5TJWfqUMXpNLZtfY4Fb9UX',NULL,NULL),(22,NULL,NULL,'josebakadsf','laksfd@asdf.es','$2y$10$LOSXLFmBRxFjOh8trGCSqea4qV0SypxzVypAMWOHGjDKkxmsH5Zpy','2',1,'1PxZYsDnWzh81DJUFtqHL4WQ1W1jZ2GvBJ6wmXXSUoxwyCrnj3COy9am2REJ',NULL,NULL);
+INSERT INTO `users` VALUES (2,NULL,NULL,'joseba','japostua@gmail.com','$2y$10$F6hXWtdv4R6KZorp90YJmOgtDgEttFITrWgPLJsB2DIhCkkUWwAFa','4',1,'exm4JjNWBjypFG9ksPmfKleNstBkne2lMNbb5UHyHcqBGSsvf56rZ8Drbdi5','2017-04-06 16:36:37','2017-04-06 16:36:37'),(3,NULL,NULL,'pedro','pedro@gmail.com','$2y$10$/o/hQlyNnGMuRv/JS8QuzuTbOqJc7T0H8lH8/nnUrhTPOGGqckji6','1',1,'8xBxGTR9nyCQJ80dk3Px2ndcZpJWnNKAuyQmrSnbgjktb3eaLZwTjeEdSZOv',NULL,NULL),(11,NULL,NULL,'pasdjfalksdf','joseba_21@hotmail.com','noeliatqm','3',1,'3oZFGwMX8uSjYkBD4pyvkkt1yg3LPABaPbJnacmlJlCeTXbEBUtuA2IFjkb8',NULL,NULL),(13,NULL,NULL,'bbbbbbbbbbbbbbbbbb','bbbb@gmail.com','neoliatqm','1',1,'fPffJobD7b0JhgS8frjhlU4TTj7iEs5W0T4foQvC3UAUBN0iKpiyq1gtG61R',NULL,NULL),(14,NULL,NULL,'asdfadsfasdf','ccccc@gmail.com','noeliatqm','1',1,'bRHoDHc8RakUFwviBIGyXwgDEVm4i6uLdRxKsqsdafcrDqhmAfpAi6Esq8eP',NULL,NULL),(15,NULL,NULL,'supercalifragilisticoespialidoso','eeee@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(16,NULL,NULL,'zzzzz','zzzzz@gmail.com','noeliatqm','1',1,NULL,NULL,NULL),(17,NULL,NULL,'ANNE','PEADSFKLAJSD@ASDLKJGASDF.COM','NOELIATQM','1',1,'dDv42xbXTBImPSem4X6LSuA8ujL8jjlp6NHfCpjZS1T9CIFSd5HZUpqCTNOZ',NULL,NULL),(18,NULL,NULL,'vilman','vilma@gmail.com','eyJpdiI6InpzaWpLSTk1RmtYck9tR3VWaVBhbUE9PSIsInZhbHVlIjoiNGZTTkF4OTVGdEdCaHJLRnZaeVJTeFpuVmNiaFUwUmlXVkhzelwvOEc3dEE9IiwibWFjIjoiNTI1NmUxODkyMmQyOTg4ZDM1YTJmY2UyOWYxN2U2NTNmNThiMWYyNTMzODJjMTAzZWU3ZGJlMWE3NDU5NmJmNSJ9','1',1,NULL,NULL,NULL),(20,NULL,NULL,'vilmanbus','vilmaypedro@gmail.com','$2y$10$vGC6NvP59SI6UgN2F1b6teQRlmYpjeu1u8ZpP/to.lVklZ/c1cJQa','1',1,'NJKrZ3gKXaSaSDU9ajTuQvKI0MmDnpCP3IGWTP5TJWfqUMXpNLZtfY4Fb9UX',NULL,NULL),(22,NULL,NULL,'josebakadsf','laksfd@asdf.es','$2y$10$LOSXLFmBRxFjOh8trGCSqea4qV0SypxzVypAMWOHGjDKkxmsH5Zpy','2',1,'1PxZYsDnWzh81DJUFtqHL4WQ1W1jZ2GvBJ6wmXXSUoxwyCrnj3COy9am2REJ',NULL,NULL),(23,NULL,NULL,'pe','bilmanbus@gmail.com','$2y$10$NtWWrwSj2GInu.FLOSYPp.nJQhgoNjhnKTo/uB9hBkznTpF/SpvfC','5',1,'G11lrQmynVaQvuL4VFwb66u2RO9bgTZ0vO9w9orkJx7k4WBxW76NsHMVLjFL',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,6 +346,30 @@ INSERT INTO `usersAnunciante` VALUES (3,11,'jam'),(13,11,'jma'),(14,3,'ajm'),(17
 UNLOCK TABLES;
 
 --
+-- Table structure for table `usersColaborador`
+--
+
+DROP TABLE IF EXISTS `usersColaborador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usersColaborador` (
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersColaborador`
+--
+
+LOCK TABLES `usersColaborador` WRITE;
+/*!40000 ALTER TABLE `usersColaborador` DISABLE KEYS */;
+INSERT INTO `usersColaborador` VALUES (5);
+/*!40000 ALTER TABLE `usersColaborador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usersDelegado`
 --
 
@@ -378,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-14 23:40:47
+-- Dump completed on 2017-05-15 11:08:41

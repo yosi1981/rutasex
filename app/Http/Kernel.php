@@ -60,6 +60,6 @@ class Kernel extends HttpKernel
         'Delegado'=>\App\Http\Middleware\MDuserDelegado::class,
         'AdminProvincia'=>\App\Http\Middleware\MDuserAdminProvincia::class,
         'Anunciante'=>\App\Http\Middleware\MDuserAnunciante::class,
-
+        'Colaborador'=>\App\Http\Middleware\MDuserColaborador::class,
     ];
 }

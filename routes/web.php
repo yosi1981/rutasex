@@ -64,6 +64,11 @@ Route::group(['middleware' => 'auth'], function()
 		Route::get('/adminProvincia/dashboard','AdminProvinciaController@Dashboard');
 	});
 
+	Route::group(['middleware'=>'Colaborador'],function()
+	{
+		Route::get('/colaborador/dashboard','ColaboradorController@Dashboard');
+	});
+
 	Route::group(['middleware' => 'Anunciante'], function()
 	{
 		Route::get('/anunciante/dashboard','AnuncianteController@Dashboard');
