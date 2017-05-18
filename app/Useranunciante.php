@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Useranunciante extends Model
 {
 
-    protected $table='usersAnunciante';
+    protected $table = 'usersAnunciante';
 
-    protected $primaryKey='id';
+    protected $primaryKey = 'id';
 
-    public $timestamps=false;
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nombre', 
+        'nombre',
     ];
 
     /**
@@ -27,26 +27,26 @@ class Useranunciante extends Model
      * @var array
      */
     protected $hidden = [
-        
+
     ];
-    
+
     public function Partner()
     {
-        return $this->hasOne('App\User','id','idpartner');
+        return $this->hasOne('App\User', 'id', 'idpartner');
     }
 
     public function Usuario()
     {
-        return $this->hasOne('App\User','id','id');
+        return $this->hasOne('App\User', 'id', 'id');
     }
     public function Anuncios()
     {
-        return $this->hasMany('App\Anuncio','idusuario','id');
+        return $this->hasMany('App\Anuncio', 'idusuario', 'id');
     }
 
     public function HistorialAnuncios()
     {
-        return $this->hasMany('App\AnuncioDia','idanunciante','id');
+        return $this->hasMany('App\AnuncioDia', 'idanunciante', 'id');
     }
 
 }

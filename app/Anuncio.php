@@ -6,24 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Anuncio extends Model
 {
-    protected $table='anuncios';
+    protected $table = 'anuncios';
 
-    protected $primaryKey='idanuncio';
+    protected $primaryKey = 'idanuncio';
 
-    public $timestamps=false;
+    public $timestamps = false;
 
-    protected $fillable =[
-    	'titulo',
-    	'descripcion',
-    	'activo',
-    	'idusuario'
+    protected $fillable = [
+        'titulo',
+        'descripcion',
+        'activo',
+        'idusuario',
     ];
 
-    protected $guarded=[
+    protected $guarded = [
     ];
 
     public function UserAnunciante()
     {
-        return $this->belongsTo('App\Useranunciante','idusuario','id');
+        return $this->belongsTo('App\Useranunciante', 'idusuario', 'id');
     }
 }
