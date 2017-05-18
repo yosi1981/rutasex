@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
 --
--- Host: localhost    Database: contactos
+-- Host: 192.168.10.10    Database: contactos
 -- ------------------------------------------------------
 -- Server version	5.7.17-0ubuntu0.16.04.1
 
@@ -47,7 +47,7 @@ CREATE TABLE `anuncios` (
 
 LOCK TABLES `anuncios` WRITE;
 /*!40000 ALTER TABLE `anuncios` DISABLE KEYS */;
-INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,5,2,NULL,NULL);
+INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,6,34,NULL,NULL);
 /*!40000 ALTER TABLE `anuncios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +78,7 @@ CREATE TABLE `anunciosDia` (
   CONSTRAINT `anunciosdia_idlocalidad_foreign` FOREIGN KEY (`idlocalidad`) REFERENCES `localidades` (`idlocalidad`),
   CONSTRAINT `anunciosdia_idrespprov_foreign` FOREIGN KEY (`idadminPro`) REFERENCES `users` (`id`),
   CONSTRAINT `anunciosdia_idrespprovorigen_foreign` FOREIGN KEY (`iddelegado`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +87,7 @@ CREATE TABLE `anunciosDia` (
 
 LOCK TABLES `anunciosDia` WRITE;
 /*!40000 ALTER TABLE `anunciosDia` DISABLE KEYS */;
+INSERT INTO `anunciosDia` VALUES (50,'2017-05-18',3,5,25,35,8,2,6,34),(51,'2017-05-18',3,6,25,35,2,2,6,34);
 /*!40000 ALTER TABLE `anunciosDia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +137,7 @@ CREATE TABLE `localidades` (
   PRIMARY KEY (`idlocalidad`),
   KEY `localidades_idprovincia_foreign` (`idprovincia`),
   CONSTRAINT `localidades_idprovincia_foreign` FOREIGN KEY (`idprovincia`) REFERENCES `provincias` (`idprovincia`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +146,7 @@ CREATE TABLE `localidades` (
 
 LOCK TABLES `localidades` WRITE;
 /*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
-INSERT INTO `localidades` VALUES (5,'pamplona',6,NULL,NULL);
+INSERT INTO `localidades` VALUES (5,'pamplona',6,NULL,NULL),(6,'tudela',6,NULL,NULL);
 /*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,6 +314,7 @@ CREATE TABLE `usersAdminProvincia` (
 
 LOCK TABLES `usersAdminProvincia` WRITE;
 /*!40000 ALTER TABLE `usersAdminProvincia` DISABLE KEYS */;
+INSERT INTO `usersAdminProvincia` VALUES (25);
 /*!40000 ALTER TABLE `usersAdminProvincia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,6 +339,7 @@ CREATE TABLE `usersAnunciante` (
 
 LOCK TABLES `usersAnunciante` WRITE;
 /*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
+INSERT INTO `usersAnunciante` VALUES (34,2,'pep');
 /*!40000 ALTER TABLE `usersAnunciante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,6 +386,7 @@ CREATE TABLE `usersDelegado` (
 
 LOCK TABLES `usersDelegado` WRITE;
 /*!40000 ALTER TABLE `usersDelegado` DISABLE KEYS */;
+INSERT INTO `usersDelegado` VALUES (35,NULL);
 /*!40000 ALTER TABLE `usersDelegado` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -395,4 +399,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-15 15:05:33
+-- Dump completed on 2017-05-18 21:03:04

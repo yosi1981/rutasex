@@ -31,9 +31,9 @@ class ProvinciaController extends Controller
                 ->orderBy('provincias.nombre', 'asc')
                 ->paginate(5);
             $delegados = User::where('tipo_usuario', '=', '3')->pluck('name', 'id');
-            $admPro = User::where('tipo_usuario', '=', '2')->pluck('name', 'id');
+            $admPro    = User::where('tipo_usuario', '=', '2')->pluck('name', 'id');
             \Alert::message('this is a test message', 'info');
-            return view('provincia.index', ["provincias" => $provincias, "searchText" => $query, "delegados" => $delegados,"admPro" => $admPro]);
+            return view('provincia.index', ["provincias" => $provincias, "searchText" => $query, "delegados" => $delegados, "admPro" => $admPro]);
         }
 
     }
