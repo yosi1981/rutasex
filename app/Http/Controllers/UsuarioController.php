@@ -3,25 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioFormRequest;
-<<<<<<< HEAD
 use App\User;
 use App\Useranunciante;
 use App\UseradminProvincia;
 use App\Userdelegado;
 use App\Useradmin;
 use App\Usercolaborador;
-=======
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 use App\TipoUsuario;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-<<<<<<< HEAD
 use Mail;
 use App\Mail\verifyEmail;
-=======
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 
 class UsuarioController extends Controller
 {
@@ -47,6 +41,7 @@ class UsuarioController extends Controller
         $msj->to('info@latiendadeyosi.com');
         $msj->attach('imagenes/1.jpg');
         });
+<<<<<<< HEAD
 <<<<<<< HEAD
         */
 
@@ -91,13 +86,16 @@ class UsuarioController extends Controller
         }
         Mail::to($usuario['email'])->send(new verifyEmail($usuario));
         
-=======
          */
         $usuario->save();
 
         \Alert::message('this is a test message', 'info');
 
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
+         */
+        $usuario->save();
+
+        \Alert::message('this is a test message', 'info');
+
         return Redirect::to('/admin/Usuario');
     }
 

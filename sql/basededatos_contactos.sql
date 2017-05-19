@@ -48,7 +48,11 @@ CREATE TABLE `anuncios` (
 LOCK TABLES `anuncios` WRITE;
 /*!40000 ALTER TABLE `anuncios` DISABLE KEYS */;
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,5,48,NULL,NULL),(4,'prueba','prueba','2017-05-19','2017-05-20',1,5,48,NULL,NULL),(5,'1c','1c','2017-05-19','2017-05-20',1,5,45,NULL,NULL);
+=======
+INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,6,34,NULL,NULL);
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,6,34,NULL,NULL);
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
@@ -83,7 +87,11 @@ CREATE TABLE `anunciosDia` (
   CONSTRAINT `anunciosdia_idrespprov_foreign` FOREIGN KEY (`idadminPro`) REFERENCES `users` (`id`),
   CONSTRAINT `anunciosdia_idrespprovorigen_foreign` FOREIGN KEY (`iddelegado`) REFERENCES `users` (`id`)
 <<<<<<< HEAD
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
@@ -96,7 +104,11 @@ CREATE TABLE `anunciosDia` (
 LOCK TABLES `anunciosDia` WRITE;
 /*!40000 ALTER TABLE `anunciosDia` DISABLE KEYS */;
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO `anunciosDia` VALUES (1,'2017-05-19',3,5,25,35,3,2,6,48),(2,'2017-05-19',4,5,25,35,3,2,6,48),(3,'2017-05-19',5,5,25,35,2,2,6,45);
+=======
+INSERT INTO `anunciosDia` VALUES (50,'2017-05-18',3,5,25,35,8,2,6,34),(51,'2017-05-18',3,6,25,35,2,2,6,34);
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 INSERT INTO `anunciosDia` VALUES (50,'2017-05-18',3,5,25,35,8,2,6,34),(51,'2017-05-18',3,6,25,35,2,2,6,34);
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
@@ -329,7 +341,11 @@ CREATE TABLE `usersAdminProvincia` (
 LOCK TABLES `usersAdminProvincia` WRITE;
 /*!40000 ALTER TABLE `usersAdminProvincia` DISABLE KEYS */;
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO `usersAdminProvincia` VALUES (25),(44);
+=======
+INSERT INTO `usersAdminProvincia` VALUES (25);
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 INSERT INTO `usersAdminProvincia` VALUES (25);
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
@@ -358,7 +374,11 @@ CREATE TABLE `usersAnunciante` (
 LOCK TABLES `usersAnunciante` WRITE;
 /*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO `usersAnunciante` VALUES (45,2,NULL),(48,2,NULL);
+=======
+INSERT INTO `usersAnunciante` VALUES (34,2,'pep');
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 INSERT INTO `usersAnunciante` VALUES (34,2,'pep');
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
@@ -410,7 +430,11 @@ CREATE TABLE `usersDelegado` (
 LOCK TABLES `usersDelegado` WRITE;
 /*!40000 ALTER TABLE `usersDelegado` DISABLE KEYS */;
 <<<<<<< HEAD
+<<<<<<< HEAD
 INSERT INTO `usersDelegado` VALUES (35,NULL),(47,NULL);
+=======
+INSERT INTO `usersDelegado` VALUES (35,NULL);
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 INSERT INTO `usersDelegado` VALUES (35,NULL);
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
@@ -427,7 +451,11 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 -- Dump completed on 2017-05-19 14:51:43
+=======
+-- Dump completed on 2017-05-18 21:03:04
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 =======
 -- Dump completed on 2017-05-18 21:03:04
 >>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b

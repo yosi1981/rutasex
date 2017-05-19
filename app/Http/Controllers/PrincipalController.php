@@ -72,13 +72,13 @@ class PrincipalController extends Controller
                 ->first();
             $poblacion = Poblacion::findorfail($an->idlocalidad);
             $provincia = Provincia::findorfail($poblacion->idprovincia);
+
             if (count($anDia) == 1) {
                 $newandia             = new AnuncioDia();
                 $newandia             = AnuncioDia::findorfail($anDia->idanuncioDia);
                 $newandia->numvisitas = $newandia->numvisitas + 1;
                 $newandia->update();
             } else {
-
                 $newandia               = new AnuncioDia();
                 $an1                    = new Anuncio();
                 $an1                    = Anuncio::findorfail($an->idanuncio);
