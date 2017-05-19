@@ -98,13 +98,16 @@ class ProvinciaController extends Controller
         $query       = "";
         $provincia   = Provincia::findOrFail($id);
         $poblaciones = $provincia->localidades;
-        $usuarios    = User::where('tipo_usuario', '=', '1')->pluck('name', 'id');
-        $usuario     = $provincia->idresponsable;
+        $delegados    = User::where('tipo_usuario', '=', '3')->pluck('name', 'id');
+        $delegado     = $provincia->iddelegado;
+        $admPros    = User::where('tipo_usuario', '=', '2')->pluck('name', 'id');
+        $admPro     = $provincia->idresponsable;
+
         //     $poblaciones=DB::table('localidades')-where('nombre','LIKE','%'.$query.'%')
         //    ->where('idprovincia','=',$id)
         //    ->orderBy('nombre','asc')
         //    ->paginate(50); //
-        return view("provincia.edit", ["poblaciones" => $poblaciones, "provincia" => $provincia, "usuarios" => $usuarios, "usuario" => $usuario]);
+        return view("provincia.edit", ["poblaciones" => $poblaciones, "provincia" => $provincia, "delegados" => $delegados, "delegado" => $delegado, "admPros" => $admPros, "admPro" => $admPro]);
 
         //Provincia::findOrFail($id)]);
     }
@@ -117,7 +120,8 @@ class ProvinciaController extends Controller
         } else {
             $provincia->habilitado = '0';
         }
-        $provincia->idresponsable = $request->get('idresponsable');
+        $provincia->iddelegado = $request->get('iddelegado');
+        $provincia->idresponsable = $request->get('idadmPro');
         $provincia->update();
         return Redirect::to('/admin/Provincia');
 

@@ -24,6 +24,7 @@ Route::get('/mostrar/{id}','PrincipalController@mostrarAnuncios');
 
 Route::post('paypalIPN','PaypalController@paypalIpn');
 
+Route::get('/verify/{email}/{verifytoken}','PrincipalController@ActivarUsuario')->name('verifyEmail');
 
 Route::group(['middleware' => 'auth'], function()
 {

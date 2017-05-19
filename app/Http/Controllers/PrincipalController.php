@@ -74,28 +74,29 @@ class PrincipalController extends Controller
                 ->where('idanuncio', '=', $an->idanuncio) //este ya activado
                 ->where('idlocalidad', '=', $an->idlocalidad) //filtramos la localidad
                 ->first();
+            $poblacion = Poblacion::findorfail($an->idlocalidad);
+            $provincia = Provincia::findorfail($poblacion->idprovincia);
+ 
             if (count($anDia) == 1) {
                 $newandia             = new AnuncioDia();
                 $newandia             = AnuncioDia::findorfail($anDia->idanuncioDia);
                 $newandia->numvisitas = $newandia->numvisitas + 1;
                 $newandia->update();
-                $provincia=Provincia::findorfail($an->idlocalidad);
             } else {
-                $newandia                   = new AnuncioDia();
-                $newandia->idanuncio        = $an->idanuncio;
-                $newandia->idanunciante = $an->UserAnunciante->id;
-                $newandia->fecha            = $fechaactual;
-                $newandia->idlocalidad      = $an->idlocalidad;
-                $poblacion                  = Poblacion::findorfail($an->idlocalidad);
-                $provincia                  = Provincia::findorfail($poblacion->idprovincia);
-                $newandia->idprovincia      = $provincia->idprovincia;
-                //$responsable                = User::findorfail($provincia->idresponsable);
-                $newandia->idadminPro       = $provincia->adminPro->id;
-                $newandia->iddelegado       = $provincia->delegado->id;
-                $newandia->idpartner        = $an->UserAnunciante->Partner->id;
-                $newandia->numvisitas       = 1;
-                $newandia->save();
-            }
+                 $newandia               = new AnuncioDia();
+                 $an1                    = new Anuncio();
+                 $an1                    = Anuncio::findorfail($an->idanuncio);
+                 $newandia->idanuncio    = $an1->idanuncio;
+                 $newandia->idanunciante = $an1->UserAnunciante->id;
+                 $newandia->fecha        = $fechaactual;
+                 $newandia->idlocalidad  = $poblacion->idlocalidad;
+                 $newandia->idprovincia  = $provincia->idprovincia;
+                 $newandia->idadminPro   = $provincia->adminPro->id;
+                 $newandia->iddelegado   = $provincia->delegado->id;
+                 $newandia->idpartner    = $an1->UserAnunciante->Partner->id;
+                 $newandia->numvisitas   = 1; 
+                 $newandia->save();  
+             }
         }
         $provincias = DB::table('provincias')
             ->select('idprovincia', 'nombre')
@@ -104,4 +105,19 @@ class PrincipalController extends Controller
         return view('publico.mostrarAnunciosProvincia', ["anuncios" => $preanuncios, "provincias" => $provincias, "provincia" => $provincia]);
     }
 
+    public function ActivarUsuario($email,$verifytoken)
+    {
+        $usuario=User::where(['email'=> $email, 'token'=> $verifytoken])->first();
+        if($usuario)
+        {
+            $usuario->status=1;
+            $usuario->token=NULL;
+            $usuario->update();
+            return $usuario->name . " Activado";
+        }
+        else
+        {
+            return $usuario->name . " No existe";
+        }
+    }
 }

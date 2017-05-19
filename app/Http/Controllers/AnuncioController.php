@@ -16,7 +16,7 @@ class AnuncioController extends Controller
     public function CrearAnuncio()
     {
         $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
-        $usuarios    = User::all()->pluck('name', 'id');
+        $usuarios    = User::all()->where('tipo_usuario','=',1)->pluck('name', 'id');
         return view("anuncio.NuevoAnuncio", ["localidades" => $localidades, "usuarios" => $usuarios]);
 
     }

@@ -28,7 +28,7 @@ class Provincia extends Model
 
     public function adminPro()
     {
-        return $this->belongsTo('App\User','idresponsable','id');
+        return $this->belongsTo('App\UseradminProvincia','idresponsable','id');
     }
 
     public function delegado()

@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioFormRequest;
 use App\User;
+use App\Useranunciante;
+use App\UseradminProvincia;
+use App\Userdelegado;
+use App\Useradmin;
+use App\Usercolaborador;
 use App\TipoUsuario;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Mail;
+use App\Mail\verifyEmail;
 
 class UsuarioController extends Controller
 {
@@ -27,7 +33,8 @@ class UsuarioController extends Controller
         $usuario->email        = $request->get('email');
         $usuario->password     = bcrypt($request->get('password'));
         $usuario->tipo_usuario = $request->get('idTipousuario');
-        $usuario->activo       = 1;
+        $usuario->token=Str_random(40);
+        $usuario->status       = 0;
         /*
         Mail::send('emails.nuevoUsuario', ['nombre' => $usuario->name, 'email' => $usuario->email, 'tipo_usuario' => $usuario->tipo_usuario], function ($msj) {
             $msj->subject('NUEVO USUARIO ');
@@ -35,12 +42,51 @@ class UsuarioController extends Controller
             $msj->attach('imagenes/1.jpg');
         });
         */
+
+
         $usuario->save();
 
-        \Alert::message('this is a test message', 'info');
+        if($usuario->tipo_usuario==1)
+        {
+            $usuDatos=new Useranunciante;
+            $usuarioActual=new User;
+            $usuarioActual = Auth::user();
+            $usuDatos->id=$usuario->id;
+            $usuDatos->idpartner=$usuarioActual->id;            
+            $usuDatos->save();
+        }
+        if($usuario->tipo_usuario==2)
+        {
+            $usuDatos=new UseradminProvincia;
+            $usuDatos->id=$usuario->id;
+            $usuDatos->save();            
+        }
+        if($usuario->tipo_usuario==3)
+        {
+            $usuDatos=new Userdelegado;
+            $usuDatos->id=$usuario->id;
+            $usuDatos->save();
+            
+        }
+        if($usuario->tipo_usuario==4)
+        {
+            $usuDatos=new Useradmin;
+            $usuDatos->id=$usuario->id;
+            $usuDatos->save();
+            
+        }
+        if($usuario->tipo_usuario==5)
+        {
+            $usuDatos=new Usercolaborador;
+            $usuDatos->id=$usuario->id;
+            $usuDatos->save();
+            
+        }
+        Mail::to($usuario['email'])->send(new verifyEmail($usuario));
         
         return Redirect::to('/admin/Usuario');
     }
+
 
     public function IniciarSesion($id)
     {
@@ -53,7 +99,6 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $usuario = User::findOrFail($id);
-        \Alert::message('this is a test message', 'info');
         return view("admin.usuario.editUsuario.edit", ["usuario" => $usuario]);
 
         //Provincia::findOrFail($id)]);
@@ -65,8 +110,6 @@ class UsuarioController extends Controller
         $usuario               = User::findOrFail($id);
         $usuario->name         = $request->get('nombre');
         $usuario->email        = $request->get('email');
-        $usuario->tipo_usuario = 1;
-        $usuario->activo       = 1;
         $usuario->update();
 
         return Redirect::to('/admin/Usuario');

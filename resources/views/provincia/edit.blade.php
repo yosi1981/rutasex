@@ -29,8 +29,12 @@
 				@endif
 			</div>
 			<div class="form-group">
-				<label for="idresponsable">Responsable</label>
-				{!! Form::select('idresponsable',$usuarios,$usuario,$attributes = array('class'=>'form-control'))!!}
+				<label for="idresponsable">Delegado</label>
+				{!! Form::select('iddelegado',$delegados,$delegado,$attributes = array('class'=>'form-control'))!!}
+			</div>
+			<div class="form-group">
+				<label for="idresponsable">Administrador</label>
+				{!! Form::select('idadmPro',$admPros,$admPro,$attributes = array('class'=>'form-control'))!!}
 			</div>
 			<div class="form-group">
 				<button class="btn btn-success" type="submit">Guardar</button>
