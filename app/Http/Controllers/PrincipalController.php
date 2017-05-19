@@ -6,11 +6,7 @@ use App\Anuncio;
 use App\AnuncioDia;
 use App\Poblacion;
 use App\Provincia;
-use App\User;
 use App\Useranunciante;
-use App\Userdelegado;
-use App\Useradmin;
-use App\UseradminProvincia;
 use DB;
 
 class PrincipalController extends Controller
@@ -32,8 +28,8 @@ class PrincipalController extends Controller
             $provincia = 1;
         }
         $fechaact    = getdate();
-        $fechaactual = $fechaact['year'] . "-" . substr("0".$fechaact['mon'], -2) . "-" . substr("0".$fechaact['mday'],-2);
-        
+        $fechaactual = $fechaact['year'] . "-" . substr("0" . $fechaact['mon'], -2) . "-" . substr("0" . $fechaact['mday'], -2);
+
         $preanuncios = DB::table('anuncios')
             ->join('localidades', 'anuncios.idlocalidad', '=', 'localidades.idlocalidad')
             ->select('anuncios.idanuncio', 'anuncios.titulo', 'anuncios.descripcion', 'anuncios.fechainicio', 'anuncios.fechafinal', 'anuncios.activo', 'anuncios.idlocalidad', 'localidades.nombre as NombreLocalidad', 'anuncios.idusuario', 'localidades.idprovincia')
@@ -43,7 +39,7 @@ class PrincipalController extends Controller
                     ->orwhere('anuncios.fechainicio', "=", $fechaactual);
             })
             ->get();
-        
+
         //$preanuncios=Anuncio::all();
         $ayer = date("Y-m-d", strtotime("$fechaactual - 1 day"));
         $i    = -1;
@@ -76,27 +72,27 @@ class PrincipalController extends Controller
                 ->first();
             $poblacion = Poblacion::findorfail($an->idlocalidad);
             $provincia = Provincia::findorfail($poblacion->idprovincia);
- 
             if (count($anDia) == 1) {
                 $newandia             = new AnuncioDia();
                 $newandia             = AnuncioDia::findorfail($anDia->idanuncioDia);
                 $newandia->numvisitas = $newandia->numvisitas + 1;
                 $newandia->update();
             } else {
-                 $newandia               = new AnuncioDia();
-                 $an1                    = new Anuncio();
-                 $an1                    = Anuncio::findorfail($an->idanuncio);
-                 $newandia->idanuncio    = $an1->idanuncio;
-                 $newandia->idanunciante = $an1->UserAnunciante->id;
-                 $newandia->fecha        = $fechaactual;
-                 $newandia->idlocalidad  = $poblacion->idlocalidad;
-                 $newandia->idprovincia  = $provincia->idprovincia;
-                 $newandia->idadminPro   = $provincia->adminPro->id;
-                 $newandia->iddelegado   = $provincia->delegado->id;
-                 $newandia->idpartner    = $an1->UserAnunciante->Partner->id;
-                 $newandia->numvisitas   = 1; 
-                 $newandia->save();  
-             }
+
+                $newandia               = new AnuncioDia();
+                $an1                    = new Anuncio();
+                $an1                    = Anuncio::findorfail($an->idanuncio);
+                $newandia->idanuncio    = $an1->idanuncio;
+                $newandia->idanunciante = $an1->UserAnunciante->id;
+                $newandia->fecha        = $fechaactual;
+                $newandia->idlocalidad  = $poblacion->idlocalidad;
+                $newandia->idprovincia  = $provincia->idprovincia;
+                $newandia->idadminPro   = $provincia->adminPro->id;
+                $newandia->iddelegado   = $provincia->delegado->id;
+                $newandia->idpartner    = $an1->UserAnunciante->Partner->id;
+                $newandia->numvisitas   = 1;
+                $newandia->save();
+            }
         }
         $provincias = DB::table('provincias')
             ->select('idprovincia', 'nombre')

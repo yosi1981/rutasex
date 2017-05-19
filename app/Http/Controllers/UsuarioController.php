@@ -3,27 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioFormRequest;
+<<<<<<< HEAD
 use App\User;
 use App\Useranunciante;
 use App\UseradminProvincia;
 use App\Userdelegado;
 use App\Useradmin;
 use App\Usercolaborador;
+=======
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 use App\TipoUsuario;
+use App\User;
 use Auth;
-use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+<<<<<<< HEAD
 use Mail;
 use App\Mail\verifyEmail;
+=======
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 
 class UsuarioController extends Controller
 {
     public function CrearUsuario()
     {
-        $tipos_usuario = TipoUsuario::where('id','>',0)->OrderBy('descripcion')
+        $tipos_usuario = TipoUsuario::where('id', '>', 0)->OrderBy('descripcion')
             ->pluck('descripcion', 'id');
-        return view("usuario.NuevoUsuario",["TiposUsuario"=>$tipos_usuario]);
+        return view("usuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);
 
     }
     public function NuevoUsuario(UsuarioFormRequest $request)
@@ -37,10 +43,11 @@ class UsuarioController extends Controller
         $usuario->status       = 0;
         /*
         Mail::send('emails.nuevoUsuario', ['nombre' => $usuario->name, 'email' => $usuario->email, 'tipo_usuario' => $usuario->tipo_usuario], function ($msj) {
-            $msj->subject('NUEVO USUARIO ');
-            $msj->to('info@latiendadeyosi.com');
-            $msj->attach('imagenes/1.jpg');
+        $msj->subject('NUEVO USUARIO ');
+        $msj->to('info@latiendadeyosi.com');
+        $msj->attach('imagenes/1.jpg');
         });
+<<<<<<< HEAD
         */
 
 
@@ -84,6 +91,13 @@ class UsuarioController extends Controller
         }
         Mail::to($usuario['email'])->send(new verifyEmail($usuario));
         
+=======
+         */
+        $usuario->save();
+
+        \Alert::message('this is a test message', 'info');
+
+>>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
         return Redirect::to('/admin/Usuario');
     }
 
@@ -119,10 +133,10 @@ class UsuarioController extends Controller
     {
         if ($request->ajax()) {
             /*$usuarios = DB::table('users')->where('name', 'LIKE', '%' . $request->get('searchText') . '%')
-                ->orderBy('name', 'asc')
-                ->paginate(5);
-            */
-                $usuarios=User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
+            ->orderBy('name', 'asc')
+            ->paginate(5);
+             */
+            $usuarios = User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
             if ($usuarios) {
@@ -135,14 +149,14 @@ class UsuarioController extends Controller
     public function index(Request $request)
     {
         if ($request) {
-            $query    = trim($request->get('searchText'));
+            $query = trim($request->get('searchText'));
             /*$usuarios = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')
+            ->orderBy('name', 'asc')
+            ->paginate(5);
+             */
+            $usuarios = User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
-            */
-                $usuarios=User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
-                ->orderBy('name', 'asc')
-                ->paginate(5);                
             return view('usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
         }
 
