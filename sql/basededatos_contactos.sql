@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
--- Host: 192.168.10.10    Database: contactos
+-- Host: localhost    Database: contactos
 -- ------------------------------------------------------
 -- Server version	5.7.17-0ubuntu0.16.04.1
 
@@ -47,15 +47,7 @@ CREATE TABLE `anuncios` (
 
 LOCK TABLES `anuncios` WRITE;
 /*!40000 ALTER TABLE `anuncios` DISABLE KEYS */;
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,5,48,NULL,NULL),(4,'prueba','prueba','2017-05-19','2017-05-20',1,5,48,NULL,NULL),(5,'1c','1c','2017-05-19','2017-05-20',1,5,45,NULL,NULL);
-=======
-INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,6,34,NULL,NULL);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
-INSERT INTO `anuncios` VALUES (3,'ane','lakdsjf','2017-02-16','2019-07-07',1,6,34,NULL,NULL);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 /*!40000 ALTER TABLE `anuncios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,15 +78,7 @@ CREATE TABLE `anunciosDia` (
   CONSTRAINT `anunciosdia_idlocalidad_foreign` FOREIGN KEY (`idlocalidad`) REFERENCES `localidades` (`idlocalidad`),
   CONSTRAINT `anunciosdia_idrespprov_foreign` FOREIGN KEY (`idadminPro`) REFERENCES `users` (`id`),
   CONSTRAINT `anunciosdia_idrespprovorigen_foreign` FOREIGN KEY (`iddelegado`) REFERENCES `users` (`id`)
-<<<<<<< HEAD
-<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,15 +87,7 @@ CREATE TABLE `anunciosDia` (
 
 LOCK TABLES `anunciosDia` WRITE;
 /*!40000 ALTER TABLE `anunciosDia` DISABLE KEYS */;
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO `anunciosDia` VALUES (1,'2017-05-19',3,5,25,35,3,2,6,48),(2,'2017-05-19',4,5,25,35,3,2,6,48),(3,'2017-05-19',5,5,25,35,2,2,6,45);
-=======
-INSERT INTO `anunciosDia` VALUES (50,'2017-05-18',3,5,25,35,8,2,6,34),(51,'2017-05-18',3,6,25,35,2,2,6,34);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
-INSERT INTO `anunciosDia` VALUES (50,'2017-05-18',3,5,25,35,8,2,6,34),(51,'2017-05-18',3,6,25,35,2,2,6,34);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 /*!40000 ALTER TABLE `anunciosDia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,7 +137,7 @@ CREATE TABLE `localidades` (
   PRIMARY KEY (`idlocalidad`),
   KEY `localidades_idprovincia_foreign` (`idprovincia`),
   CONSTRAINT `localidades_idprovincia_foreign` FOREIGN KEY (`idprovincia`) REFERENCES `provincias` (`idprovincia`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +146,7 @@ CREATE TABLE `localidades` (
 
 LOCK TABLES `localidades` WRITE;
 /*!40000 ALTER TABLE `localidades` DISABLE KEYS */;
-INSERT INTO `localidades` VALUES (5,'pamplona',6,NULL,NULL),(6,'tudela',6,NULL,NULL);
+INSERT INTO `localidades` VALUES (5,'pamplona',6,NULL,NULL);
 /*!40000 ALTER TABLE `localidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +293,7 @@ CREATE TABLE `usersAdmin` (
 
 LOCK TABLES `usersAdmin` WRITE;
 /*!40000 ALTER TABLE `usersAdmin` DISABLE KEYS */;
-INSERT INTO `usersAdmin` VALUES (43,NULL),(69,NULL);
+INSERT INTO `usersAdmin` VALUES (43,'pedro luis'),(69,NULL);
 /*!40000 ALTER TABLE `usersAdmin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,15 +316,7 @@ CREATE TABLE `usersAdminProvincia` (
 
 LOCK TABLES `usersAdminProvincia` WRITE;
 /*!40000 ALTER TABLE `usersAdminProvincia` DISABLE KEYS */;
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO `usersAdminProvincia` VALUES (25),(44);
-=======
-INSERT INTO `usersAdminProvincia` VALUES (25);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
-INSERT INTO `usersAdminProvincia` VALUES (25);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 /*!40000 ALTER TABLE `usersAdminProvincia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,15 +341,7 @@ CREATE TABLE `usersAnunciante` (
 
 LOCK TABLES `usersAnunciante` WRITE;
 /*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO `usersAnunciante` VALUES (45,2,NULL),(48,2,NULL);
-=======
-INSERT INTO `usersAnunciante` VALUES (34,2,'pep');
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
-INSERT INTO `usersAnunciante` VALUES (34,2,'pep');
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 /*!40000 ALTER TABLE `usersAnunciante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,15 +389,7 @@ CREATE TABLE `usersDelegado` (
 
 LOCK TABLES `usersDelegado` WRITE;
 /*!40000 ALTER TABLE `usersDelegado` DISABLE KEYS */;
-<<<<<<< HEAD
-<<<<<<< HEAD
 INSERT INTO `usersDelegado` VALUES (35,NULL),(47,NULL);
-=======
-INSERT INTO `usersDelegado` VALUES (35,NULL);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
-INSERT INTO `usersDelegado` VALUES (35,NULL);
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
 /*!40000 ALTER TABLE `usersDelegado` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -450,12 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
--- Dump completed on 2017-05-19 14:51:43
-=======
--- Dump completed on 2017-05-18 21:03:04
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
-=======
--- Dump completed on 2017-05-18 21:03:04
->>>>>>> 6ce6a9d8997b3edd9ddc9e0f0adf47e61d4eca1b
+-- Dump completed on 2017-05-19 19:12:08
