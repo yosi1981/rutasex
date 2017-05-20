@@ -6,6 +6,7 @@ use App\Anuncio;
 use App\AnuncioDia;
 use App\Poblacion;
 use App\Provincia;
+use App\User;
 use App\Useranunciante;
 use DB;
 
@@ -101,18 +102,15 @@ class PrincipalController extends Controller
         return view('publico.mostrarAnunciosProvincia', ["anuncios" => $preanuncios, "provincias" => $provincias, "provincia" => $provincia]);
     }
 
-    public function ActivarUsuario($email,$verifytoken)
+    public function ActivarUsuario($email, $verifytoken)
     {
-        $usuario=User::where(['email'=> $email, 'token'=> $verifytoken])->first();
-        if($usuario)
-        {
-            $usuario->status=1;
-            $usuario->token=NULL;
+        $usuario = User::where(['email' => $email, 'token' => $verifytoken])->first();
+        if ($usuario) {
+            $usuario->status = 1;
+            $usuario->token  = null;
             $usuario->update();
             return $usuario->name . " Activado";
-        }
-        else
-        {
+        } else {
             return $usuario->name . " No existe";
         }
     }
