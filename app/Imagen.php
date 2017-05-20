@@ -20,4 +20,10 @@ class Imagen extends Model
 
     protected $guarded=[
     ];
+
+
+    public function ImagenesAnuncio()
+    {
+        return $this->belongsToMany('App\Anuncio', 'imagenes_anuncios', 'idimagen', 'idanuncio');
+    }
 }

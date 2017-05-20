@@ -45,4 +45,16 @@ class ImagenController extends Controller
         $imagen->delete();
         return response()->json();
     }
+
+    public function checkbox()
+    {
+        return view('pruebas.checkbox');
+    }
+
+    public function checkbox1(Request $request)
+    {
+        $data = Input::get('ch');
+        dd($data);
+
+    }
 }

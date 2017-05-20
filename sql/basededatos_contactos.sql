@@ -38,7 +38,7 @@ CREATE TABLE `anuncios` (
   KEY `anuncios_idusuario_foreign` (`idusuario`),
   CONSTRAINT `anuncios_idlocalidad_foreign` FOREIGN KEY (`idlocalidad`) REFERENCES `localidades` (`idlocalidad`),
   CONSTRAINT `anuncios_idusuario_foreign` FOREIGN KEY (`idusuario`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,8 +117,33 @@ CREATE TABLE `imagenes` (
 
 LOCK TABLES `imagenes` WRITE;
 /*!40000 ALTER TABLE `imagenes` DISABLE KEYS */;
-INSERT INTO `imagenes` VALUES (1,'gift1.gif','gift1.gif',2,NULL,NULL),(3,'bg.jpg','bg.jpg',2,NULL,NULL),(4,'bg2.jpg','bg2.jpg',2,NULL,NULL),(5,'gift3.gif','gift3.gif',2,NULL,NULL),(6,'gift4.gif','gift4.gif',2,NULL,NULL),(7,'images.jpg','images.jpg',2,NULL,NULL),(8,'left_menu_bullet.gif','left_menu_bullet.gif',2,NULL,NULL);
+INSERT INTO `imagenes` VALUES (1,'gift1.gif','gift1.gif',48,NULL,NULL),(3,'bg.jpg','bg.jpg',48,NULL,NULL),(4,'bg2.jpg','bg2.jpg',48,NULL,NULL),(5,'gift3.gif','gift3.gif',48,NULL,NULL),(6,'gift4.gif','gift4.gif',34,NULL,NULL),(7,'images.jpg','images.jpg',34,NULL,NULL),(8,'left_menu_bullet.gif','left_menu_bullet.gif',34,NULL,NULL);
 /*!40000 ALTER TABLE `imagenes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `imagenes_anuncios`
+--
+
+DROP TABLE IF EXISTS `imagenes_anuncios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `imagenes_anuncios` (
+  `idanuncioimagen` int(11) NOT NULL AUTO_INCREMENT,
+  `idanuncio` varchar(45) NOT NULL,
+  `idimagen` varchar(45) NOT NULL,
+  PRIMARY KEY (`idanuncioimagen`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `imagenes_anuncios`
+--
+
+LOCK TABLES `imagenes_anuncios` WRITE;
+/*!40000 ALTER TABLE `imagenes_anuncios` DISABLE KEYS */;
+INSERT INTO `imagenes_anuncios` VALUES (1,'3','1'),(3,'3','4'),(4,'4','1'),(5,'4','6'),(6,'4','8');
+/*!40000 ALTER TABLE `imagenes_anuncios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -341,7 +366,7 @@ CREATE TABLE `usersAnunciante` (
 
 LOCK TABLES `usersAnunciante` WRITE;
 /*!40000 ALTER TABLE `usersAnunciante` DISABLE KEYS */;
-INSERT INTO `usersAnunciante` VALUES (45,2,NULL),(48,2,NULL);
+INSERT INTO `usersAnunciante` VALUES (34,2,'pep'),(45,2,NULL),(48,2,NULL);
 /*!40000 ALTER TABLE `usersAnunciante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +427,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-19 19:12:08
+-- Dump completed on 2017-05-20 21:19:31

@@ -4,7 +4,7 @@
 <h1>Crear Anuncio</h1>
 
   <div class="row">
- {{ Form::open(array('url' => '/NuevoAnuncio','method'=>'POST'), array('role' => 'form')) }}
+ {{ Form::open(array('url' => '/admin/NuevoAnuncio','method'=>'POST'), array('role' => 'form')) }}
 
    <div class="row">
     <div class="form-group col-md-4">
@@ -54,7 +54,6 @@
       {!! Form::select('idusuario',$usuarios,null, $attributes = array('class'=>'form-control')) !!}    
     </div>
   </div>
-
 
 
   {{ Form::button('Crear Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    

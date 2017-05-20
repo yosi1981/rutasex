@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UsuarioFormRequest;
-use App\User;
 use App\Useranunciante;
 use App\UseradminProvincia;
 use App\Userdelegado;
@@ -23,7 +22,7 @@ class UsuarioController extends Controller
     {
         $tipos_usuario = TipoUsuario::where('id', '>', 0)->OrderBy('descripcion')
             ->pluck('descripcion', 'id');
-        return view("usuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);
+        return view("admin.usuario.nuevoUsuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);
 
     }
     public function NuevoUsuario(UsuarioFormRequest $request)
@@ -86,16 +85,6 @@ class UsuarioController extends Controller
         }
         Mail::to($usuario['email'])->send(new verifyEmail($usuario));
         
-         */
-        $usuario->save();
-
-        \Alert::message('this is a test message', 'info');
-
-         */
-        $usuario->save();
-
-        \Alert::message('this is a test message', 'info');
-
         return Redirect::to('/admin/Usuario');
     }
 
@@ -123,6 +112,7 @@ class UsuarioController extends Controller
         $usuario->name         = $request->get('nombre');
         $usuario->email        = $request->get('email');
         $usuario->update();
+
 
         return Redirect::to('/admin/Usuario');
     }
@@ -155,7 +145,7 @@ class UsuarioController extends Controller
             $usuarios = User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
-            return view('usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
+            return view('admin.usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
         }
 
     }

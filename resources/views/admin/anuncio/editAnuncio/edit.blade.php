@@ -1,43 +1,46 @@
 @extends ('layouts.admin')
 @section ('contenido')
 
-<h1>Crear Anuncio</h1>
+<h1>Modificar Anuncio</h1>
 
   <div class="row">
- {{ Form::open(array('url' => '/NuevoAnuncio','method'=>'POST'), array('role' => 'form')) }}
-
-   <div class="row">
+{!!Form::model($anuncio,['method'=>'PATCH','route'=>['Anuncio.update',$anuncio->idanuncio]])!!}
+ <div class="row">
     <div class="form-group col-md-4">
       {{ Form::label('titulo', 'Titulo') }}
-      {{ Form::text('titulo', null, array('placeholder' => 'Introduce el Titulo', 'class' => 'form-control')) }}
+      {{ Form::text('titulo', $anuncio->titulo, array('placeholder' => 'Introduce el Titulo', 'class' => 'form-control')) }}
     </div>
   </div>
 <div class="row">    
     <div class="form-group col-md-4">
       {{ Form::label('descripcion', 'Descripcion') }}
-      {{ Form::text('descripcion',null, array('placeholder' => 'Introduce la descripción', 'class' => 'form-control')) }}        
+      {{ Form::text('descripcion', $anuncio->descripcion, array('placeholder' => 'Introduce la descripción', 'class' => 'form-control')) }}        
     </div>
   </div>
 
 <div class="row">    
     <div class="form-group col-md-4">
       {{ Form::label('fechainicio', 'Fecha Inicio') }}
-      {{ Form::input('date','fechainicio' , '2015-02-22', ['class'=>'datepicker form-control']) }}
-    
+      {{ Form::input('date','fechainicio' , $anuncio->fechainicio, ['class'=>'datepicker form-control']) }}
     </div>
   </div>
-
 <div class="row">    
     <div class="form-group col-md-4">
       {{ Form::label('fechafinal', 'Fecha Final') }}
-      {{ Form::input('date','fechafinal' , '2015-02-22', ['class'=>'datepicker form-control']) }}
-    </div>
+     {{ Form::input('date','fechafinal' , $anuncio->fechafinal, ['class'=>'datepicker form-control']) }}
+     </div>
   </div>
+
+
 
 <div class="row">    
     <div class="form-group col-md-4">
       {{ Form::label('activo', 'Activo?') }}
-      {{Form::checkbox('activo', '1',true)}}
+      @if($anuncio->activo==1)
+          {{Form::checkbox('activo', '1',true)}}
+      @else
+          {{Form::checkbox('activo', '0',false)}}
+      @endif
     </div>
   </div>
 
@@ -46,7 +49,7 @@
       {{ Form::label('idlocalidad', 'Id localidad') }}
       {!! Form::select('idlocalidad',$localidades,null, $attributes = array('class'=>'form-control')) !!}
     </div>
-  </div>
+</div>
 
 <div class="row">    
     <div class="form-group col-md-4">
@@ -55,10 +58,11 @@
     </div>
   </div>
 
+  @include('admin.anuncio.includes.ImagenesUsuarioAnuncio')
 
-
-  {{ Form::button('Crear Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
+  {{ Form::button('Actualizar Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
   
 {{ Form::close() }}
+
 
 @endsection

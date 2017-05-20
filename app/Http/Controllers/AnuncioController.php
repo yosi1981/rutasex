@@ -17,12 +17,13 @@ class AnuncioController extends Controller
     {
         $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
         $usuarios    = User::all()->where('tipo_usuario','=',1)->pluck('name', 'id');
-        return view("anuncio.NuevoAnuncio", ["localidades" => $localidades, "usuarios" => $usuarios]);
+        return view("admin.anuncio.nuevoAnuncio.NuevoAnuncio", ["localidades" => $localidades, "usuarios" => $usuarios]);
 
     }
 
     public function NuevoAnuncio(AnuncioFormRequest $request)
     {
+        $data=$request->get('ch');
         $anuncio              = new anuncio;
         $anuncio->titulo      = $request->get('titulo');
         $anuncio->descripcion = $request->get('descripcion');
@@ -32,7 +33,13 @@ class AnuncioController extends Controller
         $anuncio->idlocalidad = $request->get('idlocalidad');
         $anuncio->idusuario   = $request->get('idusuario');
         $anuncio->save();
-        return Redirect::to('Anuncio');
+
+        //sincronizamos la tabla pivote imagenes_anuncios automaticamente pasandole el array
+        //de checkboxes pasados (ids de imagenes pasadas junto al idanuncio)
+
+        $anuncio->ImagenesAnuncio()->sync($data);
+
+        return Redirect::to('/admin/Anuncio');
 
     }
 
@@ -41,13 +48,14 @@ class AnuncioController extends Controller
         $anuncio     = anuncio::findOrFail($id);
         $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
         $usuarios    = User::all()->pluck('name', 'id');
-        return view("anuncio.edit", ["anuncio" => $anuncio, "localidades" => $localidades, "usuarios" => $usuarios]);
+        return view("admin.anuncio.editAnuncio.edit", ["anuncio" => $anuncio, "localidades" => $localidades, "usuarios" => $usuarios]);
 
         //Provincia::findOrFail($id)]);
     }
 
     public function update(AnuncioFormRequest $request, $id)
     {
+        $data = $request->get('ch');
         $anuncio = new anuncio;
         $anuncio = anuncio::findOrFail($id);
 
@@ -64,7 +72,10 @@ class AnuncioController extends Controller
         $anuncio->idusuario   = $request->get('idusuario');
         $anuncio->update();
 
-        return Redirect::to('Anuncio');
+
+        $anuncio->ImagenesAnuncio()->sync($data);
+
+        return Redirect::to('/admin/Anuncio');
     }
 
     public function search(Request $request)
@@ -80,7 +91,7 @@ class AnuncioController extends Controller
                 ->paginate(5);
 
             if ($anuncios) {
-                $salida = view('anuncio.tablaAnuncios', compact('anuncios', 'searchText'))->render();
+                $salida = view('admin.anuncio.includes.tablaAnuncios', compact('anuncios', 'searchText'))->render();
                 return response()->json($salida);
             }
         }
@@ -103,7 +114,7 @@ return view('anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
                 ->where('anuncios.titulo', 'LIKE', '%' . $query . '%')
                 ->orderBy('anuncios.titulo', 'asc')
                 ->paginate(5);
-            return view('anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
+            return view('admin.anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
         }
 
     }
@@ -112,11 +123,12 @@ return view('anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
     {
         $anuncio = anuncio::findOrFail($id);
         $anuncio->delete();
-        return Redirect::to('Anuncio');
+        return Redirect::to('/admin/Anuncio');
     }
     public function eliminar(Request $req)
     {
         $anuncio = anuncio::findOrFail($req->id);
+        $anuncio->ImagenesAnuncio()->sync(array());
         $anuncio->delete();
         return response()->json();
     }

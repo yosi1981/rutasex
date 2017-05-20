@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/pruebaCheckbox','ImagenController@checkbox');
+Route::post('/pruebaCheckbox1','ImagenController@checkbox1');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 // Rutas privadas solo para usuarios autenticados
@@ -52,6 +54,14 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/NuevoUsuario', 'UsuarioController@NuevoUsuario');
 		Route::post('/admin/eliminarUsuario', 'UsuarioController@eliminar');
 		Route::get('/admin/searchUsuario', 'UsuarioController@search');
+
+		Route::resource('/admin/Anuncio', 'AnuncioController');
+		Route::get('/admin/crearAnuncio', 'AnuncioController@CrearAnuncio');
+		Route::post('/admin/EditarAnuncio', 'AnuncioController@EditarAnuncio');
+		Route::post('/admin/ActualizarAnuncio', 'AnuncioController@Actualizar');
+		Route::post('/admin/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
+		Route::post('/admin/eliminarAnuncio', 'AnuncioController@eliminar');
+		Route::get('/admin/searchAnuncio', 'AnuncioController@search');
 	});
 
 	
@@ -90,7 +100,7 @@ Route::group(['middleware' => 'auth'], function()
 
 
 
-
+/*
 	Route::resource('Anuncio', 'AnuncioController');
 	Route::get('crearAnuncio', 'AnuncioController@CrearAnuncio');
 	Route::post('/EditarAnuncio', 'AnuncioController@EditarAnuncio');
@@ -98,7 +108,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::post('/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
 	Route::post('/eliminarAnuncio', 'AnuncioController@eliminar');
 	Route::get('/searchAnuncio', 'AnuncioController@search');
-
+*/
 	Route::resource('Imagen', 'ImagenController');
 	Route::post('uploadimage','ImagenController@Almacenar');
 	Route::post('eliminarimagen','ImagenController@eliminar');

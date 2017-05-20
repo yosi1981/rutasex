@@ -44,6 +44,11 @@ class Useranunciante extends Model
         return $this->hasMany('App\Anuncio', 'idusuario', 'id');
     }
 
+    public function Imagenes()
+    {
+        return $this->hasMany('App\Imagen','idusuario','id');
+    }
+
     public function HistorialAnuncios()
     {
         return $this->hasMany('App\AnuncioDia', 'idanunciante', 'id');

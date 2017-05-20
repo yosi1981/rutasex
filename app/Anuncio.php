@@ -26,4 +26,10 @@ class Anuncio extends Model
     {
         return $this->belongsTo('App\Useranunciante', 'idusuario', 'id');
     }
+
+    public function ImagenesAnuncio()
+    {
+        return $this->belongsToMany('App\Imagen', 'imagenes_anuncios', 'idanuncio', 'idimagen');
+    }
+
 }
