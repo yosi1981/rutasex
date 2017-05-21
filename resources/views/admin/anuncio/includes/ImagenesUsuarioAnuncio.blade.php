@@ -1,18 +1,26 @@
 @if(count($anuncio->UserAnunciante)>0)
-	@foreach($anuncio->UserAnunciante->Imagenes as $imagen)
-		<div class="row">    
-	    	<div class="form-group col-md-4">
-				<label for="img{{$imagen->idimagen}}"><img src="/imagenes/thumb_{{$imagen->ficheroimagen}}" alt="{{$imagen->idusuario}}"></label>
 
-					
-					@if($anuncio->ImagenesAnuncio->pluck('idimagen')->search($imagen->idimagen)===false)
-					<input type="checkbox" class="chk " id="img{{$imagen->idimagen}}" name="ch[]" value="{{$imagen->idimagen}}" />
-					@else
-					<input type="checkbox" class="chk " checked="checked"  id="img{{$imagen->idimagen}}" name="ch[]" value="{{$imagen->idimagen}}" />
-					@endif
-			</div>
-		</div>
+<select class="image-picker" multiple="multiple" name="ch[]">
+
+	@foreach($anuncio->UserAnunciante->Imagenes as $imagen)
+
+	@if($anuncio->ImagenesAnuncio->pluck('idimagen')->search($imagen->idimagen)===false)
+  			<option data-img-src="http://localhost:8000/imagenes/thumb_{{$imagen->ficheroimagen}}" value="{{$imagen->idimagen}}">{{$imagen->titulo}}</option>
+	@else
+  			<option data-img-src="http://localhost:8000/imagenes/thumb_{{$imagen->ficheroimagen}}" value="{{$imagen->idimagen}}">{{$imagen->titulo}}</option>
+	@endif
 	@endforeach
+</select>	
+    <script>
+    $(function() {
+      $(".image-picker").imagepicker();
+      $(".image-picker").val({!! json_encode($anuncio->ImagenesAnuncio->pluck('idimagen')->toArray()) !!});
+      $(".image-picker").data('picker').sync_picker_with_select();
+       });
+ 
+
+    </script>
 @endif
+
 
 
