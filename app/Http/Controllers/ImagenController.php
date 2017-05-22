@@ -6,16 +6,29 @@ use App\Imagen;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class ImagenController extends Controller
 {
     public function index()
     {
-        $imagenes = DB::table('imagenes')
+        switch (Auth::user()->stringRol->nombre) {
+            case 'admin':
+               $imagenes = DB::table('imagenes')
             ->orderBy('titulo', 'asc')
             ->paginate(500);
-        return view('imagen.index', compact('imagenes'));
+                break;
+            
+            case 'anunciante':
+        $imagenes=Imagen::where('idusuario',Auth::user()->id)
+            ->orderBy('titulo','asc')
+            ->paginate(500);
+                break;
+        }
+ 
+        return view(Auth::user()->stringRol->nombre.'/imagen.index',compact('imagenes'));
     }
+
 
     public function almacenar(request $request)
     {
@@ -32,7 +45,7 @@ class ImagenController extends Controller
                 $newImagen                = new Imagen;
                 $newImagen->ficheroimagen = $file->getclientOriginalName();
                 $newImagen->titulo        = $file->getClientOriginalName();
-                $newImagen->idusuario     = 2;
+                $newImagen->idusuario     = Auth::user()->id;
                 $newImagen->save();
 
             }
@@ -42,19 +55,11 @@ class ImagenController extends Controller
     public function eliminar(Request $req)
     {
         $imagen = imagen::findOrFail($req->id);
-        $imagen->delete();
-        return response()->json();
+        if($imagen->idusuario===Auth::user()->id)
+        {
+            $imagen->delete();
+            return response()->json();
+        }
     }
 
-    public function checkbox()
-    {
-        return view('pruebas.checkbox');
-    }
-
-    public function checkbox1(Request $request)
-    {
-        $data = Input::get('ch');
-        dd($data);
-
-    }
 }

@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
 		Route::post('/admin/eliminarAnuncio', 'AnuncioController@eliminar');
 		Route::get('/admin/searchAnuncio', 'AnuncioController@search');
+
+		Route::resource('/admin/Imagen', 'ImagenController');
+		Route::post('/admin/uploadimage','ImagenController@Almacenar');
+		Route::post('/admin/eliminarimagen','ImagenController@eliminar');
 	});
 
 	
@@ -82,6 +86,10 @@ Route::group(['middleware' => 'auth'], function()
 
 	Route::group(['middleware' => 'Anunciante'], function()
 	{
+		Route::resource('/anunciante/Imagen', 'ImagenController');
+		Route::post('/anunciante/uploadimage','ImagenController@Almacenar');
+		Route::post('/anunciante/eliminarimagen','ImagenController@eliminar');
+
 		Route::get('/anunciante/dashboard','AnuncianteController@Dashboard');
 		Route::get('/anunciante/ContratarDias','PaypalController@ContratarDias');
 		Route::get('payment', array(
@@ -109,9 +117,7 @@ Route::group(['middleware' => 'auth'], function()
 	Route::post('/eliminarAnuncio', 'AnuncioController@eliminar');
 	Route::get('/searchAnuncio', 'AnuncioController@search');
 */
-	Route::resource('Imagen', 'ImagenController');
-	Route::post('uploadimage','ImagenController@Almacenar');
-	Route::post('eliminarimagen','ImagenController@eliminar');
+
 	Route::get('/IniciarUsuario/{id}','UsuarioController@IniciarSesion');
 
 
