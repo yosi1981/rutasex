@@ -62,4 +62,8 @@ class ImagenController extends Controller
         }
     }
 
+    public function pruebaIPN()
+    {
+        return view('paypal.pruebaIPNform');
+    }
 }

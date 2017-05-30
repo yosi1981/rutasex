@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/pruebaCheckbox','ImagenController@checkbox');
+Route::get('/pruebaIPNform','ImagenController@pruebaIPN');
 Route::post('/pruebaCheckbox1','ImagenController@checkbox1');
 
 Route::get('/logout', 'Auth\LoginController@logout');

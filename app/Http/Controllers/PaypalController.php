@@ -48,7 +48,7 @@ class PaypalController extends BaseController
         $verified = $ipn->processIpn();
 
         $report = $ipn->getTextReport();
-
+        dd($ipn);
         Log::info("-----new payment-----");
 
         Log::info($report);
