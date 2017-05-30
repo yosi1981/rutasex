@@ -8,7 +8,6 @@
                     <th>Fecha Final</th>
                     <th>Activo</th>
                     <th>Localidad</th>
-                    <th>Id Usuario</th>
 
                 </thead>
 @if (count($anuncios)>0)
@@ -21,12 +20,7 @@
                         <td>{{$anu->fechainicio}}</td>
                         <td>{{$anu->fechafinal}}</td>                     
                         <td>{{$anu->activo}}</td>                     
-                        <td>{{$anu->NombreLocalidad}}</td>                     
-                        <td>
-                            <a href="{{URL::action('UsuarioController@edit',$anu->idusuario)}}">
-                                {{$anu->NombreUsuario}}
-                            </a>
-                        </td>                                             
+                        <td>{{$anu->NombreLocalidad}}</td>                                       
                         <td>
 
                             <a href="{{URL::action('AnuncioController@edit',$anu->idanuncio)}}">

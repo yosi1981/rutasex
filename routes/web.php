@@ -90,6 +90,14 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/anunciante/uploadimage','ImagenController@Almacenar');
 		Route::post('/anunciante/eliminarimagen','ImagenController@eliminar');
 
+		Route::resource('/anunciante/Anuncio', 'AnuncioController');
+		Route::get('/anunciante/crearAnuncio', 'AnuncioController@CrearAnuncio');
+		Route::post('/anunciante/EditarAnuncio', 'AnuncioController@EditarAnuncio');
+		Route::post('/anunciante/ActualizarAnuncio', 'AnuncioController@Actualizar');
+		Route::post('/anunciante/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
+		Route::post('/anunciante/eliminarAnuncio', 'AnuncioController@eliminar');
+		Route::get('/anunciante/searchAnuncio', 'AnuncioController@search');
+
 		Route::get('/anunciante/dashboard','AnuncianteController@Dashboard');
 		Route::get('/anunciante/ContratarDias','PaypalController@ContratarDias');
 		Route::get('payment', array(

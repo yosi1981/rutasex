@@ -27,7 +27,6 @@
                     <th>Fecha Final</th>
                     <th>Activo</th>
                     <th>Id Localidad</th>
-                    <th>Id Usuario</th>
 
                 </thead>
 @if (count($anuncios)>0)
@@ -40,12 +39,7 @@
                         <td>{{$anu->fechainicio}}</td>
                         <td>{{$anu->fechafinal}}</td>                     
                         <td>{{$anu->activo}}</td>                     
-                        <td>{{$anu->NombreLocalidad}}</td>                     
-                        <td>
-                            <a href="{{URL::action('UsuarioController@edit',$anu->idusuario)}}">
-                                {{$anu->NombreUsuario}}
-                            </a>
-                        </td>                                                 
+                        <td>{{$anu->NombreLocalidad}}</td>                                  
                         <td>
 
                             <a href="{{URL::action('AnuncioController@edit',$anu->idanuncio)}}">
@@ -81,7 +75,7 @@
         $value=$(this).val();      
         $.ajax({
             type : 'get',
-            url  : '{{URL::to('/admin/searchAnuncio')}}',
+            url  : '{{URL::to('/anunciante/searchAnuncio')}}',
             data : {'searchText' : $value},
             async: true,
             dataType: 'json',
@@ -101,7 +95,7 @@
 
     function getAnuncios(page,search)
     {
-        var url="{{URL::to('/admin/searchAnuncio')}}";
+        var url="{{URL::to('/anunciante/searchAnuncio')}}";
         $.ajax({
             type : 'get',
             url  : url+'?page='+page,
@@ -119,7 +113,7 @@
         })
         $('.modal-footer').on('click', '.delete', function(e) {
             e.preventDefault();
-            var url="{{URL::to('/admin/eliminarAnuncio')}}";
+            var url="{{URL::to('/anunciante/eliminarAnuncio')}}";
           $.ajax({
             type: 'post',
             data: {

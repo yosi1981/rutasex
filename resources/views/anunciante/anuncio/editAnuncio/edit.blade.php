@@ -51,14 +51,9 @@
     </div>
 </div>
 
-<div class="row">    
-    <div class="form-group col-md-4">
-      {{ Form::label('idusuario', 'Id Usuario') }}
-      {!! Form::select('idusuario',$usuarios,null, $attributes = array('class'=>'form-control')) !!}    
-    </div>
-  </div>
 
-  @include('admin.anuncio.includes.ImagenesUsuarioAnuncio')
+
+  @include('anunciante.anuncio.includes.ImagenesUsuarioAnuncio')
 
   {{ Form::button('Actualizar Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
   
