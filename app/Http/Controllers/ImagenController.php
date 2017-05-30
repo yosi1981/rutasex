@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Imagen;
-use DB;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Auth;
 
 class ImagenController extends Controller
 {
@@ -14,21 +13,20 @@ class ImagenController extends Controller
     {
         switch (Auth::user()->stringRol->nombre) {
             case 'admin':
-               $imagenes = DB::table('imagenes')
-            ->orderBy('titulo', 'asc')
-            ->paginate(500);
+                $imagenes = Imagen::all();
+                //->short('titulo', 'asc')
+                //->paginate(500);
                 break;
-            
+
             case 'anunciante':
-        $imagenes=Imagen::where('idusuario',Auth::user()->id)
-            ->orderBy('titulo','asc')
-            ->paginate(500);
+                $imagenes = Imagen::where('idusuario', Auth::user()->id)
+                    ->orderBy('titulo', 'asc')
+                    ->paginate(500);
                 break;
         }
- 
-        return view(Auth::user()->stringRol->nombre.'/imagen.index',compact('imagenes'));
-    }
 
+        return view(Auth::user()->stringRol->nombre . '/imagen.index', compact('imagenes'));
+    }
 
     public function almacenar(request $request)
     {
@@ -55,8 +53,7 @@ class ImagenController extends Controller
     public function eliminar(Request $req)
     {
         $imagen = imagen::findOrFail($req->id);
-        if($imagen->idusuario===Auth::user()->id)
-        {
+        if ($imagen->idusuario === Auth::user()->id or Auth::user()->stringRol->nombre = 'admin') {
             $imagen->delete();
             return response()->json();
         }

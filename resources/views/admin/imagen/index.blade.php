@@ -22,7 +22,7 @@
                                 <div class="thumbnail">
                                     <img src="/imagenes/thumb_{{$imagen->ficheroimagen}}" alt="{{$imagen->idusuario}}">
                                     <div class="caption">
-                                        <h3>{{$imagen->titulo}}</h3>
+                                        <h3>{{$imagen->titulo}} {{count($imagen->AnunciosImagen)}}</h3>
                                         <button data-toggle="tooltip" data-placement="top" title="Eliminar Elemento" type="button" class="delete-modal btn btn-danger" data-id="{{$imagen->idimagen}}" data-titulo="{{$imagen->titulo}}"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></button>
 
                                     </div>

@@ -6,23 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Imagen extends Model
 {
-    protected $table='imagenes';
+    protected $table = 'imagenes';
 
-    protected $primaryKey='idimagen';
+    protected $primaryKey = 'idimagen';
 
-    public $timestamps=false;
+    public $timestamps = false;
 
-    protected $fillable =[
-    	'ficheroimagen',
-    	'titulo',
-    	'iduser',
+    protected $fillable = [
+        'ficheroimagen',
+        'titulo',
+        'iduser',
     ];
 
-    protected $guarded=[
+    protected $guarded = [
     ];
 
-
-    public function ImagenesAnuncio()
+    public function AnunciosImagen()
     {
         return $this->belongsToMany('App\Anuncio', 'imagenes_anuncios', 'idimagen', 'idanuncio');
     }
