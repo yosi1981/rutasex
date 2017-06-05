@@ -61,20 +61,33 @@ switch (Auth::user()->stringRol->nombre) {
 
     public function edit($id)
     {
-        $anuncio     = anuncio::findOrFail($id);
-        $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
-        $usuarios    = User::all()->pluck('name', 'id');
-        switch(Auth::user()->stringRol->nombre)
-        {
-            case 'admin':
-                return view(Auth::user()->stringRol->name.".anuncio.editAnuncio.edit", ["anuncio" => $anuncio, "localidades" => $localidades, "usuarios" => $usuarios]);
 
-                break;
-            case 'anunciante':
-                return view(Auth::user()->stringRol->name.".anuncio.editAnuncio.edit", ["anuncio" => $anuncio, "localidades" => $localidades]);
-
-                break;
+        try {
+                    $anuncio     = anuncio::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
         }
+           $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
+            $usuarios    = User::all()->pluck('name', 'id');
+            switch(Auth::user()->stringRol->nombre)
+            {
+                case 'admin':
+                    return view(Auth::user()->stringRol->nombre.".anuncio.editAnuncio.edit", ["anuncio" => $anuncio, "localidades" => $localidades, "usuarios" => $usuarios]);
+
+                    break;
+                case 'anunciante':
+                    if($anuncio->idusuario===Auth::user()->id)
+                    {
+                        return view(Auth::user()->stringRol->nombre.".anuncio.editAnuncio.edit", ["anuncio" => $anuncio, "localidades" => $localidades]);
+                    }
+                    else
+                    {
+                        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
+                    }
+
+                    break;
+            }
+
         
         //Provincia::findOrFail($id)]);
     }
@@ -83,34 +96,41 @@ switch (Auth::user()->stringRol->nombre) {
     {
         $data = $request->get('ch');
         $anuncio = new anuncio;
-        $anuncio = anuncio::findOrFail($id);
 
-        $anuncio->titulo      = $request->get('titulo');
-        $anuncio->descripcion = $request->get('descripcion');
-        $anuncio->fechainicio = $request->get('fechainicio');
-        $anuncio->fechafinal  = $request->get('fechafinal');
-        if ($request->get('activo')) {
-            $anuncio->activo = 1;
-        } else {
-            $anuncio->activo = 0;
-        }
-        $anuncio->idlocalidad = $request->get('idlocalidad');
-        switch (Auth::user()->stringRol->name) {
-            case 'admin':
-                $anuncio->idusuario   = $request->get('idusuario');
-                break;
-            
-            case 'anunciante'
-                $anuncio->idusuario   = Auth::user();
-                break;
-        }
-
-        $anuncio->update();
+ 
+            $anuncio = anuncio::findOrFail($id);
+            $anuncio->titulo      = $request->get('titulo');
+            $anuncio->descripcion = $request->get('descripcion');
+            $anuncio->fechainicio = $request->get('fechainicio');
+            $anuncio->fechafinal  = $request->get('fechafinal');
+            if ($request->get('activo')) {
+                $anuncio->activo = 1;
+            } else {
+                $anuncio->activo = 0;
+            }
+            $anuncio->idlocalidad = $request->get('idlocalidad');
+            switch (Auth::user()->stringRol->nombre) {
+                case 'admin':
+                    $anuncio->idusuario   = $request->get('idusuario');
+                    $anuncio->update();
+                    break;
+                
+                case 'anunciante':
+                    if($anuncio->idusuario === Auth::user()->id)
+                    {
+                        $anuncio->update();
+                    }
+                    else
+                    {
+                        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
+                    }
+                    break;
+            }
 
 
         $anuncio->ImagenesAnuncio()->sync($data);
 
-        return Redirect::to('/'.Auth::user()->stringRol->name.'/Anuncio');
+        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
     }
 
     public function search(Request $request)
@@ -203,8 +223,15 @@ return view('anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
     public function eliminar(Request $req)
     {
         $anuncio = anuncio::findOrFail($req->id);
-        $anuncio->ImagenesAnuncio()->sync(array());
-        $anuncio->delete();
-        return response()->json();
+        if($anuncio->idusuario===Auth::user()->id)
+        {
+            $anuncio->ImagenesAnuncio()->sync(array());
+            $anuncio->delete();
+            return response()->json();            
+        }
+        else
+        {
+            return response()->json();             
+        }
     }
 }

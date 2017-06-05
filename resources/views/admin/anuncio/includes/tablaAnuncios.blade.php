@@ -23,13 +23,13 @@
                         <td>{{$anu->activo}}</td>                     
                         <td>{{$anu->NombreLocalidad}}</td>                     
                         <td>
-                            <a href="{{URL::action('UsuarioController@edit',$anu->idusuario)}}">
+                            <a href="{{URL::to('/admin/Usuario/'.$anu->idusuario.'/edit')}}">
                                 {{$anu->NombreUsuario}}
                             </a>
                         </td>                                             
                         <td>
 
-                            <a href="{{URL::action('AnuncioController@edit',$anu->idanuncio)}}">
+                            <a href="{{URL::to('/admin/Anuncio/'.$anu->idanuncio.'/edit')}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true">
                                 </i>
                             </a>

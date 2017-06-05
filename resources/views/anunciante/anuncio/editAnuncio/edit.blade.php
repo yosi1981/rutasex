@@ -51,6 +51,11 @@
     </div>
 </div>
 
+<div class="row" type="hiden">    
+    <div class="form-group col-md-4">
+      {{ Form::label('idusuario', 'Id Usuario') }}
+      {{ Form::text('idusuario', $anuncio->idusuario, array('placeholder' => 'Introduce el Titulo', 'class' => 'form-control')) }}
+  </div>
 
 
   @include('anunciante.anuncio.includes.ImagenesUsuarioAnuncio')

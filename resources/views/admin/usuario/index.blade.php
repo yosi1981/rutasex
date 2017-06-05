@@ -37,7 +37,7 @@
 						<td>{{$usu->activo}}</td>
 						<td>{{$usu->stringRol->nombre}}</td>						
 						<td>
-                             <a href="{{URL::action('UsuarioController@edit',$usu->id)}}">
+                             <a href="{{URL::route('UsuarioController@edit',$usu->id)}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Editar Usuario">
                                 </i>
                             </a>

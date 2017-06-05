@@ -24,9 +24,11 @@ class PrincipalController extends Controller
 
     public function mostrarAnuncios($id = 1)
     {
-        $provincia = $id;
-        if ($provincia < 1) {
-            $provincia = 1;
+
+        try {
+            $provincia = Provincia::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            $provincia=Provincia::first();
         }
         $fechaact    = getdate();
         $fechaactual = $fechaact['year'] . "-" . substr("0" . $fechaact['mon'], -2) . "-" . substr("0" . $fechaact['mday'], -2);
@@ -34,7 +36,7 @@ class PrincipalController extends Controller
         $preanuncios = DB::table('anuncios')
             ->join('localidades', 'anuncios.idlocalidad', '=', 'localidades.idlocalidad')
             ->select('anuncios.idanuncio', 'anuncios.titulo', 'anuncios.descripcion', 'anuncios.fechainicio', 'anuncios.fechafinal', 'anuncios.activo', 'anuncios.idlocalidad', 'localidades.nombre as NombreLocalidad', 'anuncios.idusuario', 'localidades.idprovincia')
-            ->where('localidades.idprovincia', '=', $provincia) //filtramos la localidad
+            ->where('localidades.idprovincia', '=', $provincia->idprovincia) //filtramos la localidad
             ->where(function ($query) use ($fechaactual) {
                 $query->where('anuncios.activo', '=', '1')
                     ->orwhere('anuncios.fechainicio', "=", $fechaactual);
