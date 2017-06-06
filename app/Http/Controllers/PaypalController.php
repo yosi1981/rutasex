@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Auth;
+use Auth;
 use App\Pago;
 use Fahim\PaypalIPN\PaypalIPNListener;
 use Illuminate\Http\Request;
@@ -19,6 +19,7 @@ use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 
+
 class PaypalController extends BaseController
 {
     private $_api_context;
@@ -32,7 +33,10 @@ class PaypalController extends BaseController
 
     public function ContratarDias()
     {
-        return view('anunciante.ingresoDias');
+        $pagos=Pago::where('iduser',Auth::user()->id)
+            ->orderBy('fecha_pago','DESC')
+            ->paginate(10);
+        return view("anunciante.ingresoDias",["pagos"=>$pagos]);
     }
 
     public function pruebaIPN()

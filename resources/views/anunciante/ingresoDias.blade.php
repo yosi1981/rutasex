@@ -16,4 +16,5 @@
   
 {{ Form::close() }}
 
+@include('anunciante.includes.tablapagos')
 @endsection
