@@ -23,13 +23,15 @@ Route::post('/pruebaCheckbox1','ImagenController@checkbox1');
 Route::get('/logout', 'Auth\LoginController@logout');
 // Rutas privadas solo para usuarios autenticados
 Route::get('/mostrar/{id}','PrincipalController@mostrarAnuncios');
-
+Route::get('/mostrarAnuncio/{id}','AnuncioController@ShowAnuncio');
 Route::post('paypalIPN','PaypalController@paypalIpn');
 
 Route::get('/verify/{email}/{verifytoken}','PrincipalController@ActivarUsuario')->name('verifyEmail');
 
 Route::group(['middleware' => 'auth'], function()
 {
+	Route::resource('Anuncio', 'AnuncioController');
+
 	Route::get('/home', 'HomeController@index');
 	Route::get('/infocuenta','infocuentaController@InfoReferidos');
 	Route::group(['middleware' => 'Admin'], function()
@@ -55,7 +57,7 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/eliminarUsuario', 'UsuarioController@eliminar');
 		Route::get('/admin/searchUsuario', 'UsuarioController@search');
 
-		Route::resource('/admin/Anuncio', 'AnuncioController');
+
 		Route::get('/admin/crearAnuncio', 'AnuncioController@CrearAnuncio');
 		Route::post('/admin/EditarAnuncio', 'AnuncioController@EditarAnuncio');
 		Route::post('/admin/ActualizarAnuncio', 'AnuncioController@Actualizar');
@@ -90,7 +92,7 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/anunciante/uploadimage','ImagenController@Almacenar');
 		Route::post('/anunciante/eliminarimagen','ImagenController@eliminar');
 
-		Route::resource('/anunciante/Anuncio', 'AnuncioController');
+
 		Route::get('/anunciante/crearAnuncio', 'AnuncioController@CrearAnuncio');
 		Route::post('/anunciante/EditarAnuncio', 'AnuncioController@EditarAnuncio');
 		Route::post('/anunciante/ActualizarAnuncio', 'AnuncioController@Actualizar');

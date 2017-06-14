@@ -119,7 +119,7 @@ class UsuarioController extends Controller
                 ->orderBy('name', 'asc')
                 ->paginate(5);
             if ($usuarios) {
-                $salida = view('usuario.tablaUsuarios', compact('usuarios', 'searchText'))->render();
+                $salida = view('admin.usuario.includes.tablaUsuarios', compact('usuarios', 'searchText'))->render();
                 return response()->json($salida);
             }
         }
@@ -136,7 +136,8 @@ class UsuarioController extends Controller
             $usuarios = User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
-            return view('usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
+  
+            return view('admin.usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
         }
 
     }

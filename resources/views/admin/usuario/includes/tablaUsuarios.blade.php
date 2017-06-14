@@ -18,13 +18,14 @@
 						<td>{{$usu->activo}}</td>
 						<td>{{$usu->stringRol->nombre}}</td>						
 						<td>
-                            <a href="{{URL::action('UsuarioController@edit',$usu->id)}}">
+                            <a href="{{URL::to('/admin/Usuario/'.$usu->id.'/edit')}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Editar Usuario">
                                 </i>
                             </a>
 							<a href="{{URL::action('UsuarioController@IniciarSesion',$usu->id)}}" data-toggle="tooltip" data-placement="right" title="Iniciar sesion como ... {{$usu->name}}"><i class="fa fa fa-bolt fa-2x" ></i></a>
                             <i class="fa fa-camera-retro fa-2x delete-modal " data-toggle="tooltip" data-placement="right" title="Eliminar Usuario" color=#00c0ef data-id="{{$usu->id}}"></i> 
-					</td>					
+						</td>
+
 					</tr>
 					@endforeach
 				</tbody>

@@ -30,6 +30,15 @@ switch (Auth::user()->stringRol->nombre) {
 
     }
 
+    public function ShowAnuncio($id)
+    {
+        $anuncio=anuncio::findOrFail($id);
+        $provincias = DB::table('provincias')
+            ->select('idprovincia', 'nombre')
+            ->where('habilitado', '=', '1')
+            ->get();
+        return view("publico.mostrarAnuncio",["anuncio" => $anuncio,"provincias" => $provincias]);
+    }
     public function NuevoAnuncio(AnuncioFormRequest $request)
     {
         $data=$request->get('ch');
@@ -97,7 +106,7 @@ switch (Auth::user()->stringRol->nombre) {
         $data = $request->get('ch');
         $anuncio = new anuncio;
 
- 
+
             $anuncio = anuncio::findOrFail($id);
             $anuncio->titulo      = $request->get('titulo');
             $anuncio->descripcion = $request->get('descripcion');
@@ -122,7 +131,7 @@ switch (Auth::user()->stringRol->nombre) {
                     }
                     else
                     {
-                        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
+                        return Redirect::to('/Anuncio');
                     }
                     break;
             }
@@ -130,7 +139,7 @@ switch (Auth::user()->stringRol->nombre) {
 
         $anuncio->ImagenesAnuncio()->sync($data);
 
-        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
+        return Redirect::to('/Anuncio');
     }
 
     public function search(Request $request)

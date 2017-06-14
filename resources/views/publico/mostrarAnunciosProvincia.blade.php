@@ -19,7 +19,7 @@
 @if (count($anuncios)>0)
     @foreach ($anuncios as $anu)
         <div class="product_box">
-        <img src="{{asset('img/p1.gif')}}" alt="" title="" class="prod_image" />
+        <a href="{{URL::to('/mostrarAnuncio/'.$anu->idanuncio)}}"><img src="{{asset('img/p1.gif')}}" alt="" title="" class="prod_image" /></a>
         <div class="product_details">
             <div class="prod_title">{{$anu->titulo}}</div>
             <p>
