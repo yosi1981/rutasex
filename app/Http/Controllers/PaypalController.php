@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Pago;
+use App\Useranunciante;
 use Fahim\PaypalIPN\PaypalIPNListener;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -171,6 +172,9 @@ class PaypalController extends BaseController
             $newpago->precio     = 5;
             $newpago->total      = $dias * 5;
             $newpago->save();
+            $usuarioAnuncio=Useranunciante::findorfail(\Auth::user()->id);
+            $usuarioAnuncio->dias_disponibles=$usuarioAnuncio->dias_disponibles+$dias;
+            $usuarioAnuncio->save();
             return \Redirect::to('/anunciante/ContratarDias')
                 ->with('message', 'Compra realizada de forma correcta');
         }

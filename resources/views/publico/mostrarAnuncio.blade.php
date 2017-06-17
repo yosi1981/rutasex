@@ -26,7 +26,6 @@
     <div class="form-group col-md-4">
 	@foreach($anuncio->ImagenesAnuncio as $imagen)
   			<img src="http://localhost:8000/imagenes/thumb_{{$imagen->ficheroimagen}}">
-
 	@endforeach
     </div>
   </div>

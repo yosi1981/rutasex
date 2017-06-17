@@ -64,6 +64,17 @@ class PrincipalController extends Controller
                     $anuncio->save();
                     unset($preanuncios[$i]);
                 }
+                if($anu->activo == 1)
+                {
+                    $usuarioAnuncio=Useranunciante::findorfail($anuncio->UserAnunciante->id);
+                    if($usuarioAnuncio->dias_disponibles==0)
+                    {
+                        $anuncio->activo=0;
+                        $anuncio->save();
+                        unset($preanuncios[$i]);
+                    }                   
+                }
+ 
             }
         }
 
@@ -94,6 +105,10 @@ class PrincipalController extends Controller
                 $newandia->iddelegado   = $provincia->delegado->id;
                 $newandia->idpartner    = $an1->UserAnunciante->Partner->id;
                 $newandia->numvisitas   = 1;
+                $usuarioAnuncio=Useranunciante::findorfail($an1->UserAnunciante->id);
+                $usuarioAnuncio->dias_disponibles=$usuarioAnuncio->dias_disponibles-1;
+                $usuarioAnuncio->save();
+
                 $newandia->save();
             }
         }
