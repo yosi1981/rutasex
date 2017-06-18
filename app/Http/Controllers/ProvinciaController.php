@@ -33,7 +33,7 @@ class ProvinciaController extends Controller
             $delegados = User::where('tipo_usuario', '=', '3')->pluck('name', 'id');
             $admPro    = User::where('tipo_usuario', '=', '2')->pluck('name', 'id');
             \Alert::message('this is a test message', 'info');
-            return view('provincia.index', ["provincias" => $provincias, "searchText" => $query, "delegados" => $delegados, "admPro" => $admPro]);
+            return view('admin.provincia.index', ["provincias" => $provincias, "searchText" => $query, "delegados" => $delegados, "admPro" => $admPro]);
         }
 
     }
@@ -50,7 +50,7 @@ class ProvinciaController extends Controller
                 ->paginate(5);
 
             if ($provincias) {
-                $salida = view('provincia.tablaProvincias', compact('provincias', 'searchText'))->render();
+                $salida = view('admin.provincia.includes.tablaProvincias', compact('provincias', 'searchText'))->render();
                 return response()->json($salida);
             }
         }
@@ -59,7 +59,7 @@ class ProvinciaController extends Controller
     public function create()
     {
 
-        return view("provincia.create", ["usuarios" => $usuarios]);
+        return view("admin.provincia.create", ["usuarios" => $usuarios]);
     }
 
     public function store(ProvinciaFormRequest $request)
@@ -91,7 +91,7 @@ class ProvinciaController extends Controller
 
     public function show($id)
     {
-        return view("provincia.show", ["provincia" => Provincia::findOrFail($id)]);
+        return view("admin.provincia.show", ["provincia" => Provincia::findOrFail($id)]);
     }
     public function edit($id)
     {
@@ -107,7 +107,7 @@ class ProvinciaController extends Controller
         //    ->where('idprovincia','=',$id)
         //    ->orderBy('nombre','asc')
         //    ->paginate(50); //
-        return view("provincia.edit", ["poblaciones" => $poblaciones, "provincia" => $provincia, "delegados" => $delegados, "delegado" => $delegado, "admPros" => $admPros, "admPro" => $admPro]);
+        return view("admin.provincia.editProvincia.edit", ["poblaciones" => $poblaciones, "provincia" => $provincia, "delegados" => $delegados, "delegado" => $delegado, "admPros" => $admPros, "admPro" => $admPro]);
 
         //Provincia::findOrFail($id)]);
     }

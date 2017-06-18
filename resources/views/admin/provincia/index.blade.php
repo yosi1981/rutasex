@@ -1,4 +1,4 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin1')
 @section ('contenido')
 
 
@@ -10,12 +10,12 @@
 				<button id="btnAddProvincia" name="btnAddProvincia" class="btn btn-success">Nuevo</button>
 	
 		</h3>
-		@include('provincia.search')
+		@include('admin.provincia.includes.search')
 	</div>
 </div>
-@include('provincia.nuevaProvincia')
+@include('admin.provincia.nuevaProvincia.nuevaProvincia')
 <div class="row">
-@include('provincia.modal')
+@include('admin.provincia.nuevaProvincia.modal')
 	<div class="col-lg-12 ccol-md-12 col-sm-12 col-xs-12" >
 	
 		<div class="table-responsive" id="cuerpo" name="cuerpo">
