@@ -5,6 +5,7 @@
 					<h3>ANUNCIOS DE TUS REFERIDOS</h3>
 				</thead>
 				<tbody>
+					@if(count($usuario->Referidos)>0)
 					@foreach($usuario->Referidos as $referido)
 
 					<tr>
@@ -19,19 +20,32 @@
 								
 							</thead>
 							<tbody>
-								@foreach ($referido->HistorialAnuncios as $anuncioreferido)
-									<tr>
-										<td>{{$anuncioreferido->id}}</td>
-										<td>{{$anuncioreferido->fecha}}</td>
-										<td>{{$anuncioreferido->idanuncio}}</td>
-										<td>{{$anuncioreferido->numvisitas}}</td>							
-									</tr>
-								@endforeach						
+								@if(count($referido->HistorialAnuncios)>0)
+										<tr>
+											<td>ID</td>
+											<td>FECHA</td>
+											<td>IDANUNCIO</td>
+											<td>NUMVISITAS</td>					
+										</tr>
+									@foreach ($referido->HistorialAnuncios as $anuncioreferido)
+										<tr>
+											<td>{{$anuncioreferido->idanuncioDia}}</td>
+											<td>{{$anuncioreferido->fecha}}</td>
+											<td>{{$anuncioreferido->idanuncio}}</td>
+											<td>{{$anuncioreferido->numvisitas}}</td>					
+										</tr>
+									@endforeach	
+								@endif					
 							</tbody>
 
 							</table>
 						</td>
 					</tr>
 					@endforeach
+					@else
+					<tr>
+						<td>NO TIENES REFERIDOS</td>
+					</tr>
+					@endif
 				</tbody>
 			</table>
