@@ -11,6 +11,8 @@ class ImagenController extends Controller
 {
     public function index()
     {
+
+        \Session::put('seccion_actual', "Imagen");
         switch (Auth::user()->stringRol->nombre) {
             case 'admin':
                 $imagenes = Imagen::all();
@@ -62,5 +64,10 @@ class ImagenController extends Controller
     public function pruebaIPN()
     {
         return view('paypal.pruebaIPNform');
+    }
+
+    public function checkbox1()
+    {
+        return view('pruebas.pruebafullcalendar');
     }
 }

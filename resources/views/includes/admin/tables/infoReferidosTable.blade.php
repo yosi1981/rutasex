@@ -1,48 +1,67 @@
 
-
-			<table class="table table-striped table-bordered table-condensed table-hover" >
+			<table class="table table-striped table-bordered  table-hover" >
 				<thead>
-					<h3>ANUNCIOS DE TUS REFERIDOS</h3>
+					<h3>ANUNCIOS EN TUS REFERIDOS</h3>
 				</thead>
 				<tbody>
-					@if(count($usuario->Referidos)>0)
-	                                    	@foreach($usuario->Referidos as $referido)
-		                                        @if(count($referido->HistorialAnuncios)>0)	                                
-													<div class="card">
-									                            <div class="card-header" data-background-color="green">
-									                                <h4 class="title">{{$referido->id}} {{$referido->Usuario->email}}</h4>
-									                                <p class="category">{{count($referido->HistorialAnuncios)}}</p>
-									                            </div>
-									                            <div class="card-content table-responsive">
-									                                <table class="table">
-									                                    <thead class="text-primary">
-									                                    	<tr><th>id</th>
-									                                    	<th>fecha</th>
-									                                    	<th>idanuncio</th>
-																			<th>numero visitas</th>
-									                                    </tr></thead>
-									                                    <tbody>
-														@foreach ($referido->HistorialAnuncios as $anuncioreferido)
-									                                        <tr>
-									                                        	<td>{{$anuncioreferido->idanuncioDia}}</td>
-									                                        	<td>{{$anuncioreferido->fecha}}</td>
-									                                        	<td>{{$anuncioreferido->idanuncio}}</td>
-																				<td>{{$anuncioreferido->numvisitas}}</td>
-									                                        </tr>
-									                                    </tbody>
-									                    @endforeach
-									                                </table>
-									                            </div>
-									                </div>
-		                                        @endif
-	                                        @endforeach
+				@if(count($usuario->Referidos)>0)
+				@foreach($usuario->Referidos as $referido)
+
+					<tr>
+						<td >
+				<div >
+				          <div class="box box-success box-solid collapsed-box">
+				            <div class="box-header with-border">
+				              <h3 class="box-title">{{$referido->id}} {{$referido->Usuario->email}}  {{count($referido->HistorialAnuncios)}} </h3>
+							  
+							  @if(count($referido->HistorialAnuncios)>0)
+				              <div class="box-tools pull-right">
+				                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+				                </button>
+				              </div>
+				              @endif
+				              <!-- /.box-tools -->
+				            </div>
+				            <!-- /.box-header -->
+				            <div class="box-body">
+								<table class="table table-striped table-bordered table-condensed table-hover" >
+								<thead>
+									
+								</thead>
+								<tbody>
+										@if(count($referido->HistorialAnuncios)>0)
+												<tr>
+													<td>ID</td>
+													<td>FECHA</td>
+													<td>IDANUNCIO</td>
+													<td>NUMVISITAS</td>					
+												</tr>
+										@foreach ($referido->HistorialAnuncios as $anuncioreferido)
+										<tr>
+	<td>{{$anuncioreferido->idanuncioDia}}</td>
+	<td>{{$anuncioreferido->fecha}}</td>
+	<td>{{$anuncioreferido->idanuncio}}</td>
+	<td>{{$anuncioreferido->numvisitas}}</td>										
+										</tr>	
+										@endforeach	
+										@endif
+								</tbody>
+
+								</table>
+				            </div>
+				            <!-- /.box-body -->
+				          </div>
+				          <!-- /.box -->
+				        </div>
+
+
+						</td>
+					</tr>
+					@endforeach
 					@else
 					<tr>
-						<td>NO TIENES REFERIDOS</td>
+						<td>NO TIENES NINGUN REFERIDO</td>
 					</tr>
 					@endif
 				</tbody>
 			</table>
-
-
-

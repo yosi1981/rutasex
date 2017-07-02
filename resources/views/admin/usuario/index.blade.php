@@ -1,16 +1,12 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin1')
 @section ('contenido')
 
 @include('admin.usuario.includes.modalDelete')
-<div class="row">
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
-		<h3>Listado de Usuarios 
 			<a href="{{URL::action('UsuarioController@CrearUsuario')}}"><button class="btn btn-success">Crear Usuario</button></a>
-		</h3>
-	</div>
+
 	@include('admin.usuario.includes.search')
-</div>
+
 
 <div class="row">
 
@@ -130,7 +126,11 @@
     			    		})
     	})
 
-    	
+ 		$(document).ready(function() {
+			$('.modal').appendTo("body");
+			MostrarMensaje();
+
+		});
     	$(document).on('click', '.delete-modal', function(){
     		$('.id').text($(this).data('id'));
     		$('#modal-delete').modal('show');

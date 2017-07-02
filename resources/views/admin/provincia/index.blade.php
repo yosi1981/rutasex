@@ -1,4 +1,4 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin1')
 @section ('contenido')
 
 
@@ -88,7 +88,19 @@
 			$('#cuerpo').html(data);
 		})
 	}
-
+	function MostrarMensaje()
+	{
+			$.bootstrapGrowl("{{ \Session::get('seccion_actual') }}", {
+			  ele: 'body', // which element to append to
+			  type: 'info', // (null, 'info', 'danger', 'success')
+			  offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
+			  align: 'right', // ('left', 'right', or 'center')
+			  width: 250, // (integer, or 'auto')
+			  delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+			  allow_dismiss: true, // If true then will display a cross to close the popup.
+			  stackup_spacing: 10 // spacing between consecutively stacked growls.
+			});		
+	}
 
   		$('#btnAddProvincia').on('click',function(){
 	    	$('#Provincia').modal('show');
@@ -109,17 +121,21 @@
                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
                    },
     			success:function(data){
-    				alert("llego");
      				$('#Provincia').modal('hide');
     				getProvincias(1,"");
+    				MostrarMensaje();
     			}
 
     		}).fail(function(data){
 
     			    		})
     	})
+		$(document).ready(function() {
+			$('.modal').appendTo("body");
+			MostrarMensaje();
 
-    	
+		});
+
     	$(document).on('click', '.delete-modal', function(){
     		$('.id').text($(this).data('id'));
     		$('#modal-delete').modal('show');

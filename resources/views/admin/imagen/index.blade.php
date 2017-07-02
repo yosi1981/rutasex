@@ -1,4 +1,4 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin1')
 @section ('contenido')
 
 
@@ -100,6 +100,9 @@
     		function transferComplete(data){
     			$('#Imagen').modal('hide');
     		}
+            $(document).ready(function() {
+                $('.modal').appendTo("body");
+            });
             $(document).on('click', '.delete-modal', function(){
                     $('.id').text($(this).data('id'));
                     $('#titledelete').text("Desea eliminar la imagen: ".concat($(this).data('titulo')));

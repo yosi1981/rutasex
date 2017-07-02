@@ -14,6 +14,11 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
 
+<!-- fullcalendar -->
+<link href='{{ asset('css/fullcalendar.min.css')}}' rel='stylesheet' />
+<link href='{{ asset('css/fullcalendar.print.min.css')}}' rel='stylesheet' media='print' />
+
+
     <!-- Necesario para el script del thumbnail-slider -->
         <link href="{{ asset('css/thumbnail-slider.css') }}" rel="stylesheet" type="text/css" />
         <script src="{{ asset('js/thumbnail-slider.js') }}" type="text/javascript"></script>
@@ -220,8 +225,9 @@
   
     <!-- jquery multiple select -->
     <script src="{{asset('js/image-picker.min.js')}}"></script>
-    <script src="{{asset('js/image-picker.js')}}"></script>    
+    <script src="{{asset('js/image-picker.js')}}"></script>      
+<script src='{{ asset('js/lib/moment.min.js')}}'></script>
 
-
+<script src='{{ asset('js/fullcalendar.min.js')}}'></script>
   </body>
 </html>

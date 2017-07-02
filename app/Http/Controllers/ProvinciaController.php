@@ -18,6 +18,7 @@ class ProvinciaController extends Controller
 
     public function index(Request $request)
     {
+        \Session::put('seccion_actual', "Provincia");
         if ($request) {
             $query = trim($request->get('searchText'));
 /*            $provincias=DB::table('provincias')->where('nombre','LIKE','%'.$query.'%')
@@ -32,7 +33,6 @@ class ProvinciaController extends Controller
                 ->paginate(5);
             $delegados = User::where('tipo_usuario', '=', '3')->pluck('name', 'id');
             $admPro    = User::where('tipo_usuario', '=', '2')->pluck('name', 'id');
-            \Alert::message('this is a test message', 'info');
             return view('admin.provincia.index', ["provincias" => $provincias, "searchText" => $query, "delegados" => $delegados, "admPro" => $admPro]);
         }
 
@@ -40,6 +40,7 @@ class ProvinciaController extends Controller
 
     public function search(Request $request)
     {
+                \Session::put('seccion_actual', "Provincia");
         if ($request->ajax()) {
             $query      = trim($request->get('searchText'));
             $provincias = DB::table('provincias')
@@ -58,7 +59,7 @@ class ProvinciaController extends Controller
 
     public function create()
     {
-
+        \Session::put('seccion_actual', "Provincia");
         return view("admin.provincia.create", ["usuarios" => $usuarios]);
     }
 
@@ -85,16 +86,20 @@ class ProvinciaController extends Controller
                 $provincia->habilitado = '0';
             }
             $provincia->save();
+            \Session::put('seccion', "Provincia creada correctamente");
+
             return response()->json($provincia);
         }
     }
 
     public function show($id)
     {
+                \Session::put('seccion_actual', "Provincia");
         return view("admin.provincia.show", ["provincia" => Provincia::findOrFail($id)]);
     }
     public function edit($id)
     {
+        \Session::put('seccion_actual', "Provincia");
         $query       = "";
         $provincia   = Provincia::findOrFail($id);
         $poblaciones = $provincia->localidades;

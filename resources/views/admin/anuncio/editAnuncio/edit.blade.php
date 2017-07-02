@@ -1,4 +1,4 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin1')
 @section ('contenido')
 
 <h1>Modificar Anuncio</h1>
@@ -63,6 +63,4 @@
   {{ Form::button('Actualizar Anuncio', array('type' => 'submit', 'class' => 'btn btn-primary')) }}    
   
 {{ Form::close() }}
-
-
 @endsection

@@ -16,6 +16,7 @@ class AnuncioController extends Controller
 
     public function CrearAnuncio()
     {
+                \Session::put('seccion_actual', "Anuncio");
         $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
         $usuarios    = User::all()->where('tipo_usuario','=',1)->pluck('name', 'id');
 switch (Auth::user()->stringRol->nombre) {
@@ -70,6 +71,7 @@ switch (Auth::user()->stringRol->nombre) {
 
     public function edit($id)
     {
+                \Session::put('seccion_actual', "Anuncio");
 
         try {
                     $anuncio     = anuncio::findOrFail($id);
@@ -144,6 +146,7 @@ switch (Auth::user()->stringRol->nombre) {
 
     public function search(Request $request)
     {
+                \Session::put('seccion_actual', "Anuncio");
         if ($request->ajax()) {
             $query    = trim($request->get('searchText'));
             switch (Auth::user()->stringRol->nombre) {
@@ -183,7 +186,7 @@ switch (Auth::user()->stringRol->nombre) {
 
     public function index(Request $request)
     {
-
+        \Session::put('seccion_actual', "Anuncio");
         if ($request) {
             $query = trim($request->get('searchText'));
 /*            $anuncios = DB::table('anuncios')->where('titulo', 'LIKE', '%' . $query . '%')

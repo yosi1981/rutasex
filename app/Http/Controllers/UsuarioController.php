@@ -20,9 +20,10 @@ class UsuarioController extends Controller
 {
     public function CrearUsuario()
     {
+        \Session::put('seccion_actual', "Usuario");
         $tipos_usuario = TipoUsuario::where('id', '>', 0)->OrderBy('descripcion')
             ->pluck('descripcion', 'id');
-        return view("usuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);
+        return view("admin.usuario.nuevoUsuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);
 
     }
     public function NuevoUsuario(UsuarioFormRequest $request)
@@ -91,6 +92,7 @@ class UsuarioController extends Controller
 
     public function edit($id)
     {
+        \Session::put('seccion_actual', "Usuario");
         $usuario = User::findOrFail($id);
         return view("admin.usuario.editUsuario.edit", ["usuario" => $usuario]);
 
@@ -127,6 +129,7 @@ class UsuarioController extends Controller
 
     public function index(Request $request)
     {
+        \Session::put('seccion_actual', "Usuario");
         if ($request) {
             $query = trim($request->get('searchText'));
             /*$usuarios = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')

@@ -62,13 +62,17 @@ class PrincipalController extends Controller
                 }
                 if($anu->activo == 1)
                 {
-                    $usuarioAnuncio=Useranunciante::findorfail($anuncio->UserAnunciante->id);
-                    if($usuarioAnuncio->dias_disponibles==0)
+                    if($anuncio->ult_muestra!=$fechaactual)
                     {
-                        $anuncio->activo=0;
-                        $anuncio->save();
-                        unset($preanuncios[$i]);
-                    }                   
+                    $usuarioAnuncio=Useranunciante::findorfail($anuncio->UserAnunciante->id);
+                        if($usuarioAnuncio->dias_disponibles==0)
+                        {
+                            $anuncio->activo=0;
+                            $anuncio->save();
+                            unset($preanuncios[$i]);
+                        }                                  
+                    }
+         
                 }
  
             }
@@ -87,6 +91,7 @@ class PrincipalController extends Controller
                 $newandia             = new AnuncioDia();
                 $newandia             = AnuncioDia::findorfail($anDia->idanuncioDia);
                 $newandia->numvisitas = $newandia->numvisitas + 1;
+
                 $newandia->update();
             } else {
                 $newandia               = new AnuncioDia();
@@ -104,7 +109,8 @@ class PrincipalController extends Controller
                 $usuarioAnuncio=Useranunciante::findorfail($an1->UserAnunciante->id);
                 $usuarioAnuncio->dias_disponibles=$usuarioAnuncio->dias_disponibles-1;
                 $usuarioAnuncio->save();
-
+                $an1->ult_muestra=$fechaactual;
+                $an1->save();
                 $newandia->save();
             }
         }
