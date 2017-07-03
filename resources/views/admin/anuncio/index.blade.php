@@ -3,7 +3,7 @@
 
 @include('admin.anuncio.includes.modalDelete')
 
-            <a href="{{URL::to('/admin/crearAnuncio')}}"><button class="btn btn-success">Crear Anuncio</button></a>
+            <a href="{{URL::to('/crearAnuncio')}}"><button class="btn btn-success">Crear Anuncio</button></a>
     @include('anuncio.search')
 
 
@@ -71,100 +71,11 @@
         </div>
     </div>
 
-    <div id='calendar'></div>
+
 </div>
 
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        var hoy = new Date();
-        var dd = hoy.getDate();
-        var mm = hoy.getMonth()+1; //hoy es 0!
-        var yyyy = hoy.getFullYear();
 
-        if(dd<10) {
-            dd='0'+dd
-        } 
-
-        if(mm<10) {
-            mm='0'+mm
-        } 
-
-        hoy = yyyy+'-'+mm+'-'+dd;
-        $('#calendar').fullCalendar({
-            header: {
-                center: 'title',
-
-            },
-            defaultDate: hoy,
-            navLinks: false, // can click day/week names to navigate views
-            editable: true,
-            eventLimit: true, // allow "more" link when too many events
-            events: [
-                {
-                    title: 'All Day Event',
-                    start: '2017-05-01'
-                },
-                {
-                    title: 'Probando',
-                    start: '2017-06-01',
-                    end: '2017-06-26'
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: '2017-05-09T16:00:00'
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: '2017-05-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2017-05-11',
-                    end: '2017-05-13'
-                },
-
-                {
-                    title: 'Lunch',
-                    start: '2017-05-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2017-05-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2017-05-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2017-05-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2017-05-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2017-05-28'
-                }
-            ]
-        });
-        
-    });
-</script>
-<style>
-
-
-    #calendar {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-</style>
 
 
 <script type="text/javascript">
@@ -172,7 +83,7 @@
         $value=$(this).val();      
         $.ajax({
             type : 'get',
-            url  : '{{URL::to('/admin/searchAnuncio')}}',
+            url  : '{{URL::to('searchAnuncio')}}',
             data : {'searchText' : $value},
             async: true,
             dataType: 'json',
@@ -191,25 +102,13 @@
     })
 $(document).ready(function() {
         $('.modal').appendTo("body");
-        MostrarMensaje();
+
         });
 
-    function MostrarMensaje()
-    {
-            $.bootstrapGrowl("{{ \Session::get('seccion_actual') }}", {
-              ele: 'body', // which element to append to
-              type: 'info', // (null, 'info', 'danger', 'success')
-              offset: {from: 'top', amount: 20}, // 'top', or 'bottom'
-              align: 'right', // ('left', 'right', or 'center')
-              width: 250, // (integer, or 'auto')
-              delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
-              allow_dismiss: true, // If true then will display a cross to close the popup.
-              stackup_spacing: 10 // spacing between consecutively stacked growls.
-            });     
-    }
+
     function getAnuncios(page,search)
     {
-        var url="{{URL::to('/admin/searchAnuncio')}}";
+        var url="{{URL::to('searchAnuncio')}}";
         $.ajax({
             type : 'get',
             url  : url+'?page='+page,
@@ -227,7 +126,7 @@ $(document).ready(function() {
         })
         $('.modal-footer').on('click', '.delete', function(e) {
             e.preventDefault();
-            var url="{{URL::to('/admin/eliminarAnuncio')}}";
+            var url="{{URL::to('/eliminarAnuncio')}}";
           $.ajax({
             type: 'post',
             data: {

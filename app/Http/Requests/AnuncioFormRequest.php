@@ -26,7 +26,6 @@ class AnuncioFormRequest extends FormRequest
         return [
             'titulo'=>'required|max:45',
             'descripcion'=>'required|max:1000',
-            'idusuario'=>'required',
         ];
     }
 }

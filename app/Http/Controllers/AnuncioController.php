@@ -6,6 +6,7 @@ use App\Anuncio;
 use App\Http\Requests\AnuncioFormRequest;
 use App\Poblacion;
 use App\User;
+use App\Useranunciante;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class AnuncioController extends Controller
                 \Session::put('seccion_actual', "Anuncio");
         $localidades = Poblacion::all()->pluck('nombre', 'idlocalidad');
         $usuarios    = User::all()->where('tipo_usuario','=',1)->pluck('name', 'id');
-switch (Auth::user()->stringRol->nombre) {
+        switch (Auth::user()->stringRol->nombre) {
                 case 'admin':
                     return view("admin.anuncio.nuevoAnuncio.NuevoAnuncio", ["localidades" => $localidades, "usuarios" => $usuarios]);
                 break;
@@ -29,6 +30,38 @@ switch (Auth::user()->stringRol->nombre) {
         }
  
 
+    }
+
+    public function AnunciosAnunciante()
+    {
+
+        $user=Useranunciante::findorfail(Auth::user()->id);
+
+        $anuncios=$user->anuncios;
+        $data = array(); //declaramos un array principal que va contener los datos
+        $i=0;
+ 
+        //hacemos un ciclo para anidar los valores obtenidos a nuestro array principal $data
+        foreach($anuncios as $anu)
+        {
+
+            $anuncio=Anuncio::findOrFail($anu->idanuncio);
+
+            $fechafinal=$anuncio->fechafinal;
+            $ultimodia = date("Y-m-d", strtotime("$fechafinal + 1 day"));
+            $data[$i] = array(
+                "title"=>$anuncio->titulo, //obligatoriamente "title", "start" y "url" son campos requeridos
+                "start"=>$anuncio->fechainicio, //por el plugin asi que asignamos a cada uno el valor correspondiente
+                "end"=>$ultimodia
+                //en el campo "url" concatenamos el el URL con el id del evento para luego
+                //en el evento onclick de JS hacer referencia a este y usar el método show
+                //para mostrar los datos completos de un evento
+            );
+            $i+=1;
+        }
+ 
+        return response()->json($data); //para luego retornarlo y estar listo para consumirlo
+ 
     }
 
     public function ShowAnuncio($id)
@@ -65,7 +98,7 @@ switch (Auth::user()->stringRol->nombre) {
 
         $anuncio->ImagenesAnuncio()->sync($data);
 
-        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
+        return Redirect::to('Anuncio');
 
     }
 
@@ -93,7 +126,7 @@ switch (Auth::user()->stringRol->nombre) {
                     }
                     else
                     {
-                        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Anuncio');
+                        return Redirect::to('Anuncio');
                     }
 
                     break;
@@ -173,7 +206,6 @@ switch (Auth::user()->stringRol->nombre) {
                         $salida = view('anunciante.anuncio.includes.tablaAnuncios', compact('anuncios', 'searchText'))->render();
                         break;
 
-                    break;
             }
 
 
@@ -216,6 +248,7 @@ return view('anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
                     ->orderBy('anuncios.titulo', 'asc')
                     ->paginate(5);
                     return view('anunciante.anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
+
                     break;
 
                 break;
@@ -230,20 +263,36 @@ return view('anuncio.index', ["anuncios" => $anuncios, "searchText" => $query]);
     {
         $anuncio = anuncio::findOrFail($id);
         $anuncio->delete();
-        return Redirect::to('/admin/Anuncio');
+        return Redirect::to('Anuncio');
     }
     public function eliminar(Request $req)
     {
+        $useractual=User::findorfail(Auth::user()->id);
         $anuncio = anuncio::findOrFail($req->id);
-        if($anuncio->idusuario===Auth::user()->id)
+        if($useractual->stringRol->nombre=="anunciante")
         {
+            alert("anunciante");
+            if($anuncio->idusuario==Auth::user()->id)
+            {
+                $anuncio->ImagenesAnuncio()->sync(array());
+                $anuncio->delete();
+                return response()->json();            
+            }
+            else
+            {
+                return response()->json();             
+            }
+        }
+        if($useractual->stringRol->nombre=="admin")
+        {
+            alert("admin");
             $anuncio->ImagenesAnuncio()->sync(array());
             $anuncio->delete();
-            return response()->json();            
+            return response()->json();
         }
         else
         {
-            return response()->json();             
+            return response()->json();
         }
     }
 }

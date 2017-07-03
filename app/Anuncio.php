@@ -15,8 +15,7 @@ class Anuncio extends Model
     protected $fillable = [
         'titulo',
         'descripcion',
-        'activo',
-        'idusuario',
+        'activo'
     ];
 
     protected $guarded = [

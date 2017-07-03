@@ -4,7 +4,7 @@
 <h1>Crear Anuncio</h1>
 
   <div class="row">
- {{ Form::open(array('url' => '/admin/NuevoAnuncio','method'=>'POST'), array('role' => 'form')) }}
+ {{ Form::open(array('url' => 'NuevoAnuncio','method'=>'POST'), array('role' => 'form')) }}
 
    <div class="row">
     <div class="form-group col-md-4">

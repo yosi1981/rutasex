@@ -1,16 +1,9 @@
-@extends ('layouts.admin')
+@extends ('layouts.admin1')
 @section ('contenido')
 
 @include('anuncio.modalDelete')
-<div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-
-        <h3>Listado de Anuncios 
-            <a href="{{URL::action('AnuncioController@CrearAnuncio')}}"><button class="btn btn-success">Crear Anuncio</button></a>
-        </h3>
-    </div>
+            <a href="{{URL::to('crearAnuncio')}}"><button class="btn btn-success">Crear Anuncio</button></a>
     @include('anuncio.search')
-</div>
 
 <div class="row">
 
@@ -69,13 +62,59 @@
 
         </div>
     </div>
+
 </div>
+
+        <div id='calendar'></div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var hoy = new Date();
+        var dd = hoy.getDate();
+        var mm = hoy.getMonth()+1; //hoy es 0!
+        var yyyy = hoy.getFullYear();
+
+        if(dd<10) {
+            dd='0'+dd
+        } 
+
+        if(mm<10) {
+            mm='0'+mm
+        } 
+
+        hoy = yyyy+'-'+mm+'-'+dd;
+        $('#calendar').fullCalendar({
+            header: {
+                center: 'title',
+
+            },
+            defaultDate: hoy,
+            navLinks: false, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events:{
+                url:'http://localhost:8000/pruebafullcalendar'
+            } 
+                
+        });
+        
+    });
+</script>
+<style>
+
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+</style>
 <script type="text/javascript">
     $('#searchText').on('keyup',function(){
         $value=$(this).val();      
         $.ajax({
             type : 'get',
-            url  : '{{URL::to('/anunciante/searchAnuncio')}}',
+            url  : '{{URL::to('searchAnuncio')}}',
             data : {'searchText' : $value},
             async: true,
             dataType: 'json',
@@ -93,9 +132,15 @@
         getUsuarios(page,$('#searchText').val());
     })
 
+    $(document).ready(function() {
+        $('.modal').appendTo("body");
+
+        });
+
+
     function getAnuncios(page,search)
     {
-        var url="{{URL::to('/anunciante/searchAnuncio')}}";
+        var url="{{URL::to('searchAnuncio')}}";
         $.ajax({
             type : 'get',
             url  : url+'?page='+page,
@@ -113,7 +158,7 @@
         })
         $('.modal-footer').on('click', '.delete', function(e) {
             e.preventDefault();
-            var url="{{URL::to('/anunciante/eliminarAnuncio')}}";
+            var url="{{URL::to('eliminarAnuncio')}}";
           $.ajax({
             type: 'post',
             data: {

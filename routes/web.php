@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+route::get('/pruebafullcalendar','AnuncioController@AnunciosAnunciante');
 Route::get('/pruebaIPNform','ImagenController@pruebaIPN');
 Route::get('/pruebaCheckbox1','ImagenController@checkbox1');
 
@@ -31,6 +32,12 @@ Route::get('/verify/{email}/{verifytoken}','PrincipalController@ActivarUsuario')
 Route::group(['middleware' => 'auth'], function()
 {
 	Route::resource('Anuncio', 'AnuncioController');
+		Route::get('/crearAnuncio', 'AnuncioController@CrearAnuncio');
+		Route::post('/EditarAnuncio', 'AnuncioController@EditarAnuncio');
+		Route::post('/ActualizarAnuncio', 'AnuncioController@Actualizar');
+		Route::post('/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
+		Route::post('/eliminarAnuncio', 'AnuncioController@eliminar');
+		Route::get('/searchAnuncio', 'AnuncioController@search');
 
 	Route::get('/home', 'HomeController@index');
 	Route::get('/infocuenta','infocuentaController@InfoReferidos');
@@ -57,13 +64,6 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/admin/eliminarUsuario', 'UsuarioController@eliminar');
 		Route::get('/admin/searchUsuario', 'UsuarioController@search');
 
-
-		Route::get('/admin/crearAnuncio', 'AnuncioController@CrearAnuncio');
-		Route::post('/admin/EditarAnuncio', 'AnuncioController@EditarAnuncio');
-		Route::post('/admin/ActualizarAnuncio', 'AnuncioController@Actualizar');
-		Route::post('/admin/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
-		Route::post('/admin/eliminarAnuncio', 'AnuncioController@eliminar');
-		Route::get('/admin/searchAnuncio', 'AnuncioController@search');
 
 		Route::resource('/admin/Imagen', 'ImagenController');
 		Route::post('/admin/uploadimage','ImagenController@Almacenar');
@@ -93,12 +93,7 @@ Route::group(['middleware' => 'auth'], function()
 		Route::post('/anunciante/eliminarimagen','ImagenController@eliminar');
 
 
-		Route::get('/anunciante/crearAnuncio', 'AnuncioController@CrearAnuncio');
-		Route::post('/anunciante/EditarAnuncio', 'AnuncioController@EditarAnuncio');
-		Route::post('/anunciante/ActualizarAnuncio', 'AnuncioController@Actualizar');
-		Route::post('/anunciante/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
-		Route::post('/anunciante/eliminarAnuncio', 'AnuncioController@eliminar');
-		Route::get('/anunciante/searchAnuncio', 'AnuncioController@search');
+
 
 		Route::get('/anunciante/dashboard','AnuncianteController@Dashboard');
 		Route::get('/anunciante/ContratarDias','PaypalController@ContratarDias');
