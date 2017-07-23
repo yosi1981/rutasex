@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-route::get('/pruebafullcalendar','AnuncioController@AnunciosAnunciante');
+
 Route::get('/pruebaIPNform','ImagenController@pruebaIPN');
 Route::get('/pruebaCheckbox1','ImagenController@checkbox1');
 
@@ -74,6 +74,14 @@ Route::group(['middleware' => 'auth'], function()
 	Route::group(['middleware' => 'Delegado'], function()
 	{
 		Route::get('/delegado/dashboard','DelegadoController@Dashboard');
+
+		Route::resource('/delegado/Usuario', 'UsuarioController');
+		Route::get('/delegado/crearUsuario', 'UsuarioController@CrearUsuario');
+		Route::post('/delegado/EditarUsuario', 'UsuarioController@EditarUsuario');
+		Route::post('/delegado/ActualizarUsuario', 'UsuarioController@Actualizar');
+		Route::post('/delegado/NuevoUsuario', 'UsuarioController@NuevoUsuario');
+		Route::post('/delegado/eliminarUsuario', 'UsuarioController@eliminar');
+		Route::get('/delegado/searchUsuario', 'UsuarioController@search');
 	});
 
 	Route::group(['middleware' => 'AdminProvincia'], function()

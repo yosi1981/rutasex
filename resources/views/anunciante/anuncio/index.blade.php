@@ -65,50 +65,8 @@
 
 </div>
 
-        <div id='calendar'></div>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        var hoy = new Date();
-        var dd = hoy.getDate();
-        var mm = hoy.getMonth()+1; //hoy es 0!
-        var yyyy = hoy.getFullYear();
-
-        if(dd<10) {
-            dd='0'+dd
-        } 
-
-        if(mm<10) {
-            mm='0'+mm
-        } 
-
-        hoy = yyyy+'-'+mm+'-'+dd;
-        $('#calendar').fullCalendar({
-            header: {
-                center: 'title',
-
-            },
-            defaultDate: hoy,
-            navLinks: false, // can click day/week names to navigate views
-            editable: true,
-            eventLimit: true, // allow "more" link when too many events
-            events:{
-                url:'http://localhost:8000/pruebafullcalendar'
-            } 
-                
-        });
-        
-    });
-</script>
-<style>
 
 
-    #calendar {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-</style>
 <script type="text/javascript">
     $('#searchText').on('keyup',function(){
         $value=$(this).val();      

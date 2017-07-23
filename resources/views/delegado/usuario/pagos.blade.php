@@ -5,11 +5,9 @@
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 
 		<h3>
-			DASHBOARD ADMINPROVINCIA
+			PAGO PAYPAL
 		</h3>
 	</div>
-
+	
 </div>
-
 @endsection
-

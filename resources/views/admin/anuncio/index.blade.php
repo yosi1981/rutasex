@@ -83,7 +83,7 @@
         $value=$(this).val();      
         $.ajax({
             type : 'get',
-            url  : '{{URL::to('searchAnuncio')}}',
+            url  : '{{URL::to('/admin/searchAnuncio')}}',
             data : {'searchText' : $value},
             async: true,
             dataType: 'json',
@@ -108,7 +108,7 @@ $(document).ready(function() {
 
     function getAnuncios(page,search)
     {
-        var url="{{URL::to('searchAnuncio')}}";
+        var url="{{URL::to('/admin/searchAnuncio')}}";
         $.ajax({
             type : 'get',
             url  : url+'?page='+page,

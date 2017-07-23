@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsuarioFormRequest;
 use App\Mail\verifyEmail;
 use App\TipoUsuario;
+use DB;
 use App\User;
 use App\Useradmin;
 use App\UseradminProvincia;
@@ -20,14 +21,42 @@ class UsuarioController extends Controller
 {
     public function CrearUsuario()
     {
+        $usuarioactual=Auth::user();
         \Session::put('seccion_actual', "Usuario");
+        if($usuarioactual->tipo_usuario==4)
+        {
         $tipos_usuario = TipoUsuario::where('id', '>', 0)->OrderBy('descripcion')
             ->pluck('descripcion', 'id');
-        return view("admin.usuario.nuevoUsuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);
+        return view($usuarioactual->stringRol->nombre.".usuario.nuevoUsuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);            
+        }
+        else
+        {
+            $tipos_usuario=TipoUsuario::where('id','=',1)
+                                        ->OrderBy('descripcion')
+                                        ->pluck('descripcion','id');
+        return view($usuarioactual->stringRol->nombre.".usuario.nuevoUsuario.NuevoUsuario", ["TiposUsuario" => $tipos_usuario]);            
+
+        }
+
 
     }
     public function NuevoUsuario(UsuarioFormRequest $request)
     {
+        $ifposible=false;
+        if(Auth::user()->tipo_usuario==4)
+        {
+            $ifposible=true;
+        }
+        else
+        {
+            if($request->get('idTipousuario')==1 or $request->get('idTipousuario')==5 )
+            {
+                $ifposible=true;
+            }
+        }
+
+        if($ifposible==true)
+        {
         $usuario               = new User;
         $usuario->name         = $request->get('nombre');
         $usuario->email        = $request->get('email');
@@ -77,9 +106,11 @@ class UsuarioController extends Controller
 
         }
 
-        Mail::to($usuario['email'])->send(new verifyEmail($usuario));
+        Mail::to($usuario['email'])->send(new verifyEmail($usuario));            
+        }
 
-        return Redirect::to('/admin/Usuario');
+
+        return Redirect::to('/delegado/Usuario');
     }
 
     public function IniciarSesion($id)
@@ -92,9 +123,32 @@ class UsuarioController extends Controller
 
     public function edit($id)
     {
-        \Session::put('seccion_actual', "Usuario");
-        $usuario = User::findOrFail($id);
-        return view("admin.usuario.editUsuario.edit", ["usuario" => $usuario]);
+        $useractual=Auth::user();
+        $usuarioeditar = User::findOrFail($id);
+        if($useractual->tipo_usuario==4)
+        {
+            return view($useractual->stringRol->nombre.".usuario.editUsuario.edit", ["usuario" => $usuario]);            
+        }
+        else
+        {
+
+            if($usuarioeditar->stringRol->nombre=="anunciante")
+            {
+                if($useractual->tipo_usuario==1 and $useractual->id==$usereditar->id)
+                {
+
+                }
+                else
+                {
+                    $usuarioanun=Useranunciante::findorfail($usuarioeditar->id);
+                    if($usuarioanun->Partner->id==$useractual->id)
+                    {
+                        return view($useractual->stringRol->nombre.".usuario.editUsuario.edit", ["usuario" => $usuarioeditar]);                      
+                    }                    
+                }
+
+            }
+        }
 
         //Provincia::findOrFail($id)]);
     }
@@ -107,7 +161,7 @@ class UsuarioController extends Controller
         $usuario->email = $request->get('email');
         $usuario->update();
 
-        return Redirect::to('/admin/Usuario');
+        return Redirect::to('/'.Auth::user()->stringRol->nombre.'/Usuario');
     }
 
     public function search(Request $request)
@@ -117,12 +171,44 @@ class UsuarioController extends Controller
             ->orderBy('name', 'asc')
             ->paginate(5);
              */
+
+
+           $query = trim($request->get('searchText'));
+            /*$usuarios = DB::table('users')->where('name', 'LIKE', '%' . $query . '%')
+            ->orderBy('name', 'asc')
+            ->paginate(5);
+             */
+            $useractual=Auth::user();
+            if($useractual->tipo_usuario==4)
+            {
             $usuarios = User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
-            if ($usuarios) {
-                $salida = view('admin.usuario.includes.tablaUsuarios', compact('usuarios', 'searchText'))->render();
-                return response()->json($salida);
+            if ($usuarios)
+            {
+                            $salida= view($useractual->stringRol->nombre.'.usuario.includes.tablaUsuarios',compact('usuarios','searchText'))->render();
+                            return response()->json($salida); 
+            }
+             
+            }
+            else
+            {
+
+
+            $usuarios=DB::table('users')
+                ->join('usersAnunciante','users.id','=','usersAnunciante.id')
+                ->select('users.id','users.name','users.email','users.status as activo')
+                ->where('users.tipo_usuario','=',1)
+                ->where('users.name','LIKE','%'. $request->get('searchText') . '%')
+                ->where('usersAnunciante.idpartner','=',$useractual->id)
+                ->orderBy('users.name', 'asc')
+                ->paginate(5);
+                if($usuarios){
+                                dd($useractual->stringRol->nombre);
+                                $salida= view($useractual->stringRol->nombre.'.usuario.includes.tablaUsuarios',compact('usuarios','searchText'))->render();
+                                return response()->json($salida);
+                }
+
             }
         }
     }
@@ -136,11 +222,30 @@ class UsuarioController extends Controller
             ->orderBy('name', 'asc')
             ->paginate(5);
              */
+            $useractual=Auth::user();
+            if($useractual->tipo_usuario==4)
+            {
             $usuarios = User::where('name', 'LIKE', '%' . $request->get('searchText') . '%')
                 ->orderBy('name', 'asc')
                 ->paginate(5);
   
-            return view('admin.usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
+            return view($useractual->stringRol->nombre.'.usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);                
+            }
+            else
+            {
+
+
+            $usuarios=DB::table('users')
+                ->join('usersAnunciante','users.id','=','usersAnunciante.id')
+                ->select('users.id','users.name','users.email','users.status as activo')
+                ->where('users.name','LIKE','%'. $request->get('searchText') . '%')
+                ->where('usersAnunciante.idpartner','=',$useractual->id)
+                ->orderBy('users.name', 'asc')
+                ->paginate(5);
+
+            return view($useractual->stringRol->nombre.'.usuario.index', ["usuarios" => $usuarios, "searchText" => $query]);
+            }
+
         }
 
     }
