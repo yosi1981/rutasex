@@ -6,6 +6,12 @@
             <a href="{{URL::to('/crearAnuncio')}}"><button class="btn btn-success">Crear Anuncio</button></a>
     @include('anuncio.search')
 
+@if(session()->has('msj'))
+<div class="alert alert-success">
+    <button type="button" aria-hidden="true" class="close">×</button>
+    <span><b> Exito - </b> {{ session('msj')}} ".alert-success"</span>
+</div>
+@endif
 
 <div class="row">
 
@@ -79,11 +85,12 @@
 
 
 <script type="text/javascript">
+
     $('#searchText').on('keyup',function(){
         $value=$(this).val();      
         $.ajax({
             type : 'get',
-            url  : '{{URL::to('/admin/searchAnuncio')}}',
+            url  : '{{URL::to('/searchAnuncio')}}',
             data : {'searchText' : $value},
             async: true,
             dataType: 'json',
@@ -98,8 +105,9 @@
     $(document).on('click','.pagination a',function(e){
         e.preventDefault();
         var page=$(this).attr('href').split('page=')[1];
-        getUsuarios(page,$('#searchText').val());
+        getAnuncios(page,$('#searchText').val());
     })
+
 $(document).ready(function() {
         $('.modal').appendTo("body");
 
@@ -108,7 +116,7 @@ $(document).ready(function() {
 
     function getAnuncios(page,search)
     {
-        var url="{{URL::to('/admin/searchAnuncio')}}";
+        var url="{{URL::to('/searchAnuncio')}}";
         $.ajax({
             type : 'get',
             url  : url+'?page='+page,

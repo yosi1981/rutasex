@@ -91,14 +91,16 @@ class AnuncioController extends Controller
                 $anuncio->idusuario= Auth::user()->id;
         }
 
-        $anuncio->save();
-
+        if($anuncio->save()){
         //sincronizamos la tabla pivote imagenes_anuncios automaticamente pasandole el array
         //de checkboxes pasados (ids de imagenes pasadas junto al idanuncio)
 
         $anuncio->ImagenesAnuncio()->sync($data);
 
-        return Redirect::to('Anuncio');
+        return Redirect::to('Anuncio')->with('msj','Guardado');            
+        }
+
+
 
     }
 

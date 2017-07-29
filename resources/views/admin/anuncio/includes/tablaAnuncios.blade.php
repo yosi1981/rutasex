@@ -7,7 +7,7 @@
                     <th>Fecha Inicio</th>
                     <th>Fecha Final</th>
                     <th>Activo</th>
-                    <th>Localidad</th>
+                    <th>Id Localidad</th>
                     <th>Id Usuario</th>
 
                 </thead>
@@ -26,10 +26,10 @@
                             <a href="{{URL::to('/admin/Usuario/'.$anu->idusuario.'/edit')}}">
                                 {{$anu->NombreUsuario}}
                             </a>
-                        </td>                                             
+                        </td>                                                 
                         <td>
 
-                            <a href="{{URL::to('/admin/Anuncio/'.$anu->idanuncio.'/edit')}}">
+                            <a href="{{URL::to('/Anuncio/'.$anu->idanuncio.'/edit')}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true">
                                 </i>
                             </a>

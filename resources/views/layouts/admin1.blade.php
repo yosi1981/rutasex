@@ -201,6 +201,7 @@
 	<!--   Core JS Files   -->
 	<script src="{{asset('js/jquery-3.1.0.min.js')}}" type="text/javascript"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('js/bootstrap-notify')}}" type="text/javascript"></script>
 	<script src="{{asset('js/material.min.js')}}" type="text/javascript"></script>
 
 

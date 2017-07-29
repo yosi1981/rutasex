@@ -87,7 +87,7 @@
     $(document).on('click','.pagination a',function(e){
         e.preventDefault();
         var page=$(this).attr('href').split('page=')[1];
-        getUsuarios(page,$('#searchText').val());
+        getAnuncios(page,$('#searchText').val());
     })
 
     $(document).ready(function() {
