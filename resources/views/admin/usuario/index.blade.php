@@ -3,7 +3,7 @@
 
 @include('admin.usuario.includes.modalDelete')
 
-			<a href="{{URL::action('UsuarioController@CrearUsuario')}}"><button class="btn btn-success">Crear Usuario</button></a>
+			<a href="{{URL::to('/admin/crearUsuario')}}"><button class="btn btn-success">Crear Usuario</button></a>
 
 	@include('admin.usuario.includes.search')
 

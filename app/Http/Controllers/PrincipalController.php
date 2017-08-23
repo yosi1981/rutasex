@@ -65,6 +65,7 @@ class PrincipalController extends Controller
                     if($anuncio->ult_muestra!=$fechaactual)
                     {
                     $usuarioAnuncio=Useranunciante::findorfail($anuncio->UserAnunciante->id);
+
                         if($usuarioAnuncio->dias_disponibles==0)
                         {
                             $anuncio->activo=0;

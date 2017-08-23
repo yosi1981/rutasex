@@ -42,7 +42,7 @@ class UsuarioController extends Controller
     }
     public function NuevoUsuario(UsuarioFormRequest $request)
     {
-        $ifposible=false;
+        $ifposible=false; 
         if(Auth::user()->tipo_usuario==4)
         {
             $ifposible=true;

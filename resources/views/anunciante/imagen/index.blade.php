@@ -96,7 +96,9 @@
 
 
     		})
-
+            $(document).ready(function() {
+                $('.modal').appendTo("body");
+            });
     		function transferComplete(data){
     			$('#Imagen').modal('hide');
     		}
