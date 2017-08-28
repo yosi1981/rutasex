@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
+Route::get('/listadoCitas','CitaController@listadoCitas');
 Route::get('/pruebaIPNform','ImagenController@pruebaIPN');
 Route::get('/pruebaCheckbox1','ImagenController@checkbox1');
 

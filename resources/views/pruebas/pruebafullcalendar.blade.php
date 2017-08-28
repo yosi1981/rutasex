@@ -1,6 +1,6 @@
 @extends ('layouts.admin1')
 @section ('contenido')
-	<div id='calendar'></div>
+	<div id='calendar' class="fc fc-unthemed fc-ltr"></div>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -18,15 +18,13 @@
 		} 
 
 		hoy = yyyy+'-'+mm+'-'+dd;
-		$('#calendar').fullCalendar({
-			header: {
-				center: 'title',
 
-			},
+		$('#calendar').fullCalendar({
+
 			defaultDate: hoy,
 			navLinks: false, // can click day/week names to navigate views
 			editable: true,
-			eventLimit: true, // allow "more" link when too many events
+			eventLimit: false, // allow "more" link when too many events
 			events: [
 				{
 					title: 'All Day Event',
@@ -80,6 +78,7 @@
 				}
 			]
 		});
+				$('#calendar').fullCalendar('changeView', 'agendaDay');
 		
 	});
 </script>
