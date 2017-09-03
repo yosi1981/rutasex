@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cita;
+use Auth;
 use DB;
 
 class CitaController extends Controller
@@ -37,23 +38,18 @@ class CitaController extends Controller
     	}
     	return $reservada;
     }
-    
+
      public function CitasAnuncioFecha($id,$fecha)
     
     {
     	$reservados=array();
+    	$idusuario=Auth::user()->id;
+
     	$citas=Cita::all()
     			->where('idanuncio','=',$id)
-    			->where('fecha','=',$fecha);
+    			->where('fecha','=',$fecha)
+    			->where('idusuario','<>',$idusuario);
 
-
-        $data = array(); //declaramos un array principal que va contener los datos
-
-		foreach($citas as $cita)
-		{
-			array_push($data,array("title"=>$cita->idanuncio,"start"=>$cita->fecha.$cita->horaini));
-		} 
-  
   		$hora="00:00:00";
   		$ocupado=false;
   		$reservado=false;
@@ -77,12 +73,21 @@ class CitaController extends Controller
   					if($ocupado==true)
   					{
   						$horafinal=date('H:i',$hora-(15*60));
-  						array_push($reservados,array("title"=>"ocupado","start"=>$fecha." ".$horainicial,"end"=>$fecha." ".$horafinal,"color"=>'red'));
+  						array_push($reservados,array("title"=>"ocupado","start"=>$fecha." ".$horainicial,"end"=>$fecha." ".$horafinal,"color"=>'green'));
   						$ocupado=false;
   					}
   				}
   			}
-  		}
+  		} 
+
+  		  	$citasusuario=Cita::all()
+    			->where('idanuncio','=',$id)
+    			->where('fecha','=',$fecha)
+    			->where('idusuario','=',$idusuario);
+    	foreach($citasusuario as $ctusuario)
+    	{
+    		array_push($reservados,array("title"=>$ctusuario->idusuario,"start"=>$fecha." ".$ctusuario->horaini,"end"=>$ctusuario->horafin,"color"=>'blue'));
+    	}
         return response()->json($reservados); //para luego retornarlo y estar listo para consumirlo
     }
 

@@ -12,7 +12,6 @@
 		var dd = hoy.getDate();
 		var mm = hoy.getMonth()+1; //hoy es 0!
 		var yyyy = hoy.getFullYear();
-
 		if(dd<10) {
 		    dd='0'+dd
 		} 
@@ -32,7 +31,6 @@
 			events: data
 		});
 				$('#calendar').fullCalendar('changeView', 'agendaDay');
-			alert(data);
 			});
 	});
 </script>
