@@ -5,7 +5,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$.get('http://localhost:8000/CitasAnuncioFecha/3/2017-08-28',
+		$.get('/CitasAnuncioFecha/3/2017-08-28',
 			function(data)
 			{
 		var hoy = new Date();
