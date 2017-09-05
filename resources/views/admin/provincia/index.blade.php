@@ -34,7 +34,7 @@
 						<td>{{$provi->nombre}}</td>
 						<td>{{$provi->habilitado}}</td>
 						<td>
-							<a href="{{URL::action('UsuarioController@edit',$provi->idresponsable)}}">
+							<a href="{{URL::to('/admin/EditarUsuario',$provi->idresponsable)}}">
 								{{$provi->NombreUsuario}}
 							</a>
 						</td>

@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Anuncio;
 use App\Cita;
+use App\user;
 use Auth;
 
 class CitaController extends Controller
 {
-    public function listadoCitas()
+    public function listadoCitas($id)
     {
-        $citas = Cita::all();
-
-        $data = array(); //declaramos un array principal que va contener los datos
-
-        foreach ($citas as $cita) {
-            array_push($data, array("title" => $cita->idanuncio, "start" => $cita->fecha . $cita->horaini));
-        }
+        $usuarioactual = Auth::user();
+        $anuncioactual = Anuncio::findorfail($id);
 
         /*return response()->json($data); //para luego retornarlo y estar listo para consumirlo*/
-        return view('pruebas.pruebafullcalendar');
+        return view($usuarioactual->stringRol->nombre . '.cita.index', ["anuncio" => $anuncioactual]);
     }
 
     private function horareservada($hora, $citas)
@@ -32,8 +29,21 @@ class CitaController extends Controller
         }
         return $reservada;
     }
+    public function CitasAnuncio($id)
+    {
+        $reservados = array();
+        $idusuario  = Auth::user()->id;
 
-    public function CitasAnuncioFecha($id, $fecha)
+        $citas = Cita::all()
+            ->where('idanuncio', '=', $id);
+
+        foreach ($citas as $cita) {
+            array_push($reservados, array("title" => $cita->idusuario, "start" => $cita->fecha . " " . $cita->horaini, "end" => $cita->fecha . " " . $cita->horafin, "color" => 'blue'));
+        }
+
+        return response()->json($reservados); //para luego retornarlo y estar listo para consumirlo
+    }
+    public function CitasAnuncioFechaUsuario($id, $fecha)
     {
         $reservados = array();
         $idusuario  = Auth::user()->id;

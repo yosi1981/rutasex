@@ -100,14 +100,14 @@ class UsuarioController extends Controller
             Mail::to($usuario['email'])->send(new verifyEmail($usuario));
         }
 
-        return Redirect::to('/delegado/Usuario');
+        return Redirect::to(Auth::user()->stringRol->nombre . '/Usuario');
     }
 
     public function IniciarSesion($id)
     {
         $usuario = User::findOrFail($id);
         Auth::login($usuario);
-        return Redirect::to('/admin/Usuario');
+        return Redirect::to(Auth::user()->stringRol->nombre . '/dashboard');
 
     }
 
@@ -121,7 +121,7 @@ class UsuarioController extends Controller
 
             if ($usuarioeditar->stringRol->nombre == "anunciante") {
                 if ($useractual->tipo_usuario == 1 and $useractual->id == $usereditar->id) {
-
+                    return view($useractual->stringRol->nombre . ".usuario.editUsuario.edit", ["usuario" => $usuarioeditar]);
                 } else {
                     $usuarioanun = Useranunciante::findorfail($usuarioeditar->id);
                     if ($usuarioanun->Partner->id == $useractual->id) {
@@ -143,7 +143,7 @@ class UsuarioController extends Controller
         $usuario->email = $request->get('email');
         $usuario->update();
 
-        return Redirect::to('/' . Auth::user()->stringRol->nombre . '/Usuario');
+        return Redirect::to('/Usuario');
     }
 
     public function search(Request $request)

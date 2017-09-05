@@ -5,8 +5,8 @@
 	
 <div class="table-responsive" id="cuerpo" name="cuerpo">
 
-    @include('imagen.nuevaImagen')
-    @include('imagen.modal-delete')
+    @include('admin.imagen.includes.nuevaImagen')
+    @include('admin.imagen.includes.modal-delete')
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">

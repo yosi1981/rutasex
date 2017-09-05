@@ -3,7 +3,7 @@
 
 @include('admin.usuario.includes.modalDelete')
 
-			<a href="{{URL::to('/admin/crearUsuario')}}"><button class="btn btn-success">Crear Usuario</button></a>
+			<a href="{{URL::to('crearUsuario')}}"><button class="btn btn-success">Crear Usuario</button></a>
 
 	@include('admin.usuario.includes.search')
 
@@ -33,7 +33,7 @@
 						<td>{{$usu->activo}}</td>
 						<td>{{$usu->stringRol->nombre}}</td>						
 						<td>
-                             <a href="{{URL::to('/admin/Usuario/'.$usu->id.'/edit')}}">
+                             <a href="{{URL::to('/Usuario/'.$usu->id.'/edit')}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Editar Usuario">
                                 </i>
                             </a>
