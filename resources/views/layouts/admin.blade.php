@@ -23,6 +23,9 @@
         <link href="{{ asset('css/thumbnail-slider.css') }}" rel="stylesheet" type="text/css" />
         <script src="{{ asset('js/thumbnail-slider.js') }}" type="text/javascript"></script>
 
+        <script type="text/javascript" src="{{ asset('js/bootstrap-timepicker.js')}}"></script>
+
+
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">

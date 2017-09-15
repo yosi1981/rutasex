@@ -48,12 +48,16 @@
     <!--  Material Dashboard CSS    -->
     <link href="{{asset('css/material-dashboard.css')}}" rel="stylesheet"/>
 
+    <link href="{{asset('css/calendar.css')}}" rel="stylesheet"/>    
+
+	<link rel="stylesheet" type="text/css" href="{{asset('css/jquery.datetimepicker.css')}}">
+
 <!-- fullcalendar -->
-<link href='{{ asset('css/fullcalendar.min.css')}}' rel='stylesheet' />
+<link href='{{ asset('css/fullcalendar.css')}}' rel='stylesheet' />
 <link href='{{ asset('css/fullcalendar.print.min.css')}}' rel='stylesheet' media='print' />
     <!-- Necesario para el script del thumbnail-slider -->
         <link href="{{ asset('css/thumbnail-slider.css') }}" rel="stylesheet" type="text/css" />
-            <link rel="stylesheet" href="{{asset('css/image-picker.css')}}">
+        <link rel="stylesheet" href="{{asset('css/image-picker.css')}}">
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
@@ -203,6 +207,8 @@
 	<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 	<script src="{{asset('js/bootstrap-notify')}}" type="text/javascript"></script>
 	<script src="{{asset('js/material.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('js/jquery.datetimepicker.full.min.js')}}" type="text/javascript"></script>
+
 
 
 
@@ -219,6 +225,13 @@
     <script src="{{asset('js/image-picker.min.js')}}"></script>
     <script src="{{asset('js/image-picker.js')}}"></script>   
     <script src="{{asset('js/jquery.bootstrap-growl.min.js')}}"></script>   
+
+	<script>
+		$('#datetimepicker').datetimepicker({
+		  datepicker:false,
+		  format:'H:i'
+		});
+	</script>
 
 
 </html>

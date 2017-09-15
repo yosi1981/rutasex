@@ -65,7 +65,7 @@
 		$value=$(this).val();
 		$.ajax({
 			type : 'get',
-			url  : '{{URL::to('/admin/searchUsuario')}}',
+			url  : '{{URL::to('/searchUsuario')}}',
 			data : {'searchText' : $value},
 			async: true,
     		dataType: 'json',
@@ -86,7 +86,7 @@
 
 	function getUsuarios(page,search)
 	{
-		var url="{{URL::to('/admin/searchUsuario')}}";
+		var url="{{URL::to('/searchUsuario')}}";
 		$.ajax({
 			type : 'get',
 			url  : url+'?page='+page,
@@ -137,7 +137,7 @@
     	})
 		$('.modal-footer').on('click', '.delete', function(e) {
 			e.preventDefault();
-			var url="{{URL::to('/admin/eliminarUsuario')}}";
+			var url="{{URL::to('/eliminarUsuario')}}";
 		  $.ajax({
 		    type: 'post',
 		    data: {

@@ -56,6 +56,9 @@
 
                             <i class="fa fa-camera-retro fa-2x delete-modal " color=#00c0ef data-id="{{$anu->idanuncio}}"></i> 
                             
+                            <a href="{{URL::to('/listadoCitas/'.$anu->idanuncio)}}">
+                                <i class="fa fa-address-book fa-2x" aria-hidden="true"></i>                                
+                            </a>
                         </td>                   
                     </tr>
                     @endforeach

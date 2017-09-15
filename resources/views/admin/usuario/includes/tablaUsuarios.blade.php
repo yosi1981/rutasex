@@ -19,7 +19,7 @@
 						<td>{{$usu->stringRol->nombre}}</td>						
 						<td>
 
-                            <a href="{{URL::tp('/Usuario/'.$usu->id.'/edit')}}">
+                            <a href="{{URL::to('/Usuario/'.$usu->id.'/edit')}}">
                                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Editar Usuario">
                                 </i>
                             </a>

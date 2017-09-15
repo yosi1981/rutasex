@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/listadoCitas/{id}', 'CitaController@listadoCitas');
-Route::get('/CitasAnuncio/{id}', 'CitaController@CitasAnuncio');
 Route::get('/pruebaIPNform', 'ImagenController@pruebaIPN');
 Route::get('/pruebaCheckbox1', 'ImagenController@checkbox1');
 
@@ -38,6 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/NuevoAnuncio', 'AnuncioController@NuevoAnuncio');
     Route::post('/eliminarAnuncio', 'AnuncioController@eliminar');
     Route::get('/searchAnuncio', 'AnuncioController@search');
+
+    Route::get('/listadoCitas/{id}', 'CitaController@listadoCitas');
+    Route::get('/CitasAnuncio/{id}', 'CitaController@CitasAnuncio');
+    Route::get('/nuevaCita', 'CitaController@NuevaCita');
 
     Route::resource('/Usuario', 'UsuarioController');
     Route::get('/crearUsuario', 'UsuarioController@CrearUsuario');

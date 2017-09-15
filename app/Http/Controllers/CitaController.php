@@ -9,6 +9,11 @@ use Auth;
 
 class CitaController extends Controller
 {
+
+    public function NuevaCita()
+    {
+        return view(Auth::user()->stringRol->nombre . '.cita.nuevaCita.nuevaCita');
+    }
     public function listadoCitas($id)
     {
         $usuarioactual = Auth::user();

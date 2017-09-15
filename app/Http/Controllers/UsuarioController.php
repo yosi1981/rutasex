@@ -168,7 +168,6 @@ class UsuarioController extends Controller
                     $salida = view($useractual->stringRol->nombre . '.usuario.includes.tablaUsuarios', compact('usuarios', 'searchText'))->render();
                     return response()->json($salida);
                 }
-
             } else {
 
                 $usuarios = DB::table('users')
@@ -184,7 +183,6 @@ class UsuarioController extends Controller
                     $salida = view($useractual->stringRol->nombre . '.usuario.includes.tablaUsuarios', compact('usuarios', 'searchText'))->render();
                     return response()->json($salida);
                 }
-
             }
         }
     }
