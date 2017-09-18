@@ -1,6 +1,4 @@
 
-@extends ('layouts.admin1')
-@section ('contenido')
 
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -14,7 +12,7 @@
 
 			</div>
 				<div class="modal-body">		
-					<form action="/admin/nuevaProvincia" method "post" id="frmProvincia">
+					<form action="" method="post" id="frmCitaEditar">
 						<div class="row">
 							<div class="col-lg-4 col-sm-4">Nombre
 								<div class="form-group">
@@ -51,5 +49,3 @@
 			</div>
 		</div>
 
-
-@endsection
