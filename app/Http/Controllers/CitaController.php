@@ -6,13 +6,28 @@ use App\Anuncio;
 use App\Cita;
 use App\user;
 use Auth;
+use Illuminate\Http\Request;
 
 class CitaController extends Controller
 {
 
-    public function NuevaCita()
+    public function NuevaCita($idanuncio)
     {
-        return view(Auth::user()->stringRol->nombre . '.cita.nuevaCita.nuevaCita');
+        $anuncio=Anuncio::findorfail($idanuncio);
+        $salida=view(Auth::user()->stringRol->nombre . '.cita.nuevaCita.nuevaCita',["anuncio" => $anuncio])->render();
+        return response()->json($salida);
+    }
+    public function GuardarNuevaCita(Request $request)
+    {
+        $cita=new Cita;
+        $cita->idanuncio=$request->idanuncio;
+        $cita->idusuario=Auth::user()->id;
+        $cita->fecha=$request->fecha;        
+        $cita->horaini=$request->horaini;
+        $cita->horafin=$request->horafin;
+        $cita->save();
+
+        return response()->json($cita);
     }
     public function listadoCitas($id)
     {

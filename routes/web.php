@@ -39,7 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/listadoCitas/{id}', 'CitaController@listadoCitas');
     Route::get('/CitasAnuncio/{id}', 'CitaController@CitasAnuncio');
-    Route::get('/nuevaCita', 'CitaController@NuevaCita');
+    Route::get('/nuevaCita/{id}', 'CitaController@NuevaCita');
+    Route::post('/guardarNuevaCita','CitaController@GuardarNuevaCita')->name('cita.guardar');
 
     Route::resource('/Usuario', 'UsuarioController');
     Route::get('/crearUsuario', 'UsuarioController@CrearUsuario');

@@ -231,6 +231,7 @@
 		  datepicker:false,
 		  format:'H:i'
 		});
+
 	</script>
 
 

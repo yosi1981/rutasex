@@ -102,9 +102,7 @@
 			});		
 	}
 
-  		$('#btnAddProvincia').on('click',function(){
-	    	$('#Provincia').modal('show');
-	    })
+
 
     	$('#frmProvincia').on('submit',function(e){
     		e.preventDefault();
@@ -129,7 +127,7 @@
     		}).fail(function(data){
 
     			    		})
-    	})
+    	});
 		$(document).ready(function() {
 			$('.modal').appendTo("body");
 			MostrarMensaje();
