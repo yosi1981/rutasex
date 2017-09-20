@@ -17,6 +17,14 @@ class CitaController extends Controller
         $salida=view(Auth::user()->stringRol->nombre . '.cita.nuevaCita.nuevaCita',["anuncio" => $anuncio])->render();
         return response()->json($salida);
     }
+
+    public function EditarCita($idcita)
+    {
+        $cita=Cita::findorfail($idcita);
+        $salida=view(Auth::user()->stringRol->nombre . '.cita.editCita.edit',["cita" => $cita])->render();
+        return response()->json($salida);
+    }
+
     public function GuardarNuevaCita(Request $request)
     {
         $cita=new Cita;
@@ -26,6 +34,18 @@ class CitaController extends Controller
         $cita->horaini=$request->horaini;
         $cita->horafin=$request->horafin;
         $cita->save();
+
+        return response()->json($cita);
+    }
+
+    public function UpdateCita(Request $request)
+    {
+        $id=$request->eidcita;
+        $cita=Cita::findorfail($id);
+        $cita->fecha=$request->efecha;        
+        $cita->horaini=$request->ehoraini;
+        $cita->horafin=$request->ehorafin;
+        $cita->update();
 
         return response()->json($cita);
     }
@@ -58,7 +78,7 @@ class CitaController extends Controller
             ->where('idanuncio', '=', $id);
 
         foreach ($citas as $cita) {
-            array_push($reservados, array("title" => $cita->idusuario, "start" => $cita->fecha . " " . $cita->horaini, "end" => $cita->fecha . " " . $cita->horafin, "color" => 'blue'));
+            array_push($reservados, array("id" => $cita->idcita, "title" => $cita->idcita. " title", "start" => $cita->fecha . " " . $cita->horaini, "end" => $cita->fecha . " " . $cita->horafin, "color" => 'blue'));
         }
 
         return response()->json($reservados); //para luego retornarlo y estar listo para consumirlo

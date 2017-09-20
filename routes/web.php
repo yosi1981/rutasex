@@ -40,7 +40,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/listadoCitas/{id}', 'CitaController@listadoCitas');
     Route::get('/CitasAnuncio/{id}', 'CitaController@CitasAnuncio');
     Route::get('/nuevaCita/{id}', 'CitaController@NuevaCita');
+    Route::get('/editCita/{id}', 'CitaController@EditarCita');
     Route::post('/guardarNuevaCita','CitaController@GuardarNuevaCita')->name('cita.guardar');
+    Route::post('/updateCita','CitaController@UpdateCita')->name('cita.guardar');    
 
     Route::resource('/Usuario', 'UsuarioController');
     Route::get('/crearUsuario', 'UsuarioController@CrearUsuario');
